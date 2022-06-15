@@ -1,7 +1,6 @@
 <script context="module">
-    import {score, start_timer, settings, page, switchOn, sets, last_actions, last_action} from '.../stores.js';
+    import {score, start_timer, settings, page, switchOn, sets, last_actions, last_action} from './stores.js';
     import { get } from 'svelte/store';
-import { onMount } from 'svelte';
 
     export function animScoreIncrement(event, i) {
         if (!get(start_timer) & !get(score)[0].winner & !get(score)[1].winner) { 

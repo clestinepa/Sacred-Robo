@@ -62,9 +62,9 @@
     });
 
     setInterval( () => {
+        console.log(body.offsetHeight, body.scrollHeight)
             if (main.offsetHeight <= result.offsetHeight) {
                 console.log("trunk");
-                body.style.overflow="scroll";
             } else {
                 console.log("full");
             }

@@ -40,9 +40,9 @@
     justify-content: center;
 
     font-family: var(--font-family-title);
-    font-size: 40px;
+    font-size: min(6.5vw,100px);
     color: rgb(var(--color), 1);
-    padding-bottom: 5px;
+    padding-bottom: 0.5vw;
 
     border-color: rgb(var(--color), 0.5);
 }

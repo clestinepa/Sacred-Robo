@@ -20,7 +20,7 @@
 	 * ERROR : VM11:6772 crbug/1173575, non-JS module files deprecated. (anonyme) @ VM11:6772
 			   [Violation] Forced reflow while executing JavaScript took 56ms
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
-	 *
+	 *Violation :Forced reflow while executing JavaScript took 70ms
 	 * 
 	*/
 
@@ -134,7 +134,7 @@
 <main class="game">
 	<div id=result>
 		<div id=settings_game>
-			<Back/>
+			<div id=pos_back><Back/></div>
 		</div>
 		<div id=names_{$switchOn}>
 			<p id=name1 style:color={$settings.team1_color.value[0]}>{$settings.team1_name.value}</p>
@@ -230,8 +230,8 @@ header {
 /* ****** */
 
 main {
-	height: 100%;
-	
+	flex: 1 0;
+	overflow : auto auto;
 }
 
 /* Settings */
@@ -309,29 +309,43 @@ main {
 
 /* Global */
 .game{
-	margin: max(2%, 5px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
+	padding: max(2%, 5px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
+#pos_back {
+	max-width: calc(1000px + 2vw + 250px);
+}
+
 #names_false, #names_true, #points_false, #points_true, #temps_mort {
 	display: flex;
 	justify-content: center;
-	gap: 5px;
+	gap: 1vw;
 }
 
 #name1, #name2, .score, #tm1, #tm2 {
 	position: relative;
 	width: 100%;
 	max-width: 500px;
-	min-width: 250px;
 }
 
 .gap, .set   {
-	width: 15%;
-	min-width: 120px;
-	max-width: 120px;
+	width: 50%;
+	max-width: 250px;
+}
+
+.set, .detail_set {
+	gap: 1vw;
+}
+
+.score_set  {
+	gap: 2vw;
+}
+
+.detail_set {
+	padding: 0 3vw 0 3vw;
 }
 /* ****** */
 
@@ -348,8 +362,14 @@ main {
 /* Settings */
 #settings_game {
 	display: flex;
-	justify-content: right;
+    justify-content: center;
 	margin-bottom: max(2%, 5px);
+}
+
+#pos_back {
+	flex:1;
+	display: flex;
+	justify-content: right;
 }
 /* ******** */
 
@@ -357,6 +377,7 @@ main {
 #points_false, #points_true {
 	margin: 10px 0 10px 0;
 }
+
 .score::after {
 	content: '';
 	display: block;
@@ -366,13 +387,11 @@ main {
 .set {
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
 }
 
 .score_set  {
 	display: flex;
 	justify-content: center;
-	gap: 10px;
 }
 
 .point_set {
@@ -388,12 +407,8 @@ main {
 
 .detail_set {
 	height: 100%;
-	padding-left: 16px;
-	padding-right: 16px;
-
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
 }
 /* ****** */
 

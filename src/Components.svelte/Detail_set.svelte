@@ -77,8 +77,8 @@
     justify-content: center;
 
     font-family: var(--font-family-title);
-    font-size: 30px;
-    padding-bottom: 4px;
+    font-size: 3vw;
+    padding-bottom: 0.3vw;
 }
 
 .z21 {
