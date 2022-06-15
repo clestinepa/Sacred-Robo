@@ -14,7 +14,7 @@
 
 <style>
     .reponse {
-        padding : 15px 0 10px 10px;
+        padding : 5px 0 5px 10px;
         border-left: 1px solid var(--clair);
     }
 

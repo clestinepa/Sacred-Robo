@@ -12,7 +12,7 @@
 
 <style>
 .carre{
-    --border-witdh : min(0.8vw,10px);
+    --border-witdh : min(max(4px,0.8vw),10px);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -24,7 +24,7 @@
 .z1{
     border-top: var(--border-witdh) solid ;
 	border-bottom: var(--border-witdh) solid ;
-	border-radius: 1.5vw;
+	border-radius:  min(max(7.5px,1.5vw), 22px);
     display: flex; /*Pour confiner les bordures à l'interieur du carré défini*/
     width: 100%; /*Pour confiner les bordures à l'interieur du carré défini*/
 
@@ -34,16 +34,16 @@
 .z2 {
 	border-right: var(--border-witdh) solid ;
 	border-left: var(--border-witdh) solid ;
-	border-radius: 0.8vw;
+	border-radius: min(max(4px,0.8vw),12px);
     width: 100%; /*Pour confiner les bordures à l'interieur du carré défini*/
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-family: var(--font-family-title);
-    font-size: min(6vw, 90px);
+    font-size: min(max(30px,6vw), 90px);
     color: rgb(var(--color), 1);
-    padding-bottom: 0.5vw;
+    padding-bottom: min(max(0.5vw,2.5px),7px);
 
     border-color: rgb(var(--color), 0.5);
 }

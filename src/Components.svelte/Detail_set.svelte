@@ -36,8 +36,8 @@
 
 <style>
 .container {
-    --border-witdh : min(0.6vw, 8px);
-    --radius: 1.5vw;
+    --border-witdh : min(max(3px,0.6vw), 8px);
+    --radius: min(max(7.5px,1.5vw), 22px);
 	position: relative;
 	width: 100%;
 }
@@ -72,15 +72,15 @@
 }
 
 .z21, .z22 {
-    border-radius: 0.8vw;
+    border-radius: min(max(4px,0.8vw),12px);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-family: var(--font-family-title);
-    font-size: min(4vw,50px);
-    padding-bottom: 0.3vw;
+    font-size: min(max(17.5px,3.5vw),51px);
+    padding-bottom: min(max(0.3vw,1.5px), 4.5px);
 }
 
 .z21 {

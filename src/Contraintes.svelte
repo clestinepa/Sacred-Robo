@@ -61,16 +61,16 @@
         body = document.querySelector('body');
     });
 
-    setInterval( () => {
-        console.log(body.offsetHeight, body.scrollHeight)
-            if (main.offsetHeight <= result.offsetHeight) {
-                console.log("trunk");
-            } else {
-                console.log("full");
-            }
+    // setInterval( () => {
+    //     console.log(body.offsetHeight, body.scrollHeight)
+    //         if (main.offsetHeight <= result.offsetHeight) {
+    //             console.log("trunk");
+    //         } else {
+    //             console.log("full");
+    //         }
         
 
 
-    },3000);
+    // },3000);
 
 </script>

@@ -7,22 +7,24 @@
 	 * commentaire => déplacable bas ou cotés
 	 * faire check_ON design
 	 * boutons enregistré preset (?)
-	 * affichage score : font minimum
 	 * bouton réinisganilsé settings
 	 * gerer scroll beau : voir méthode essai read more
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
 	 * confetti saut "naturel"
 	 * boutons dans score pour édit directment
-	 * taille fleche switch responsive
 	 * store variable score pb reactive
 	 * hover joli dans toutes les pages
 	 * Erreur : bundle ne se construot pas jusqu'au bout : Uncaught SyntaxError: Unexpected end of input (at bundle.js:3595:24)
 	 * ERROR : VM11:6772 crbug/1173575, non-JS module files deprecated. (anonyme) @ VM11:6772
-			   [Violation] Forced reflow while executing JavaScript took 56ms
+	 *		   [Violation] Forced reflow while executing JavaScript took 56ms
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
-	 *Violation :Forced reflow while executing JavaScript took 70ms
-	 * 
+	 * Violation :Forced reflow while executing JavaScript took 70ms
+	 * RESPONSIVE : gap result
+	 * 				taille fleche switch
+	 * 				timer !
+	 * 				timeout et check_to
+	 * 				fleche back ?
 	*/
 
 	import {settings, score, sets, switchOn, page, comments} from './stores.js';
@@ -309,6 +311,7 @@ main {
 /* GAME */
 
 /* Global */
+
 .game{
 	padding: max(2%, 5px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
 	display: flex;
@@ -316,14 +319,21 @@ main {
 	justify-content: space-between;
 }
 
+/**Max witdh atteinte pour html de taille 1474px (min à 500px)*/
+#result {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
 #pos_back {
-	max-width: calc(1000px + 2vw + 250px);
+	max-width: calc(1000px + 30px + 250px); /* 2*width score + 2*gap + witdh score set*/
 }
 
 #names_false, #names_true, #points_false, #points_true, #temps_mort {
 	display: flex;
 	justify-content: center;
-	gap: 1vw;
+	gap: min(max(5px,1vw), 15px);
 }
 
 #name1, #name2, .score, #tm1, #tm2 {
@@ -338,15 +348,15 @@ main {
 }
 
 .set, .detail_set {
-	gap: 1vw;
+	gap: min(max(5px,1vw), 15px);
 }
 
 .score_set  {
-	gap: 2vw;
+	gap: min(max(10px,2vw), 29px);
 }
 
 .detail_set {
-	padding: 0 3vw 0 3vw;
+	padding: 0 min(max(15px,3vw), 44px) 0 min(max(15px,3vw), 44px);
 }
 /* ****** */
 
@@ -355,7 +365,7 @@ main {
 /* Name */
 #name1, #name2 {
 	font-family: var(--font-family-title);
-	font-size: min(4vw,50px);
+	font-size: min(max(20px,4vw),50px);
 	margin: 0;
 }
 /* **** */
@@ -375,10 +385,6 @@ main {
 /* ******** */
 
 /* Points */
-#points_false, #points_true {
-	margin: 10px 0 10px 0;
-}
-
 .score::after {
 	content: '';
 	display: block;
