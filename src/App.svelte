@@ -4,9 +4,10 @@
 	 * undoAction switch ? + pendant timer
 	 * bouton rejoindre partie
 	 * bouton partagé partie
-	 * commentaire
+	 * commentaire => déplacable bas ou cotés
 	 * faire check_ON design
-	 * boutons enregistré preset
+	 * boutons enregistré preset (?)
+	 * affichage score : font minimum
 	 * bouton réinisganilsé settings
 	 * gerer scroll beau : voir méthode essai read more
 	 * rajouter settings choix score temps mort technique

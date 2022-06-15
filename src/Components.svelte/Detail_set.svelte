@@ -36,6 +36,8 @@
 
 <style>
 .container {
+    --border-witdh : min(0.8vw,10px);
+    --radius: 1.5vw;
 	position: relative;
 	width: 100%;
 }
@@ -54,23 +56,23 @@
 }
 
 .z11, .z12 {
-	border-top: 5px solid ;
-	border-bottom: 5px solid ;
+	border-top: var(--border-witdh) solid ;
+	border-bottom: var(--border-witdh) solid ;
     display: flex;
     width: 100%;
     border-color: var(--normal);
 }
 
 .z11 {
-	border-radius: 10px 0px 0px 10px;
+	border-radius: var(--radius) 0px 0px var(--radius);
 }
 
 .z12 {
-	border-radius: 0px 10px 10px 0px;
+	border-radius: 0px var(--radius) var(--radius) 0px;
 }
 
 .z21, .z22 {
-    border-radius: 5px;
+    border-radius: 0.7vw;
     width: 100%;
     display: flex;
     align-items: center;
@@ -82,11 +84,11 @@
 }
 
 .z21 {
-	border-left: 5px solid ;
+	border-left: var(--border-witdh) solid ;
 }
 
 .z22 {
-	border-right: 5px solid ;
+	border-right: var(--border-witdh) solid ;
 }
 
 .z21, .z22 {

@@ -93,6 +93,7 @@
 <style>
 
 .carre_false, .carre_true {
+    --border-witdh: min(2vw,20px);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -104,9 +105,9 @@
 }
 
 .z1{
-    border-top: 10px solid ;
-	border-bottom: 10px solid ;
-	border-radius: 20px;
+    border-top: var(--border-witdh) solid ;
+	border-bottom: var(--border-witdh) solid ;
+	border-radius: 3vw;
     display: flex;
     width: 100%;
 
@@ -114,9 +115,9 @@
 }
 
 .z2 {
-	border-right: 10px solid ;
-	border-left: 10px solid ;
-	border-radius: 10px;
+	border-right: var(--border-witdh) solid ;
+	border-left: var(--border-witdh) solid ;
+	border-radius: 1.5vw;
     width: 100%;
     display: flex;
     align-items: center;
