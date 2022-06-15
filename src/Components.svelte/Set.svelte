@@ -12,7 +12,7 @@
 
 <style>
 .carre{
-    --border-witdh : min(1vw,13px);
+    --border-witdh : min(0.8vw,10px);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -34,7 +34,7 @@
 .z2 {
 	border-right: var(--border-witdh) solid ;
 	border-left: var(--border-witdh) solid ;
-	border-radius: 0.5vw;
+	border-radius: 0.8vw;
     width: 100%; /*Pour confiner les bordures à l'interieur du carré défini*/
     display: flex;
     align-items: center;

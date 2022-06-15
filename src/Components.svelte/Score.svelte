@@ -93,7 +93,7 @@
 <style>
 
 .carre_false, .carre_true {
-    --border-witdh: min(2vw,20px);
+    --border-witdh: min(1.8vw,20px);
     position: absolute;
     height: 100%;
     width: 100%;

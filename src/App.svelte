@@ -355,7 +355,7 @@ main {
 /* Name */
 #name1, #name2 {
 	font-family: var(--font-family-title);
-	font-size: 3vw;
+	font-size: min(4vw,50px);
 	margin: 0;
 }
 /* **** */
