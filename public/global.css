@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth&family=Poppins:wght@400;500&display=swap');
+ 
+:root {
+	--bg : #FFFAFB;
+	--bg-transparent : rgba(255, 250, 251,0.5);
+	--normal : #61bdd1;
+	--normal-transparent : rgba(97, 189, 209, 0.5);
+	--clair : #ACDCE7;
+	--clair-transparent : rgba(171, 221, 232, 0.5);
+	--details : #E7FAFE;
+	--highlight : #F4ACB7;
+	--highlight-transparent : rgba(244, 174, 183, 0.50);
+	--font : #251723;
+
+	--font-clair : #8B848A;
+
+	--font-family-title : 'Amaranth';
+	--font-family-body : 'Poppins';
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--bg);
+	background-image : url(./img/Subtract.png) ;
+	background-repeat : no-repeat;
+	background-position :  bottom right;
+	background-attachment: fixed;
+	background-size : auto 80%;
+	height: 100%;
+	min-width: 500px;
+	font-family: var(--font-family-body);
+
+	font-size: 18px;
+	color: var(--font);
+
+	caret-color: transparent;
+	cursor: default;
+
+	-moz-user-select: none; /* Firefox */
+	-webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
+	-ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
+	user-select: none; /* Propriété standard */
+}
+
+::selection {
+	background-color: var(--clair);
+}
+
+body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+
+
+/* Parametres */
+.enable, .disable {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.title {
+	margin: 0px;
+	margin-right: 20px;
+}
+
+.zone {
+	border-top: 2px solid ;
+	border-bottom: 2px solid ;
+	border-radius: 8px;
+}
+.zone2 {
+	border-right: 2px solid ;
+	border-left: 2px solid ;
+	border-radius: 5px;
+
+	height: 26px ;
+	display: flex;
+	align-items: center;
+}
+
+.enable .zone, .enable .fleches, .enable input {
+	border-color: var(--highlight);
+	color : var(--highlight);
+}
+.enable .zone2  {
+	border-color: var(--highlight-transparent);
+}
+
+
+.disable .zone, .disable .fleches, .disable input {
+	border-color: var(--clair);
+	color : var(--clair);
+}
+.disable .zone2 {
+	border-color: var(--clair-transparent);
+}
+.disable .title {
+	color : var(--font-clair);
+}
+
+.cross::before,.cross::after  {
+	background: var(--clair);
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+  
+input {
+	border: 0px none;
+	
+
+	width: 100%;
+	height: 100%;
+	text-align: center;
+
+	background-color: transparent;
+	outline: none;
+
+	font-family: Arial;
+	font-size: 18px;
+	caret-color: var(--normal);
+}
+/* ********** */
+
+/* Switch */
+#temps_mort #tm2 .checks {
+	flex-direction: row-reverse;
+}
+/* ****** */
+
+.confirmMsg {
+	background: var(--bg);
+	background-image : url(./img/Subtract.png) ;
+	background-repeat : no-repeat;
+	background-position :  bottom right;
+	background-size : auto 110%;
+
+	border-top: 5px solid var(--normal);
+    border-bottom: 5px solid var(--normal);
+
+    border-radius: 20px;
+
+	/* height: 145px; */
+    width: 350px;
+	padding: 30px;
+	margin: auto;
+
+	text-align: center;
+}
+
+#bgMsg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#buttonConfirm, #buttonClose {
+    border: 2px solid var(--normal);
+	border-radius: 5px;
+
+	height: 45px;
+	width: 50px;
+    margin: 15px 15px 0 15px; 
+
+	font-size: 16px;
+	background-color: var(--normal);
+    color: var(--bg);
+
+	transition: 0.25s;
+	cursor: pointer;
+}
+
+#buttonClose {
+    background-color: var(--bg);
+    color: var(--normal);
+}
+
+#buttonConfirm:hover, #buttonClose:hover {
+	border-color: var(--highlight);
+	transform: translateY(-0.25em);
+}
+
+#buttonConfirm:hover {
+	background-color: var(--highlight);
+}
+
+#buttonClose:hover {
+    color: var(--highlight);
+}
+
+
+
+
+
+.score {
+	position: relative;
+	display: inline-block;
+	border-radius:20px;
+	overflow: hidden;
+}
+.score span {
+	position: absolute;
+	pointer-events: none;
+	transform: translate(-50%,-50%);
+	border-radius: 50%;
+	animation: buble 1s linear infinite;
+}
+
+@keyframes buble {
+	0% {
+		width: 0px;
+		height: 0px;
+		opacity: 0.3;
+	}
+	100%{
+		width: 1000px;
+		height: 1000px;
+		opacity: 0;
+	}
+}

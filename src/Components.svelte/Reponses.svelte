@@ -1,0 +1,36 @@
+<script>
+    export let com;
+</script>
+
+{#each com.reponse as reponse}
+    <div class=reponse>
+        <h2 class=title_subsection>{reponse.auteur}</h2>
+        <p class=content>
+            <span>{reponse.content}</span>
+            <span>Read more</span>
+        </p> 
+    </div>
+{/each}
+
+<style>
+    .reponse {
+        padding : 15px 0 10px 10px;
+        border-left: 1px solid var(--clair);
+    }
+
+    .title_subsection {
+        font-size: 18px;
+        font-weight: semibold;
+    }
+
+    .content {
+        margin: 10px 0 0 20px;
+    }
+
+    .content {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
