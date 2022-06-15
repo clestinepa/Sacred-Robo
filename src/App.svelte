@@ -6,9 +6,11 @@
 	 * bouton partagé partie
 	 * commentaire => déplacable bas ou cotés
 	 * faire check_ON design
+	 * petit carton rouge qui enleve un point à l'équipe
 	 * boutons enregistré preset (?)
 	 * bouton réinisganilsé settings
 	 * gerer scroll beau : voir méthode essai read more
+	 * scroll commentaire : https://codepen.io/seahorsepip/pen/vYXzWgW?editors=1100
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
 	 * confetti saut "naturel"
@@ -190,14 +192,16 @@
 		</div>
 	</div>
 	<div id=comments>
-		<See text="Comments" details={-1}/>
-		<div id=comment_details>
-			{#if $comments.length == 0}
-				<div><span>There is no comments, for the moment</div>
-			{:else}
-				<Comments/>
-			{/if}
-		</div>	
+		<div id=comments_scroll>
+			<See text="Comments" details={-1}/>
+			<div id=comment_details>
+				{#if $comments.length == 0}
+					<div><span>There is no comments, for the moment</div>
+				{:else}
+					<Comments/>
+				{/if}
+			</div>	
+		</div>
 	</div>
 	
 </main>
@@ -234,7 +238,7 @@ header {
 
 main {
 	flex: 1 0;
-	overflow : auto auto;
+	overflow : overlay overlay;
 }
 
 /* Settings */
@@ -474,11 +478,18 @@ main {
 	border-left : none;
 	border-right : none;
 	margin: 40px 0 0 0px;
-	padding : 15px 30px 15px 30px;
+	padding : 15px 0;
+
 
 	min-height : 67px;
+	display: flex;
+}
 
-	overflow-y : auto;
+#comments_scroll {
+	padding : 0 25px;
+	margin: 0 5px;
+
+	overflow-y : overlay;
 
 	display: flex;
 	flex-direction: column;

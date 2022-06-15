@@ -22,6 +22,7 @@
             setTimeout(() => {ripples.remove();},1000);
         }
     }
+    
 
     export function startGame() {
         page.set("game");

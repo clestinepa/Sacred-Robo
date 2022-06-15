@@ -61,8 +61,6 @@ body {
 
 
 
-
-
 /* Parametres */
 .enable, .disable {
 	display: flex;
@@ -235,3 +233,35 @@ input {
 		opacity: 0;
 	}
 }
+
+
+/* SCROLLBAR */
+
+main::-webkit-scrollbar {
+	width: 10px;
+}
+  
+main::-webkit-scrollbar-thumb {
+	background: var(--clair-transparent);
+	border-radius: 10px;
+}
+  
+main::-webkit-scrollbar-thumb:hover {
+	background: var(--clair);
+}
+
+#comments_scroll::-webkit-scrollbar {
+	width: 10px;
+}
+  
+#comments_scroll::-webkit-scrollbar-thumb {
+	background: var(--clair-transparent);
+	border-radius: 10px;
+}
+  
+#comments_scroll::-webkit-scrollbar-thumb:hover {
+	background: var(--clair);
+}
+
+
+/* ********* */
