@@ -1,6 +1,5 @@
 <script>
 	export let score_team;
-    export let color;
 
     import {settings, score, sets, start_timer, switchOn} from "../stores.js";
     import {afficheMsg, addAction, switch_score} from '../Functions.svelte';
@@ -81,7 +80,7 @@
 </script>
 
 
-<div class=carre_{pointer} style="--color: {color};" on:click={incrementScore}>
+<div class=carre_{pointer} style="--color: {$score_team.color[1]};" on:click={incrementScore}>
     <div class=z1><div class=z2>
         {score_team.point}
     </div></div>

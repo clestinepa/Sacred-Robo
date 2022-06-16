@@ -22,11 +22,8 @@
 	 *		   [Violation] Forced reflow while executing JavaScript took 56ms
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
 	 * Violation :Forced reflow while executing JavaScript took 70ms
-	 * RESPONSIVE : gap result
-	 * 				taille fleche switch
-	 * 				timer !
-	 * 				timeout et check_to
-	 * 				fleche back ?
+	 * Responsive : COMMENTAIRE
+	 * clique enlève animation win
 	*/
 
 	import {settings, score, sets, switchOn, page, comments} from './stores.js';
@@ -142,13 +139,13 @@
 			<div id=pos_back><Back/></div>
 		</div>
 		<div id=names_{$switchOn}>
-			<p id=name1 style:color={$settings.team1_color.value[0]}>{$settings.team1_name.value}</p>
+			<p id=name1 style:color={$score[0].color[0]}>{$score[0].name}</p>
 			<div class=gap> <Fleche_switch/></div>
-			<p id=name2 style:color={$settings.team2_color.value[0]}>{$settings.team2_name.value}</p>
+			<p id=name2 style:color={$score[1].color[0]}>{$score[1].name}</p>
 		</div>
 		<div id=points_{$switchOn}>
 			<div class=score on:click={e => animScoreIncrement(e, 0)}>
-				<Score bind:score_team={$score[0]} color={$settings.team1_color.value[1]}/>
+				<Score bind:score_team={$score[0]}/>
 			</div>
 			<div class=set>
 				<div class=score_set>
@@ -166,16 +163,16 @@
 				</div>
 			</div>
 			<div class=score on:click={e => animScoreIncrement(e, 1)}>
-				<Score bind:score_team={$score[1]} color={$settings.team2_color.value[1]}/>
+				<Score bind:score_team={$score[1]}/>
 			</div> 
 		</div>
 		<div id=temps_mort>
 			<div id=tm1>
 				<h2 class=title_subsection>Timeout:</h2>
 				{#if !$switchOn}
-					<Check_to bind:score_team={$score[0]} color={$settings.team1_color.value[1]}/>
+					<Check_to bind:score_team={$score[0]}/>
 				{:else}
-					<Check_to bind:score_team={$score[1]} color={$settings.team2_color.value[1]}/>
+					<Check_to bind:score_team={$score[1]}/>
 				{/if}
 			</div>
 			<div class=gap>
@@ -183,9 +180,9 @@
 			</div>
 			<div id=tm2>
 				{#if !$switchOn}
-					<Check_to bind:score_team={$score[1]} color={$settings.team2_color.value[1]}/>
+					<Check_to bind:score_team={$score[1]}/>
 				{:else}
-					<Check_to bind:score_team={$score[0]} color={$settings.team1_color.value[1]}/>
+					<Check_to bind:score_team={$score[0]}/>
 				{/if}
 				<h2 class=title_subsection>:Timeout</h2>
 			</div>
@@ -317,7 +314,7 @@ main {
 /* Global */
 
 .game{
-	padding: max(2%, 5px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
+	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -327,7 +324,7 @@ main {
 #result {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: min(max(7.5px,1.5vw), 22px);
 }
 
 #pos_back {
@@ -378,7 +375,6 @@ main {
 #settings_game {
 	display: flex;
     justify-content: center;
-	margin-bottom: max(2%, 5px);
 }
 
 #pos_back {
@@ -424,19 +420,20 @@ main {
 /* ****** */
 
 /* Time Out */
-#temps_mort {
+/* #temps_mort {
 	height: 50px;
-}
+} */
 
 #temps_mort .title_subsection {
 	margin: 0px;
 	padding: 0px;
+	font-size: min(max(10px, 2vw), 30px);
 }
 
 #tm1, #tm2 {
 	display: flex;
 	align-items: center;
-	gap: 15px;
+	gap: min(max(7.5px,1.5vw), 22px);
 }
 
 #tm2 {
@@ -477,7 +474,7 @@ main {
 	border : 5px solid var(--clair);
 	border-left : none;
 	border-right : none;
-	margin: 40px 0 0 0px;
+	margin-top: min(max(25px,5vw),73px);
 	padding : 15px 0;
 
 

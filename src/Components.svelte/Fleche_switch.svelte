@@ -11,16 +11,13 @@
             color2= $settings.team2_color.value[1];
         }
 </script>
-<div class=global on:click={switch_score}>
-    <div class=container style="--color: {color1};">
-        <div class=barre></div>
-        <div class=fleche></div>
-    </div>
-    
-    <div class=container style="--color: {color2};">
-        <div class=barre></div>
-        <div class=fleche></div>
-    </div>
+<div class=global style='--color1:{color1}; --color2:{color2};' on:click={switch_score}>
+    <svg width="100%" height="98.4" viewBox="0 0 250 246" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 83C0 69.1929 11.1929 58 25 58H225C238.807 58 250 69.1929 250 83C250 96.8071 238.807 108 225 108H25C11.1929 108 0 96.8071 0 83Z" fill="rgba(var(--color1),0.5)"/>
+        <path d="M218.569 108L163.497 52.9289C140.066 29.4975 117.905 13.6683 114 17.5736C125.716 5.85786 141.071 0 156.426 0C171.782 0 187.137 5.85786 198.853 17.5736L241.279 60C246.629 65.3501 249.536 72.2182 250 79.2179V83C250 83.0744 250 83.1488 249.999 83.2231C249.632 88.7181 247.76 94.1315 244.382 98.7923C239.797 104.412 232.818 108 225 108H218.569Z" fill="rgba(var(--color1), 1)"/>
+        <path d="M250 163C250 176.807 238.807 188 225 188L25 188C11.1929 188 -8.76416e-07 176.807 3.30641e-07 163C1.5377e-06 149.193 11.1929 138 25 138L225 138C238.807 138 250 149.193 250 163Z" fill="rgba(var(--color2),0.5)"/>
+        <path d="M31.4315 138L86.5025 193.071C109.934 216.503 132.095 232.332 136 228.426C124.284 240.142 108.929 246 93.5736 246C78.2182 246 62.8629 240.142 51.1472 228.426L8.72078 186C3.37067 180.65 0.463744 173.782 0 166.782L3.30641e-07 163C3.37149e-07 162.926 0.000320778 162.851 0.000976913 162.777C0.367722 157.282 2.24025 151.869 5.6185 147.208C10.2028 141.588 17.1823 138 25 138L31.4315 138Z" fill="rgba(var(--color2),1)"/>
+    </svg>  
 </div>
 
 
@@ -28,42 +25,9 @@
 <style>
     .global {
 	    cursor: pointer;
+        width: min(max(15px,3vw),44px);
+        height: min(max(15px,3vw),44px);
+        display: flex;
+        align-items: center;
     }
-    .container {
-        position: relative;
-        width: 25px;
-		height: 11.3px;
-        border-radius: 3px;
-        overflow: hidden;
-    }
-
-	.fleche {
-		width: 15px;
-		height: 15px;
-		border-right : 5px solid;
-		border-radius: 3px 6px;
-		transform: rotate(-45deg);
-
-        position: absolute;
-        top : 1px;
-        left: 8.2px;
-        border-color: rgba(var(--color), 1);
-	}
-
-    .barre {
-		width: 25px;
-		height: 5px;
-		border-radius: 3px;
-
-        position: absolute;
-        top : 6.3px;
-        background: rgba(var(--color),0.5);
-
-    }
-
-    .container:nth-child(2) {
-        margin-top: 3px;
-        transform: rotate(180deg);
-    }
-
 </style>

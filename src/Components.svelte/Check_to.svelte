@@ -1,6 +1,6 @@
 <script>
     export let score_team;
-    export let color;
+    // export let color;
     import Check_ON from './Check_ON.svelte';
     import {settings, start_timer, score} from '../stores.js';
 
@@ -52,7 +52,7 @@
     $: pointer = $start_timer || $score[0].winner || $score[1].winner ;
 </script>
 
-<div class=checks  style="--color: {color};">
+<div class=checks  style="--color: {$score_team.color[1]};">
     {#each states as state}
     <div class={state.name_class}>
         <div class={pointer}>
@@ -70,25 +70,26 @@
 
 <style>
 .checks {
+    --border-witdh : min(max(3px,0.6vw), 8px);
     display: flex;
-    gap: 10px; 
+    gap: min(max(5px,1vw), 15px);
 }
 
 .zone1_to {
-    border-top: 5px solid ;
-	border-bottom: 5px solid ;
-	border-radius: 10px;
+    border-top: var(--border-witdh) solid ;
+	border-bottom: var(--border-witdh) solid ;
+	border-radius:  min(max(5px,1vw), 15px);
 
-    width:40px;
-    height:40px;
+    width: min(max(20px,4vw),50px);
+    height: min(max(20px,4vw),50px);
 }
 .zone2_to {
-    border-right: 5px solid ;
-	border-left: 5px solid ;
-	border-radius: 5px;
+    border-right: var(--border-witdh) solid ;
+	border-left: var(--border-witdh) solid ;
+	border-radius: min(max(2.5px,0.5vw),7.5px);
 
-    width:40px;
-    height:30px;
+    width: min(max(20px,4vw),50px);
+    height: calc(min(max(20px,4vw),50px) - 2*var(--border-witdh)) ;
 }
 
 .nocheck .zone1_to {
