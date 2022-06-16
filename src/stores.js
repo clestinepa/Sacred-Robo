@@ -125,7 +125,7 @@ export const switchOn = writable(false);
 
 export const sets = writable([[25,21],[12,25],[28,26],[28,30]]);
 
-export const page = writable("game");
+export const page = writable("settings");
 
 export const last_action = writable({
     type : "none",

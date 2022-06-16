@@ -1,6 +1,6 @@
 <script>
     import {settings, start_timer} from '../stores.js';
-    import {afficheMsg} from '../Functions.svelte';
+    import {stopTime} from '../Functions.svelte';
     let time = $settings.time_to_coach.value;
     let pause = false;
     let stop = false;
@@ -33,22 +33,6 @@
     function pauseTime() {
         pause=!pause;
     }
-    
-
-    function stopTime() {
-        let confirmMsg = document.createElement('div');
-        confirmMsg.className = 'confirmMsg';
-        confirmMsg.innerHTML = '<p class=textMsg>Do you really want to stop the timer ?</p>';
-        confirmMsg.innerHTML += '<button id=buttonConfirm>Yes</button>';
-        confirmMsg.innerHTML += '<button id=buttonClose>No</button>';
-
-        afficheMsg(confirmMsg, "confirm", closeTimer);
-    }
-
-    function closeTimer() {
-        $start_timer = !$start_timer;
-    }
-
 
 </script>
 

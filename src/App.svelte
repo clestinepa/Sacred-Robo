@@ -1,11 +1,9 @@
 <script>
 
 	/** A FAIRE
-	 * undoAction switch ? + pendant timer
 	 * bouton rejoindre partie
 	 * bouton partagé partie
 	 * commentaire => déplacable bas ou cotés
-	 * faire check_ON design
 	 * petit carton rouge qui enleve un point à l'équipe
 	 * boutons enregistré preset (?)
 	 * bouton réinisganilsé settings
@@ -22,6 +20,7 @@
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
 	 * Violation :Forced reflow while executing JavaScript took 70ms
 	 * Responsive : COMMENTAIRE
+	 * 				Check dans check_to
 	 * clique enlève animation win
 	*/
 

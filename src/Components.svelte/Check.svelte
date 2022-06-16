@@ -20,7 +20,7 @@
 	<div class={name_class}>
 		<div class=zone><div class=zone2 on:click={clickHandler}>
 			{#if type.value}
-				<Check_ON/>
+				<Check_ON color="var(--highlight)"/>
 			{:else}
 				<Check_OFF/>
 			{/if}

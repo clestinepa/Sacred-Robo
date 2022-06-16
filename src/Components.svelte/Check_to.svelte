@@ -1,6 +1,5 @@
 <script>
     export let score_team;
-    // export let color;
     import Check_ON from './Check_ON.svelte';
     import {settings, start_timer, score} from '../stores.js';
 
@@ -59,7 +58,7 @@
             <div class={state.check}>
                 <div class=zone1_to><div class=zone2_to on:click={state.name_class == "check_enable" ? clickHandler(state.check) : ""}>
                 {#if state.check == "check"}
-                    <Check_ON/>
+                    <Check_ON color={score_team.color[0]}/>
                 {/if}
                 </div></div>
             </div>
