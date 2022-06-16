@@ -52,7 +52,7 @@
     $: pointer = $start_timer || $score[0].winner || $score[1].winner ;
 </script>
 
-<div class=checks  style="--color: {$score_team.color[1]};">
+<div class=checks  style="--color: {score_team.color[1]};">
     {#each states as state}
     <div class={state.name_class}>
         <div class={pointer}>

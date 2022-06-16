@@ -9,7 +9,6 @@
 	 * petit carton rouge qui enleve un point à l'équipe
 	 * boutons enregistré preset (?)
 	 * bouton réinisganilsé settings
-	 * gerer scroll beau : voir méthode essai read more
 	 * scroll commentaire : https://codepen.io/seahorsepip/pen/vYXzWgW?editors=1100
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique

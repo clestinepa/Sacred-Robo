@@ -80,7 +80,7 @@
 </script>
 
 
-<div class=carre_{pointer} style="--color: {$score_team.color[1]};" on:click={incrementScore}>
+<div class=carre_{pointer} style="--color: {score_team.color[1]};" on:click={incrementScore}>
     <div class=z1><div class=z2>
         {score_team.point}
     </div></div>
