@@ -71,6 +71,21 @@
         } 
     }
 
+    export function stopTime() {
+        let confirmMsg = document.createElement('div');
+        confirmMsg.className = 'confirmMsg';
+        confirmMsg.innerHTML = '<p class=textMsg>Do you really want to stop the timer ?</p>';
+        confirmMsg.innerHTML += '<button id=buttonConfirm>Yes</button>';
+        confirmMsg.innerHTML += '<button id=buttonClose>No</button>';
+
+        afficheMsg(confirmMsg, "confirm", closeTimer);
+    }
+
+    function closeTimer() {
+        let value = get(start_timer);
+        start_timer.set(!value);
+    }
+
     export function addAction(type, target, value) {
         let list = get(last_actions);
         list = list.slice(1);
@@ -88,59 +103,64 @@
     }
 
     export function undoAction() {
-        let list = get(last_actions);
 
-        let s, value;
-        switch (list[list.length - 1].type) {
-            case "incScore":
-                s = get(score);
-                s[list[list.length - 1].target].point--;
-                score.set(s);
-                break;
-            case "incScoreSwitch":
-                s = get(score);
-                s[list[list.length - 1].target].point--;
-                score.set(s);
-                switch_score();
-                break;
-            case "incScoreSet":
-                value = get(sets);
-                let id = list[list.length - 1].target;
-                let pas_id = 1 - id;  //0 donne 1 et 1 donne 0
-                let index_sets_id,index_sets_pas_id;
-                if (get(switchOn)) {
-                    index_sets_id = pas_id;
-                    index_sets_pas_id = id;
-                } else {
-                    index_sets_id = id;
-                    index_sets_pas_id = pas_id;
-                }
-                s = get(score);
-                s[id].point = --value[value.length - 1][index_sets_id];
-                s[pas_id].point = value[value.length - 1][index_sets_pas_id];
-                s[id].set_win--;
-                score.set(s);
-                
-                value.pop();
-                sets.set(value);
-                if (get(settings).check_switch.value) {
+        if (!get(start_timer)) {
+            let list = get(last_actions);
+            let s, value;
+            switch (list[list.length - 1].type) {
+                case "incScore":
+                    s = get(score);
+                    s[list[list.length - 1].target].point--;
+                    score.set(s);
+                    break;
+                case "incScoreSwitch":
+                    s = get(score);
+                    s[list[list.length - 1].target].point--;
+                    score.set(s);
                     switch_score();
-                }
-                break;
-            case "incScoreGame":
-                s = get(score);
-                s[list[list.length - 1].target].point--;
-                s[list[list.length - 1].target].set_win--;
-                s[list[list.length - 1].target].winner = false;
-                score.set(s);
+                    break;
+                case "incScoreSet":
+                    value = get(sets);
+                    let id = list[list.length - 1].target;
+                    let pas_id = 1 - id;  //0 donne 1 et 1 donne 0
+                    let index_sets_id,index_sets_pas_id;
+                    if (get(switchOn)) {
+                        index_sets_id = pas_id;
+                        index_sets_pas_id = id;
+                    } else {
+                        index_sets_id = id;
+                        index_sets_pas_id = pas_id;
+                    }
+                    s = get(score);
+                    s[id].point = --value[value.length - 1][index_sets_id];
+                    s[pas_id].point = value[value.length - 1][index_sets_pas_id];
+                    s[id].set_win--;
+                    score.set(s);
+                    
+                    value.pop();
+                    sets.set(value);
+                    if (get(settings).check_switch.value) {
+                        switch_score();
+                    }
+                    break;
+                case "incScoreGame":
+                    s = get(score);
+                    s[list[list.length - 1].target].point--;
+                    s[list[list.length - 1].target].set_win--;
+                    s[list[list.length - 1].target].winner = false;
+                    score.set(s);
 
-                break;
-            default:
+                    break;
+                default:
+            }
+
+            last_action.set(list.pop());
+            list.unshift({type : "none", target : null, value : null});
+            last_actions.set(list);
+        } else {
+            stopTime();
         }
-
-        last_action.set(list.pop());
-        list.unshift({type : "none", target : null, value : null});
-        last_actions.set(list);        
+                
     }
 
     
