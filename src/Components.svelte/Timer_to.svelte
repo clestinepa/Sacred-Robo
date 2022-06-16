@@ -1,5 +1,6 @@
 <script>
     import {settings, start_timer} from '../stores.js';
+    import {afficheMsg} from '../Functions.svelte';
     let time = $settings.time_to_coach.value;
     let pause = false;
     let stop = false;
@@ -33,34 +34,19 @@
         pause=!pause;
     }
     
-    function closeMsg() {
-        while (bgMsg.hasChildNodes()) {
-            bgMsg.removeChild(bgMsg.firstChild);
-        }
-        document.body.removeChild(bgMsg);
-    }
 
     function stopTime() {
-        // pause=true;
-
         let confirmMsg = document.createElement('div');
         confirmMsg.className = 'confirmMsg';
         confirmMsg.innerHTML = '<p class=textMsg>Do you really want to stop the timer ?</p>';
         confirmMsg.innerHTML += '<button id=buttonConfirm>Yes</button>';
         confirmMsg.innerHTML += '<button id=buttonClose>No</button>';
 
-        bgMsg.appendChild(confirmMsg);
-        document.body.appendChild(bgMsg);
+        afficheMsg(confirmMsg, "confirm", closeTimer);
+    }
 
-        document.getElementById('buttonClose').addEventListener('click', function() {
-            closeMsg()
-        });
-
-    
-        document.getElementById('buttonConfirm').addEventListener('click', function () {
-            $start_timer = !$start_timer;
-            closeMsg()
-        });        
+    function closeTimer() {
+        $start_timer = !$start_timer;
     }
 
 
@@ -74,15 +60,15 @@
 
 <style>
 
-.true, .false {
+.true {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: min(max(20px,4vw),50px);
 }
-/* .false {
+.false {
   display: none;
-} */
+}
 .time {
 	font-family: var(--font-family-body);
     font-size: min(max(20px,4vw),50px);

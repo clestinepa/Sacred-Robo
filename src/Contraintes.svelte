@@ -50,9 +50,8 @@
         confirmMsg.innerHTML = '<p class=textMsg>Automatic Switch Tie Break !</p>';
         confirmMsg.innerHTML += '<button id=buttonClose>OK</button>';
 
-        afficheMsg(confirmMsg, "confirm");
+        afficheMsg(confirmMsg, "alert");
     }
-
 
     let result, main, body;
     onMount( () => {

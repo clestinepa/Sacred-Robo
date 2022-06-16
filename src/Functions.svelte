@@ -55,7 +55,7 @@
         document.body.removeChild(bgMsg);
     }
 
-    export function afficheMsg(element, type) {
+    export function afficheMsg(element, type, functionClose) {
         bgMsg.appendChild(element);
         document.body.appendChild(bgMsg);
 
@@ -64,9 +64,11 @@
         });
 
         if (type == "confirm") {
-
+            document.getElementById('buttonConfirm').addEventListener('click', function() {
+                functionClose();
+                closeMsg();
+             });  
         } 
-
     }
 
     export function addAction(type, target, value) {
