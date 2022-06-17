@@ -26,23 +26,26 @@
 
 	import {settings, score, sets, switchOn, page, comments} from './stores.js';
 	import {animScoreIncrement, startGame, undoAction} from './Functions.svelte';
-	import Select_Preset from './Components.svelte/Select_Preset.svelte';
-	import Text from './Components.svelte/Text.svelte';
-	import Select_Color from './Components.svelte/Select_Color.svelte';
-	import Select_Number from './Components.svelte/Select_Number.svelte';
-	import Check from './Components.svelte/Check.svelte';
+	import Select_Preset from './Components/Select_Preset.svelte';
+	import Text from './Components/Text.svelte';
+	import Select_Color from './Components/Select_Color.svelte';
+	import Select_Number from './Components/Select_Number.svelte';
+	import Check from './Components/Check.svelte';
 	import Contraintes from './Contraintes.svelte';
-	import Score from './Components.svelte/Score.svelte';
-	import Set from './Components.svelte/Set.svelte';
-	import Detail_set from './Components.svelte/Detail_set.svelte';
-	import Check_to from './Components.svelte/Check_to.svelte';
-	import Timer_to from './Components.svelte/Timer_to.svelte';
-	import Confetti from './Components.svelte/Confetti.svelte';
-	import Fleche_switch from './Components.svelte/Fleche_switch.svelte';
-	import Settings_Button from './Components.svelte/Settings_Button.svelte';
-	import Back from './Components.svelte/Back.svelte';
-	import Comments from './Components.svelte/Comments.svelte';
-	import See from './Components.svelte/See.svelte';
+	import Score from './Components/Score.svelte';
+	import Set from './Components/Set.svelte';
+	import Detail_set from './Components/Detail_set.svelte';
+	import Check_to from './Components/Check_to.svelte';
+	import Timer_to from './Components/Timer_to.svelte';
+	import Confetti from './Components/Confetti.svelte';
+	import Fleche_switch from './Components/Fleche_switch.svelte';
+	import Settings_Button from './Components/Settings_Button.svelte';
+	import Back from './Components/Back.svelte';
+	import Comments from './Components/Comments.svelte';
+	import See from './Components/See.svelte';
+
+	import TestDb from './Test_Db/TestDb.svelte';
+	import AfficheDb from './Test_Db/AfficheDb.svelte';
 
 </script>
 
@@ -203,6 +206,11 @@
 	{#if ($score[0].winner | $score[1].winner)}
 	<Confetti/>
 	{/if}
+{:else if $page == "test"}
+	<h1>My simple Dexie app</h1>
+	<TestDb />
+	<h2>Result</h2>
+	<AfficheDb />
 {/if}
 
 <svelte:window on:keyup={e => {if (e.code=='KeyW' && e.ctrlKey) {undoAction();}} } />

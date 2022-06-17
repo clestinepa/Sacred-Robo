@@ -1,23 +1,66 @@
 import Dexie from 'dexie';
+import { get } from 'svelte/store';
+import { settings } from './stores.js';
 
 export const db = new Dexie('myDatabase');
 db.version(1).stores({
-  friends: '++id, name, age', // Primary key and indexed props
+  score_db: '++id, name, color, set_win, point, nb_to, winner', // Primary key and indexed props
 });
+
+// await db.score_db.add({
+//   name: get(settings).team1_name.value,
+//   color : get(settings).team1_color.value,
+//   set_win : 0,
+//   point : 0,
+//   nb_to : 0,
+//   winner : false
+// });
+
+// await db.score_db.add({
+//   name: get(settings).team2_name.value,
+//   color : get(settings).team2_color.value,
+//   set_win : 0,
+//   point : 0,
+//   nb_to : 0,
+//   winner : false
+// });
+
+db.on('populate', () => {
+  db.score_db.add({
+    name: get(settings).team1_name.value,
+    color : get(settings).team1_color.value,
+    set_win : 0,
+    point : 0,
+    nb_to : 0,
+    winner : false
+  });
+  db.score_db.add({
+    name: get(settings).team2_name.value,
+    color : get(settings).team2_color.value,
+    set_win : 0,
+    point : 0,
+    nb_to : 0,
+    winner : false
+  });
+});
+
+db.open();
 
 /*
 export const score = writable([
-    {   name : "Home",
-        color : ["#0019FF", "0,26,255"],
+    {   id : 0,
+        name : get(settings).team1_name.value,
+        color : get(settings).team1_color.value,
         set_win : 2,
-        point : 6,
+        point : 0,
         nb_to : 0,
         winner : false      },
-    {   name : "Guest",
-        color : ["#FF0027", "255,0,39"],
+    {   id : 1,
+        name : get(settings).team2_name.value,
+        color : get(settings).team2_color.value,
         set_win : 2,
-        point : 14,
-        nb_to : 1,
+        point : 0,
+        nb_to : 0,
         winner : false      }
 ]);
 

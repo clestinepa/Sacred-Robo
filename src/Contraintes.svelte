@@ -60,16 +60,18 @@
         body = document.querySelector('body');
     });
 
-    // setInterval( () => {
-    //     console.log(body.offsetHeight, body.scrollHeight)
-    //         if (main.offsetHeight <= result.offsetHeight) {
-    //             console.log("trunk");
-    //         } else {
-    //             console.log("full");
-    //         }
-        
+    setInterval( () => {
+            // console.log(body.offsetHeight, body.scrollHeight)
+            // if (main.offsetHeight <= result.offsetHeight) {
+            //     console.log("trunk");
+            // } else {
+            //     console.log("full");
+            // }
+            
+            // console.log('1:', $settings.team1_name.value, $score[0].name);
+            // console.log('2:', $settings.team2_name.value, $score[1].name);
+            // console.log(' ');
 
-
-    // },3000);
+    },3000);
 
 </script>
