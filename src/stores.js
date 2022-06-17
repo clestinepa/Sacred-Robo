@@ -113,7 +113,7 @@ export const score = writable([
     {   id : 1,
         name : get(settings).team2_name.value,
         color : get(settings).team2_color.value,
-        set_win : 2,
+        set_win : 1,
         point : 0,
         nb_to : 0,
         winner : false      }
@@ -123,9 +123,9 @@ export const start_timer = writable(false);
 
 export const switchOn = writable(false);
 
-export const sets = writable([[25,21],[12,25],[28,26],[28,30]]);
+export const sets = writable([[25,21],[12,25],[28,26]]);
 
-export const page = writable("test");
+export const page = writable("game");
 
 export const last_action = writable({
     type : "none",

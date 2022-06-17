@@ -1,28 +1,41 @@
 <script>
-	export let score_team;
+	export let number_team;
+    import { liveQuery } from "dexie";
+    import { db } from "../db.js";
 
-    import {settings, score, sets, start_timer, switchOn} from "../stores.js";
+    let read_score_db = liveQuery(
+       () => db.score_db.toArray()
+    );
+
+    let score_team;
+    $: if ($read_score_db) {
+        score_team = $read_score_db[number_team];
+    }
+
+    import {settings, start_timer} from "../stores.js";
     import {afficheMsg, addAction, switch_score} from '../Functions.svelte';
     let win_set = false;
     
     function incrementScore() {
         //Pas d'incrément quand timeout ou déjà 1 vainqueur
-        if (!$start_timer & !$score[0].winner & !$score[1].winner) { 
+        if (!$start_timer && !($read_score_db[0].winner==0 ? false : true) & !($read_score_db[1].winner==0 ? false : true)) { 
             score_team.point++;
+            db.score_db.update(((number_team==1) ? 1 : 0), {point: score_team.point});
 
             //Tie Break ?
             let type_set = 'point';
-            if ($score[0].set_win + $score[1].set_win == ($settings.set.value-1)*2 & $settings.check_tb.value ) {
+            if ($read_score_db[0].set_win + $read_score_db[1].set_win == ($settings.set.value-1)*2 & $settings.check_tb.value ) {
                 type_set = 'point_tb';
             } 
 
             //Set gagné ?
-            if (score_team.point >= $settings[type_set].value & ($score[0].point + $score[1].point) < (score_team.point*2 - 1)) { 
+            if (score_team.point >= $settings[type_set].value & ($read_score_db[0].point + $read_score_db[1].point) < (score_team.point*2 - 1)) { 
                 score_team.set_win++;
+                db.score_db.update(((number_team==1) ? 1 : 0), {set_win: score_team.set_win});
 
                 //Vicroire ?
                 if (score_team.set_win == $settings.set.value) {
-                    score_team.winner = true;
+                    db.score_db.update(((number_team==1) ? 1 : 0), {winner: 1});
 
                     //save action
                     addAction("incScoreGame", score_team.id, null);
@@ -34,16 +47,11 @@
                     }
 
                     //enregistrement score
-                    let list = $sets;
-                    if ($switchOn) {
-                        list.push([$score[1].point, $score[0].point]);
-                    } else {
-                        list.push([$score[0].point, $score[1].point]);
-                    }
-                    sets.set(list);
+                    db.sets_score_db.add({team1: $read_score_db[0].point, team2: $read_score_db[1].point });
                     
                     //remise à 0 des points
-                    $score[0].point = $score[1].point = 0;
+                    db.score_db.update(0, {point: 0});
+                    db.score_db.update(1, {point: 0});
 
                     //save action
                     addAction("incScoreSet", score_team.id, null);
@@ -69,22 +77,28 @@
         afficheMsg(confirmMsg, "alert");
     }
 
-    $:  if (score_team.winner) {
-        alertWin(0);
-    } else if (win_set) {
-        alertWin(1);
-        win_set = false;
+    $: if(score_team) {
+        if (score_team.winner==0 ? false : true) {
+            alertWin(0);
+        } else if (win_set) {
+            alertWin(1);
+            win_set = false;
+        }
     }
-    
-    $: pointer = $start_timer || $score[0].winner || $score[1].winner ;
+
+    let pointer = false;
+    $: if ($read_score_db) {
+        pointer = $start_timer || ($read_score_db[0].winner==0 ? false : true) || ($read_score_db[1].winner==0 ? false : true) ;
+    }
 </script>
 
-
+{#if $read_score_db}
 <div class=carre_{pointer} style="--color: {score_team.color[1]};" on:click={incrementScore}>
     <div class=z1><div class=z2>
         {score_team.point}
     </div></div>
 </div>
+{/if}
 
 <style>
 

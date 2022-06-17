@@ -1,10 +1,16 @@
 <script>
     import { onMount } from 'svelte';
-    import {settings, score, last_action} from './stores';
+    import {settings, last_action} from './stores';
     import {switch_score, afficheMsg, patchAction} from './Functions.svelte';
-    
+    import { db } from "./db.js";
+    import { liveQuery } from "dexie";
+
+    let read_score_db = liveQuery(
+       () => db.score_db.toArray()
+    );
+
     let boucle = true;
-    $: {
+    $: if ($read_score_db) {
         //Check bind
         $settings.point_tb.enable = $settings.check_tb.value;
         $settings.sum_regular.enable = $settings.check_sum_regular.value;
@@ -27,9 +33,9 @@
         }
 
         //Tie Break ?
-        if ($score[0].set_win + $score[1].set_win == ($settings.set.value-1)*2 & $settings.check_tb.value ) { 
+        if ($read_score_db[0].set_win + $read_score_db[1].set_win == ($settings.set.value-1)*2 & $settings.check_tb.value ) { 
             //switch automatique enable + reached by one of team
-            if ($settings.check_score_tb.value & ($settings.score_tb.value == $score[0].point | $settings.score_tb.value == $score[1].point)) {
+            if ($settings.check_score_tb.value & ($settings.score_tb.value == $read_score_db[0].point | $settings.score_tb.value == $read_score_db[1].point)) {
                 if (boucle) {
                     switch_score();
                     alertSwitch();

@@ -1,7 +1,6 @@
 <script context="module">
     import {score, start_timer, settings, page, switchOn, sets, last_actions, last_action} from './stores.js';
     import { get } from 'svelte/store';
-    import { db } from "./db.js";
 
     export function animScoreIncrement(event, i) {
         if (!get(start_timer) & !get(score)[0].winner & !get(score)[1].winner) { 
@@ -27,20 +26,6 @@
 
     export function startGame() {
         page.set("game");
-
-        db.score_db.update(1, {name: get(settings).team1_name.value, color: get(settings).team1_color.value}).then(function (updated) {
-        if (updated)
-            console.log ("Team1 updated");
-        else
-            console.log ("Nothing was updated");
-        });
-        db.score_db.update(2, {name: get(settings).team2_name.value, color: get(settings).team2_color.value}).then(function (updated) {
-        if (updated)
-            console.log ("Team1 updated");
-        else
-            console.log ("Nothing was updated");
-        });
-
     }
 
     export function gotoSettings() {

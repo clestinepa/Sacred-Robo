@@ -1,14 +1,20 @@
 <script>
-	export let score_team;
-    export let color;
+	export let number_team;
+    import { liveQuery } from "dexie";
+    import { db } from "../db.js";
+
+    let read_score_db = liveQuery(
+       () => db.score_db.toArray()
+    );
 </script>
 
-
-<div class="carre" style="--color: {color};">
+{#if $read_score_db}
+<div class="carre" style="--color: {$read_score_db[number_team].color[1]};">
     <div class=z1><div class=z2>
-    {score_team.set_win}
+    {$read_score_db[number_team].set_win}
     </div></div>
 </div>
+{/if}
 
 <style>
 .carre{

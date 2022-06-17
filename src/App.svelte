@@ -24,7 +24,7 @@
 	 * clique enlève animation win
 	*/
 
-	import {settings, score, sets, switchOn, page, comments} from './stores.js';
+	import {settings, switchOn, page, comments} from './stores.js';
 	import {animScoreIncrement, startGame, undoAction} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
@@ -46,6 +46,17 @@
 
 	import TestDb from './Test_Db/TestDb.svelte';
 	import AfficheDb from './Test_Db/AfficheDb.svelte';
+
+	import { liveQuery } from "dexie";
+	import { db } from "./db.js";
+
+    let read_sets_score_db = liveQuery(
+       () => db.sets_score_db.toArray()
+    );
+
+    let read_score_db = liveQuery(
+       () => db.score_db.toArray()
+    );
 
 </script>
 
@@ -134,46 +145,47 @@
 	</div>
 </main>
 {:else if $page == "game"}
+{#if $read_score_db && $read_sets_score_db}
 <main class="game">
 	<div id=result>
 		<div id=settings_game>
 			<div id=pos_back><Back/></div>
 		</div>
 		<div id=names_{$switchOn}>
-			<p id=name1 style:color={$score[0].color[0]}>{$score[0].name}</p>
+			<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
 			<div class=gap> <Fleche_switch/></div>
-			<p id=name2 style:color={$score[1].color[0]}>{$score[1].name}</p>
+			<p id=name2 style:color={$read_score_db[1].color[0]}>{$read_score_db[1].name}</p>
 		</div>
 		<div id=points_{$switchOn}>
 			<div class=score on:click={e => animScoreIncrement(e, 0)}>
-				<Score bind:score_team={$score[0]}/>
+				<Score number_team=0/>
 			</div>
 			<div class=set>
 				<div class=score_set>
 					<div class=point_set>
-						<Set score_team={$score[0]} color={$settings.team1_color.value[1]}/>
+						<Set number_team=0/>
 					</div>
 					<div class=point_set>
-						<Set score_team={$score[1]} color={$settings.team2_color.value[1]}/>
+						<Set number_team=1/>
 					</div>
 				</div>
 				<div class=detail_set>
-					{#each $sets as set}
+					{#each $read_sets_score_db as set}
 						<Detail_set set={set}/>
 					{/each}
 				</div>
 			</div>
 			<div class=score on:click={e => animScoreIncrement(e, 1)}>
-				<Score bind:score_team={$score[1]}/>
+				<Score number_team=1/>
 			</div> 
 		</div>
 		<div id=temps_mort>
 			<div id=tm1>
 				<h2 class=title_subsection>Timeout:</h2>
 				{#if !$switchOn}
-					<Check_to bind:score_team={$score[0]}/>
+					<Check_to number_team=0/>
 				{:else}
-					<Check_to bind:score_team={$score[1]}/>
+					<Check_to number_team=1/>
 				{/if}
 			</div>
 			<div class=gap>
@@ -181,9 +193,9 @@
 			</div>
 			<div id=tm2>
 				{#if !$switchOn}
-					<Check_to bind:score_team={$score[1]}/>
+					<Check_to number_team=1/>
 				{:else}
-					<Check_to bind:score_team={$score[0]}/>
+					<Check_to number_team=0/>
 				{/if}
 				<h2 class=title_subsection>:Timeout</h2>
 			</div>
@@ -201,11 +213,13 @@
 			</div>	
 		</div>
 	</div>
-	
 </main>
-	{#if ($score[0].winner | $score[1].winner)}
+
+
+	{#if ($read_score_db[0].winner==1? true : false) || ($read_score_db[1].winner==1? true : false)}
 	<Confetti/>
 	{/if}
+{/if}
 {:else if $page == "test"}
 	<h1>My simple Dexie app</h1>
 	<TestDb />

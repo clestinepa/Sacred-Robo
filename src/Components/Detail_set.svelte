@@ -1,20 +1,29 @@
 <script>
 	export let set;
-    import {settings, switchOn} from '../stores.js'
+    import {switchOn} from '../stores.js'
+    import { liveQuery } from "dexie";
+    import { db } from "../db.js";
 
     let winner, color1,  color2;
-    $:  if (set[0] > set[1]) {
+    $:  if ((set.team1 > set.team2 & !$switchOn) || (set.team1 < set.team2 & $switchOn)) {
             winner = "left";
         } else {
             winner = "right";
         }
-    $:  if ($switchOn) {
-            color1= $settings.team2_color.value[1];
-            color2= $settings.team1_color.value[1];
+
+    let read_score_db = liveQuery(
+       () => db.score_db.toArray()
+    );
+
+    $:  if ($read_score_db) {
+        if ($switchOn) {
+            color1= $read_score_db[1].color[1];
+            color2= $read_score_db[0].color[1];
         } else {
-            color1= $settings.team1_color.value[1];
-            color2= $settings.team2_color.value[1];
+            color1= $read_score_db[0].color[1];
+            color2= $read_score_db[1].color[1];
         }
+    } 
     
 
 </script>
@@ -23,12 +32,12 @@
     <div class={winner == "left" ? "left" : "right"}>
         <div class=z11><div class=z21>
             <p>
-                {set[0]}
+                {($switchOn ? set.team2 : set.team1)}
             </p>
         </div></div>
         <div class=z12><div class=z22>
             <p>
-                {set[1]}
+                {($switchOn ? set.team1 : set.team2)}
             </p>
         </div></div>
     </div>
