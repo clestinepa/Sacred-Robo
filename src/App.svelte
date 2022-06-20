@@ -44,9 +44,6 @@
 	import Comments from './Components/Comments.svelte';
 	import See from './Components/See.svelte';
 
-	import TestDb from './Test_Db/TestDb.svelte';
-	import AfficheDb from './Test_Db/AfficheDb.svelte';
-
 	import { liveQuery } from "dexie";
 	import { db } from "./db.js";
 
@@ -145,86 +142,79 @@
 	</div>
 </main>
 {:else if $page == "game"}
-{#if $read_score_db && $read_sets_score_db}
-<main class="game">
-	<div id=result>
-		<div id=settings_game>
-			<div id=pos_back><Back/></div>
-		</div>
-		<div id=names_{$switchOn}>
-			<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
-			<div class=gap> <Fleche_switch/></div>
-			<p id=name2 style:color={$read_score_db[1].color[0]}>{$read_score_db[1].name}</p>
-		</div>
-		<div id=points_{$switchOn}>
-			<div class=score on:click={e => animScoreIncrement(e, 0)}>
-				<Score number_team=0/>
+	{#if $read_score_db && $read_sets_score_db}
+	<main class="game">
+		<div id=result>
+			<div id=settings_game>
+				<div id=pos_back><Back/></div>
 			</div>
-			<div class=set>
-				<div class=score_set>
-					<div class=point_set>
-						<Set number_team=0/>
+			<div id=names_{$switchOn}>
+				<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
+				<div class=gap> <Fleche_switch/></div>
+				<p id=name2 style:color={$read_score_db[1].color[0]}>{$read_score_db[1].name}</p>
+			</div>
+			<div id=points_{$switchOn}>
+				<div class=score on:click={e => animScoreIncrement(e, 0)}>
+					<Score number_team=0/>
+				</div>
+				<div class=set>
+					<div class=score_set>
+						<div class=point_set>
+							<Set number_team=0/>
+						</div>
+						<div class=point_set>
+							<Set number_team=1/>
+						</div>
 					</div>
-					<div class=point_set>
-						<Set number_team=1/>
+					<div class=detail_set>
+						{#each $read_sets_score_db as set}
+							<Detail_set set={set}/>
+						{/each}
 					</div>
 				</div>
-				<div class=detail_set>
-					{#each $read_sets_score_db as set}
-						<Detail_set set={set}/>
-					{/each}
+				<div class=score on:click={e => animScoreIncrement(e, 1)}>
+					<Score number_team=1/>
+				</div> 
+			</div>
+			<div id=temps_mort>
+				<div id=tm1>
+					<h2 class=title_subsection>Timeout:</h2>
+					{#if !$switchOn}
+						<Check_to number_team=0/>
+					{:else}
+						<Check_to number_team=1/>
+					{/if}
+				</div>
+				<div class=gap>
+					<Timer_to/>
+				</div>
+				<div id=tm2>
+					{#if !$switchOn}
+						<Check_to number_team=1/>
+					{:else}
+						<Check_to number_team=0/>
+					{/if}
+					<h2 class=title_subsection>:Timeout</h2>
 				</div>
 			</div>
-			<div class=score on:click={e => animScoreIncrement(e, 1)}>
-				<Score number_team=1/>
-			</div> 
 		</div>
-		<div id=temps_mort>
-			<div id=tm1>
-				<h2 class=title_subsection>Timeout:</h2>
-				{#if !$switchOn}
-					<Check_to number_team=0/>
-				{:else}
-					<Check_to number_team=1/>
-				{/if}
-			</div>
-			<div class=gap>
-				<Timer_to/>
-			</div>
-			<div id=tm2>
-				{#if !$switchOn}
-					<Check_to number_team=1/>
-				{:else}
-					<Check_to number_team=0/>
-				{/if}
-				<h2 class=title_subsection>:Timeout</h2>
+		<div id=comments>
+			<div id=comments_scroll>
+				<See text="Comments" details={-1}/>
+				<div id=comment_details>
+					{#if $comments.length == 0}
+						<div><span>There is no comments, for the moment</div>
+					{:else}
+						<Comments/>
+					{/if}
+				</div>	
 			</div>
 		</div>
-	</div>
-	<div id=comments>
-		<div id=comments_scroll>
-			<See text="Comments" details={-1}/>
-			<div id=comment_details>
-				{#if $comments.length == 0}
-					<div><span>There is no comments, for the moment</div>
-				{:else}
-					<Comments/>
-				{/if}
-			</div>	
-		</div>
-	</div>
-</main>
-
-
+	</main>
 	{#if ($read_score_db[0].winner==1? true : false) || ($read_score_db[1].winner==1? true : false)}
-	<Confetti/>
+		<Confetti/>
 	{/if}
-{/if}
-{:else if $page == "test"}
-	<h1>My simple Dexie app</h1>
-	<TestDb />
-	<h2>Result</h2>
-	<AfficheDb />
+	{/if}
 {/if}
 
 <svelte:window on:keyup={e => {if (e.code=='KeyW' && e.ctrlKey) {undoAction();}} } />
