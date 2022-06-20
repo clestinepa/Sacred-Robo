@@ -21,9 +21,9 @@
         </div>
     </div>
 
-    <!-- <div class=pos_fleche on:click={visibleHeader}>
-        <Fleche direction={visible ? "up2" : "down2"} />
-    </div> -->
+    <div class=pos_fleche on:click={visibleHeader}>
+        <!-- <Fleche direction={visible ? "up2" : "down2"} /> -->
+    </div>
 </header>
 
 <style>

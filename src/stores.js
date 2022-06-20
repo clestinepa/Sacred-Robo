@@ -106,6 +106,8 @@ export const start_timer = writable(false);
 
 export const switchOn = writable(false);
 
+export const set_has_been_won = writable(false);
+
 export const page = writable("game");
 
 export const last_action = writable({

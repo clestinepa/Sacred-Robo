@@ -22,10 +22,11 @@
 	 * Responsive : COMMENTAIRE
 	 * 				Check dans check_to
 	 * clique enlève animation win
+	 * easteregg : https://svelte.dev/repl/9eb4551167b94acfa0fc033662db209e?version=3.48.0
 	*/
 
 	import {settings, switchOn, page, comments} from './stores.js';
-	import {animScoreIncrement, startGame, undoAction} from './Functions.svelte';
+	import {animScoreIncrement, startGame, handleKeyboard} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
 	import Select_Color from './Components/Select_Color.svelte';
@@ -216,7 +217,7 @@
 	{/if}
 {/if}
 
-<svelte:window on:keyup={e => {if (e.code=='KeyW' && e.ctrlKey) {undoAction();}} } />
+<svelte:window on:keyup={e => {handleKeyboard(e)} } />
 
 <style>
 /* Header */

@@ -1,5 +1,5 @@
 <script context="module">
-    import {start_timer, settings, page, switchOn, last_actions, last_action} from './stores.js';
+    import {start_timer, settings, page, switchOn, last_actions, last_action, set_has_been_won} from './stores.js';
     import { get } from 'svelte/store';
     import { liveQuery } from "dexie";
     import { db } from "./db.js";
@@ -15,6 +15,55 @@
     );
     let read_sets_score_db;
     sets_score_db.subscribe(val => {read_sets_score_db=val});
+
+    export function incrementScore(number_team) {
+        let score_team =read_score_db[number_team];
+
+        //Pas d'incrément quand timeout ou déjà 1 vainqueur
+        if (!get(start_timer) && !(read_score_db[0].winner==0 ? false : true) & !(read_score_db[1].winner==0 ? false : true)) { 
+            score_team.point++;
+            db.score_db.update(((number_team==1) ? 1 : 0), {point: score_team.point});
+
+            //Tie Break ?
+            let type_set = 'point';
+            if (read_score_db[0].set_win + read_score_db[1].set_win == (get(settings).set.value-1)*2 & get(settings).check_tb.value ) {
+                type_set = 'point_tb';
+            } 
+
+            //Set gagné ?
+            if (score_team.point >= get(settings)[type_set].value & (read_score_db[0].point + read_score_db[1].point) < (score_team.point*2 - 1)) { 
+                score_team.set_win++;
+                db.score_db.update(((number_team==1) ? 1 : 0), {set_win: score_team.set_win});
+
+                //Vicroire ?
+                if (score_team.set_win == get(settings).set.value) {
+                    db.score_db.update(((number_team==1) ? 1 : 0), {winner: 1});
+
+                    //save action
+                    addAction("incScoreGame", score_team.id, null);
+                } else {
+                    set_has_been_won.set(true);
+                    //switch en fin de set ?
+                    if (get(settings).check_switch.value) {
+                        switch_score();
+                    }
+
+                    //enregistrement score
+                    db.sets_score_db.add({team0: read_score_db[0].point, team1: read_score_db[1].point });
+                    
+                    //remise à 0 des points
+                    db.score_db.update(0, {point: 0});
+                    db.score_db.update(1, {point: 0});
+
+                    //save action
+                    addAction("incScoreSet", score_team.id, null);
+                }                    
+            } else {
+                //save action
+                addAction("incScore", score_team.id, null);
+            }
+        }
+    }
 
     export function animScoreIncrement(event, i) {
         if (!get(start_timer) & !read_score_db[0].winner & !read_score_db[1].winner) { 
@@ -69,7 +118,7 @@
         document.body.appendChild(bgMsg);
 
         document.getElementById('buttonClose').addEventListener('click', function() {
-            closeMsg()
+            closeMsg();
         });
 
         if (type == "confirm") {
@@ -169,6 +218,31 @@
         let list = get(last_actions);
         list[list.length - 1].type = "incScoreSwitch";
         last_actions.set(list); 
+    }
+
+    export function handleKeyboard(e) {
+        if (e.code=='KeyW' && e.ctrlKey) {
+            undoAction();
+        } else if (e.code=='ArrowLeft') {
+            if (get(switchOn)) {
+                incrementScore(1);
+            } else {
+                incrementScore(0);
+            }
+        } else if (e.code=='ArrowRight') {
+            if (get(switchOn)) {
+                incrementScore(0);
+            } else {
+                incrementScore(1);
+            }
+        } else if (e.code=='Enter' && document.getElementById('buttonConfirm')) {
+            document.getElementById('buttonConfirm').click();
+        } else if (e.code=='Enter' && document.getElementById('buttonClose')) {
+            document.getElementById('buttonClose').click();
+        } else {
+            console.log(e.code);
+        }
+
     }
 
 </script>
