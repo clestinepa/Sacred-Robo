@@ -118,6 +118,9 @@
         document.body.appendChild(bgMsg);
 
         document.getElementById('buttonClose').addEventListener('click', function() {
+            if (functionClose == "confetti") {
+                document.getElementById('stopConfetti').style.display = 'block';
+            }
             closeMsg();
         });
 
@@ -220,7 +223,7 @@
         last_actions.set(list); 
     }
 
-    export function handleKeyboard(e) {
+    export function handleKeyboardUp(e) {
         if (e.code=='KeyW' && e.ctrlKey) {
             undoAction();
         } else if (e.code=='ArrowLeft') {
@@ -242,6 +245,10 @@
         } else {
             console.log(e.code);
         }
+
+    }
+
+    export function handleKeyboardDown(e) {
 
     }
 

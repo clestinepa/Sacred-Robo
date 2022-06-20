@@ -71,11 +71,21 @@
 		c.jump = true;
 	}
 
+	function closeConfetti() {
+		confetti = [];
+		document.getElementById('bg_confetti').style.display = 'none';
+	}
 </script>
 
-{#each confetti as c}
-	<span style="left: {c.x}%; top: {c.y}%; transform: scale({c.r})" on:click={click(c)} >{c.character}</span>
-{/each} 
+<div id=bg_confetti>
+	{#each confetti as c}
+		<span style="left: {c.x}%; top: {c.y}%; transform: scale({c.r})" on:click={click(c)} >{c.character}</span>
+	{/each}
+	<div id=stopConfetti on:click={closeConfetti}>
+		Clear
+	</div>
+</div>
+
 
 <style>
 	:global(body) {
@@ -86,6 +96,30 @@
 		position: absolute;
 		font-size: 5vh;
 		cursor : pointer;
+	}
+
+	#bg_confetti {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		width: 100%;
+		height: 100%;
+	}
+
+	#stopConfetti {
+		display: none;
+		background : var(--bg);
+		padding : min(max(7.5px,1.5vw), 15px);
+		font-size: min(max(10px,2vw), 30px);
+		color: var(--normal);
+		border-radius: min(max(10px, 2vw), 25px);
+		border-top: min(max(2.5px, 0.5vw), 5px) solid var(--normal);
+   		border-bottom: min(max(2.5px, 0.5vw), 5px) solid var(--normal);
+		margin: auto;
+		margin-bottom: min(max(10px, 2vw), 25px);
+	
+		cursor: pointer;
 	}
 
 

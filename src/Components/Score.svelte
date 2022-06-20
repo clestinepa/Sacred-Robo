@@ -28,7 +28,7 @@
         }
         confirmMsg.innerHTML += '<button id=buttonClose>OK</button>';
 
-        afficheMsg(confirmMsg, "alert");
+        afficheMsg(confirmMsg, "alert", "confetti");
     }
 
     $: if(score_team) {

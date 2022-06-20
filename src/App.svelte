@@ -1,32 +1,39 @@
 <script>
 
-	/** A FAIRE
-	 * bouton rejoindre partie
-	 * bouton partagé partie
+	/** TODO
+	 * Synchronisation !
 	 * commentaire => déplacable bas ou cotés
-	 * petit carton rouge qui enleve un point à l'équipe
-	 * boutons enregistré preset (?)
-	 * bouton réinisganilsé settings
 	 * scroll commentaire : https://codepen.io/seahorsepip/pen/vYXzWgW?editors=1100
+	 *
+	 * boutons enregistré preset (?) + bouton réinisganilsé settings
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
-	 * confetti saut "naturel"
 	 * carton rouge pour enlever un point !
-	 * store variable score pb reactive
-	 * hover joli dans toutes les pages
+	 *
+	 * confetti saut "naturel"
+	 * 
 	 * Erreur : bundle ne se construot pas jusqu'au bout : Uncaught SyntaxError: Unexpected end of input (at bundle.js:3595:24)
 	 * ERROR : VM11:6772 crbug/1173575, non-JS module files deprecated. (anonyme) @ VM11:6772
 	 *		   [Violation] Forced reflow while executing JavaScript took 56ms
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
 	 * Violation :Forced reflow while executing JavaScript took 70ms
+	 *
 	 * Responsive : COMMENTAIRE
 	 * 				Check dans check_to
-	 * clique enlève animation win
+	 *				taille fleche see
+	 *				boite de dialogue
+	 *
+	 * Hover :	clear confetti
+	 * 			navigation
+	 * 			timemout
+	 * 			timer
+	 * 			switch
+	 * 			
 	 * easteregg : https://svelte.dev/repl/9eb4551167b94acfa0fc033662db209e?version=3.48.0
 	*/
 
 	import {settings, switchOn, page, comments} from './stores.js';
-	import {animScoreIncrement, startGame, handleKeyboard} from './Functions.svelte';
+	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
 	import Select_Color from './Components/Select_Color.svelte';
@@ -217,7 +224,7 @@
 	{/if}
 {/if}
 
-<svelte:window on:keyup={e => {handleKeyboard(e)} } />
+<svelte:window on:keydown={e => {handleKeyboardDown(e)} } on:keyup={e => {handleKeyboardUp(e)} } />
 
 <style>
 /* Header */
