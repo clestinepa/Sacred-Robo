@@ -5,7 +5,7 @@
     import { db } from "../db.js";
 
     let winner, color1,  color2;
-    $:  if ((set.team1 > set.team2 & !$switchOn) || (set.team1 < set.team2 & $switchOn)) {
+    $:  if ((set.team0 > set.team1 & !$switchOn) || (set.team0 < set.team1 & $switchOn)) {
             winner = "left";
         } else {
             winner = "right";
@@ -32,12 +32,12 @@
     <div class={winner == "left" ? "left" : "right"}>
         <div class=z11><div class=z21>
             <p>
-                {($switchOn ? set.team2 : set.team1)}
+                {($switchOn ? set.team1 : set.team0)}
             </p>
         </div></div>
         <div class=z12><div class=z22>
             <p>
-                {($switchOn ? set.team1 : set.team2)}
+                {($switchOn ? set.team0 : set.team1)}
             </p>
         </div></div>
     </div>

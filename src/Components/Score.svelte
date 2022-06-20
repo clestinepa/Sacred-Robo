@@ -47,7 +47,7 @@
                     }
 
                     //enregistrement score
-                    db.sets_score_db.add({team1: $read_score_db[0].point, team2: $read_score_db[1].point });
+                    db.sets_score_db.add({team0: $read_score_db[0].point, team1: $read_score_db[1].point });
                     
                     //remise à 0 des points
                     db.score_db.update(0, {point: 0});

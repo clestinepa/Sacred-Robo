@@ -4,11 +4,11 @@
 
     let  color1,  color2;
     $:  if ($switchOn) {
-            color1= $settings.team2_color.value[1];
-            color2= $settings.team1_color.value[1];
-        } else {
             color1= $settings.team1_color.value[1];
-            color2= $settings.team2_color.value[1];
+            color2= $settings.team0_color.value[1];
+        } else {
+            color1= $settings.team0_color.value[1];
+            color2= $settings.team1_color.value[1];
         }
 </script>
 <div class=global style='--color1:{color1}; --color2:{color2};' on:click={switch_score}>

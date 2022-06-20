@@ -5,19 +5,19 @@ export let settings = writable({
                     value : "Indoor",
                     enable : true                   },
 
-    team1_name : {  title : "Name",
+    team0_name : {  title : "Name",
                     value : "Home",
                     enable : true                   },
 
-    team1_color : { title : "Color",
+    team0_color : { title : "Color",
                     value : ["#0019FF", "0,26,255"],
                     enable : true                   },
 
-    team2_name : {  title : "Name",
+    team1_name : {  title : "Name",
                     value : "Guest",
                     enable : true                   },
 
-    team2_color : { title : "Color",
+    team1_color : { title : "Color",
                     value : ["#FF0027", "255,0,39"],
                     enable : true                   },
 
@@ -102,28 +102,9 @@ export const colors = writable([
     {hexa : "#00CFFF", rgb : "0,207,255"}
 ]);
 
-export const score = writable([
-    {   id : 0,
-        name : get(settings).team1_name.value,
-        color : get(settings).team1_color.value,
-        set_win : 2,
-        point : 0,
-        nb_to : 0,
-        winner : false      },
-    {   id : 1,
-        name : get(settings).team2_name.value,
-        color : get(settings).team2_color.value,
-        set_win : 1,
-        point : 0,
-        nb_to : 0,
-        winner : false      }
-]);
-
 export const start_timer = writable(false);
 
 export const switchOn = writable(false);
-
-export const sets = writable([[25,21],[12,25],[28,26]]);
 
 export const page = writable("game");
 

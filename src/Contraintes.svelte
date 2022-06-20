@@ -74,8 +74,8 @@
             //     console.log("full");
             // }
             
-            // console.log('1:', $settings.team1_name.value, $score[0].name);
-            // console.log('2:', $settings.team2_name.value, $score[1].name);
+            // console.log('1:', $settings.team0_name.value, $score[0].name);
+            // console.log('2:', $settings.team1_name.value, $score[1].name);
             // console.log(' ');
 
     },3000);

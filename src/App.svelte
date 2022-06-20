@@ -80,13 +80,13 @@
 				<h1 class=title_section>Teams</h1>
 				<div>
 					<h2 class=title_subsection>First Team</h2>
-					<Text bind:type={$settings.team1_name}/>
-					<Select_Color bind:type={$settings.team1_color}/>
+					<Text bind:type={$settings.team0_name}/>
+					<Select_Color bind:type={$settings.team0_color}/>
 				</div>
 				<div>
 					<h2 class=title_subsection>Second Team</h2>
-					<Text bind:type={$settings.team2_name}/> 
-					<Select_Color bind:type={$settings.team2_color}/>
+					<Text bind:type={$settings.team1_name}/> 
+					<Select_Color bind:type={$settings.team1_color}/>
 				</div> 
 			</div>
 		</div>

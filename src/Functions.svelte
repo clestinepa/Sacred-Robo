@@ -1,9 +1,23 @@
 <script context="module">
-    import {score, start_timer, settings, page, switchOn, sets, last_actions, last_action} from './stores.js';
+    import {start_timer, settings, page, switchOn, last_actions, last_action} from './stores.js';
     import { get } from 'svelte/store';
+    import { liveQuery } from "dexie";
+    import { db } from "./db.js";
+
+    let score_db = liveQuery(
+        () => db.score_db.toArray()
+    );
+    let read_score_db;
+    score_db.subscribe(val => {read_score_db=val});
+
+    let sets_score_db = liveQuery(
+        () => db.sets_score_db.toArray()
+    );
+    let read_sets_score_db;
+    sets_score_db.subscribe(val => {read_sets_score_db=val});
 
     export function animScoreIncrement(event, i) {
-        if (!get(start_timer) & !get(score)[0].winner & !get(score)[1].winner) { 
+        if (!get(start_timer) & !read_score_db[0].winner & !read_score_db[1].winner) { 
             let x = event.clientX - event.currentTarget.offsetLeft;
             let y = event.clientY - event.currentTarget.offsetTop;
 
@@ -12,9 +26,9 @@
             ripples.style.top = y + 'px';
             let team;
             if (i==0) {
-                team="team1_color";
+                team="team0_color";
             } else if (i==1) {
-                team="team2_color";
+                team="team1_color";
             }
             ripples.style.background = get(settings)[team].value[0];
             event.currentTarget.appendChild(ripples);
@@ -26,22 +40,18 @@
 
     export function startGame() {
         page.set("game");
+        //Clear db
+        //Intialize db
     }
-
+    let r;
     export function gotoSettings() {
         page.set("settings");
     }
 
     export function switch_score() {
-        if (!get(score)[0].winner & !get(score)[1].winner) {
+        if (!read_score_db[0].winner & !read_score_db[1].winner) {
             let value = get(switchOn);
             switchOn.set(!value);
-
-            let list = get(sets);
-            for (let i = 0; i<list.length; i++) {
-                list[i] = list[i].reverse();
-            }
-            sets.set(list);
         }
     }
 
@@ -89,16 +99,11 @@
     export function addAction(type, target, value) {
         let list = get(last_actions);
         list = list.slice(1);
-        // switch (type) {
-        //     case "incScore":
-                list.push({
-                    type : type,
-                    target : target,
-                    value : value
-                });
-        //         break;
-        //     default:
-        // }
+        list.push({
+            type : type,
+            target : target,
+            value : value
+        });
         last_actions.set(list);
     }
 
@@ -106,50 +111,48 @@
 
         if (!get(start_timer)) {
             let list = get(last_actions);
-            let s, value;
+            let s;
+            let id = list[list.length - 1].target;
             switch (list[list.length - 1].type) {
                 case "incScore":
-                    s = get(score);
-                    s[list[list.length - 1].target].point--;
-                    score.set(s);
+                    s = read_score_db;
+                    s[id].point--;
+                    db.score_db.update(id, {point: s[id].point});
                     break;
                 case "incScoreSwitch":
-                    s = get(score);
-                    s[list[list.length - 1].target].point--;
-                    score.set(s);
+                    s = read_score_db;
+                    s[id].point--;
+                    db.score_db.update(id, {point: s[id].point});
                     switch_score();
                     break;
-                case "incScoreSet":
-                    value = get(sets);
-                    let id = list[list.length - 1].target;
-                    let pas_id = 1 - id;  //0 donne 1 et 1 donne 0
-                    let index_sets_id,index_sets_pas_id;
-                    if (get(switchOn)) {
-                        index_sets_id = pas_id;
-                        index_sets_pas_id = id;
+                case "incScoreSet":                    
+                    let not_id = 1 - id;  //0 donne 1 et 1 donne 0
+                    let new_points_id, new_points_not_id;
+                    if (id == 0) {
+                        new_points_id = read_sets_score_db[read_sets_score_db.length-1].team0;
+                        new_points_not_id = read_sets_score_db[read_sets_score_db.length-1].team1;
                     } else {
-                        index_sets_id = id;
-                        index_sets_pas_id = pas_id;
+                        new_points_id = read_sets_score_db[read_sets_score_db.length-1].team1;
+                        new_points_not_id = read_sets_score_db[read_sets_score_db.length-1].team0;
                     }
-                    s = get(score);
-                    s[id].point = --value[value.length - 1][index_sets_id];
-                    s[pas_id].point = value[value.length - 1][index_sets_pas_id];
+
+                    s = read_score_db;
+                    s[id].point = new_points_id - 1;
+                    s[not_id].point = new_points_not_id;
                     s[id].set_win--;
-                    score.set(s);
-                    
-                    value.pop();
-                    sets.set(value);
+                    db.score_db.update(id, {point: s[id].point, set_win: s[id].set_win});
+                    db.score_db.update(not_id, {point: s[not_id].point});
+                   
+                    db.sets_score_db.delete(read_sets_score_db[read_sets_score_db.length-1].id);
                     if (get(settings).check_switch.value) {
                         switch_score();
                     }
                     break;
                 case "incScoreGame":
-                    s = get(score);
-                    s[list[list.length - 1].target].point--;
-                    s[list[list.length - 1].target].set_win--;
-                    s[list[list.length - 1].target].winner = false;
-                    score.set(s);
-
+                    s = read_score_db;
+                    s[id].point--;
+                    s[id].set_win--;
+                    db.score_db.update(id, {point: s[id].point, set_win: s[id].set_win, winner: 0});
                     break;
                 default:
             }
@@ -163,22 +166,11 @@
                 
     }
 
-    
-/**
- * ACTION A UNDO
- *
- * temps mort
- * switch
- */
-
     export function patchAction() {
         let list = get(last_actions);
         list[list.length - 1].type = "incScoreSwitch";
         last_actions.set(list); 
     }
-
-
-
 
 </script>
 
