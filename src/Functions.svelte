@@ -249,7 +249,15 @@
     }
 
     export function handleKeyboardDown(e) {
-
+        if (e.code=='Enter' && document.getElementById('buttonConfirm')) {
+            document.getElementById('buttonConfirm').style.transform = 'translateY(-0.25em)';
+            document.getElementById('buttonConfirm').style.borderColor = 'var(--highlight)';
+            document.getElementById('buttonConfirm').style.backgroundColor = 'var(--highlight)';
+        } else if (e.code=='Enter' && document.getElementById('buttonClose')) {
+            document.getElementById('buttonClose').style.transform = 'translateY(-0.25em)';
+            document.getElementById('buttonClose').style.borderColor = 'var(--highlight)';
+            document.getElementById('buttonClose').style.color = 'var(--highlight)';
+        }
     }
 
 </script>
