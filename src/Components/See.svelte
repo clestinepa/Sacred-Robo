@@ -29,8 +29,8 @@
             transition = (visible ? "0.25em" :  "-0.25em") ;
         } else {
             text = (visible ? text.replace("Show", "Hide") : text.replace("Hide", "Show"));
-            details_element[details].style.display = (visible ? 'flex' :  'none');
-            autre_element[details].style.borderBottom = (visible ? 'none' :  '1px solid var(--clair)')
+            details_element[details-1].style.display = (visible ? 'flex' :  'none');
+            autre_element[details-1].style.borderBottom = (visible ? 'none' :  '1px solid var(--clair)')
             transition = (visible ? "-0.25em" :  "0.25em") ;
         }
     }

@@ -2,12 +2,12 @@
     export let com;
 </script>
 
-{#each com.reponse as reponse}
+{#each com.responses as reponse}
     <div class=reponse>
         <h2 class=title_subsection>{reponse.auteur}</h2>
         <p class=content>
             <span>{reponse.content}</span>
-            <span>Read more</span>
+            <!-- <span>Read more</span> -->
         </p> 
     </div>
 {/each}

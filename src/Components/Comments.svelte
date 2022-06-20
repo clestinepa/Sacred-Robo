@@ -1,48 +1,33 @@
 <script>
-    import { onMount } from 'svelte';
-    import { comments } from '../stores.js';
+	import { liveQuery } from "dexie";
+	import { db } from "../db.js";
 
     import See from './See.svelte';
     import React from './React.svelte';
     import Reponses from './Reponses.svelte';
 
-
-    let text;
-    onMount( () => {
-        text = document.getElementsByClassName('content');
-        for (const t of text) {
-            if (t.offsetHeight < t.scrollHeight) {
-                // your element has overflow and truncated
-                // show read more / read less button
-                // console.log('trunk', t);
-            } else {
-                // your element doesn't overflow (not truncated)
-                // console.log('full',t);
-            }  
-        }
-
-
-    }); 
+    let read_comments_db = liveQuery(() => db.comments_db.toArray());
 
 </script>
 
-{#each $comments as com}
+{#if $read_comments_db}
+{#each $read_comments_db as com}
     <div class=com>
         <h2 class=title_subsection>{com.auteur}</h2>
         <div class=zone_com>
             <p class=content>
                 <span>{com.content}</span>
-                <span>Read more</span>
+                <!-- <span>Read more</span> -->
             </p> 
             <div class=footer>
-                {#if com.reponse.length==0}
-                    <div></div>
-                {:else if com.reponse.length==1}
-                   <See text={"Show the " + com.reponse.length + " reponse"} details={com.id}/>
+                {#if com.responses.length==0}
+                    <div>{com.responses}</div>
+                {:else if com.responses.length==1}
+                   <See text={"Show the " + com.responses.length + " response"} details={com.id}/>
                 {:else}
-                    <See text={"Show the " + com.reponse.length + " reponses"} details={com.id}/>
+                    <See text={"Show the " + com.responses.length + " responses"} details={com.id}/>
                 {/if}
-                <React bind:com={com}/>
+                <React com={com}/>
             </div>
             <div class=reponse_details>
                 <Reponses com={com}/>
@@ -50,7 +35,7 @@
         </div>
     </div>
 {/each}
-
+{/if}
 
 <style>
     .com {

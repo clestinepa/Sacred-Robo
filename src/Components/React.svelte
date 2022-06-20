@@ -1,4 +1,7 @@
 <script>
+    import { db } from "../db";
+
+
     export let com;
     let select_applause = false;
     let select_sad = false;
@@ -10,10 +13,12 @@
             com.nb_applaus++;
             if (select_sad) {
                 com.nb_sad--;
+                db.comments_db.update(com.id, {nb_sad: com.nb_sad});
                 select_sad = false;
             }
             
         }
+        db.comments_db.update(com.id, {nb_applaus: com.nb_applaus});
         select_applause = !select_applause;
     }
 
@@ -24,10 +29,12 @@
             com.nb_sad++;
             if (select_applause) {
                 com.nb_applaus--;
+                db.comments_db.update(com.id, {nb_applaus: com.nb_applaus});
                 select_applause = false;
             }
             
         }
+        db.comments_db.update(com.id, {nb_sad: com.nb_sad});
         select_sad = !select_sad;
     }
 

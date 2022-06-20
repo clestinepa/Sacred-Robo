@@ -32,7 +32,7 @@
 	 * easteregg : https://svelte.dev/repl/9eb4551167b94acfa0fc033662db209e?version=3.48.0
 	*/
 
-	import {settings, switchOn, page, comments} from './stores.js';
+	import {settings, switchOn, page} from './stores.js';
 	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
@@ -55,13 +55,9 @@
 	import { liveQuery } from "dexie";
 	import { db } from "./db.js";
 
-    let read_sets_score_db = liveQuery(
-       () => db.sets_score_db.toArray()
-    );
-
-    let read_score_db = liveQuery(
-       () => db.score_db.toArray()
-    );
+    let read_sets_score_db = liveQuery(() => db.sets_score_db.toArray());
+    let read_score_db = liveQuery(() => db.score_db.toArray());
+	let read_comments_db = liveQuery(() => db.comments_db.toArray());
 
 </script>
 
@@ -205,11 +201,12 @@
 				</div>
 			</div>
 		</div>
+		{#if $read_comments_db}
 		<div id=comments>
 			<div id=comments_scroll>
 				<See text="Comments" details={-1}/>
 				<div id=comment_details>
-					{#if $comments.length == 0}
+					{#if $read_comments_db.length == 0}
 						<div><span>There is no comments, for the moment</div>
 					{:else}
 						<Comments/>
@@ -217,6 +214,7 @@
 				</div>	
 			</div>
 		</div>
+		{/if}
 	</main>
 	{#if ($read_score_db[0].winner==1? true : false) || ($read_score_db[1].winner==1? true : false)}
 		<Confetti/>
@@ -507,7 +505,8 @@ main {
 }
 
 #comment_details {
-	display: none;
+	/* display: none; */
+	display: flex;
 	flex-direction: column;
 	gap: 30px;
 }

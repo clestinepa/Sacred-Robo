@@ -132,35 +132,34 @@ let list = new Array(10).fill() //mémoire de 10actions
 last_actions.set(list);
 
 
-export const comments= writable([
-    {   id:0,
-        auteur : "Guillaume",
-        date : "13/06/22 8:33",
-        content : " Ducimus sit tempore porro quis. Laudantium voluptas recusandae dolor sint eum quibusdam enim. Saepe dolores deserunt sint alias recusandae reprehenderit ut et. Fugiat atque et magnam ut dolor eum. Doloremque et eos. \nEos optio corrupti iusto ea ea aspernatur nisi aut quia. Qui quia sint nobis rerum odio. Nisi nihil sint reprehenderit. Id doloribus soluta accusamus fugit numquam eos.\nDolor autem quo fugit corporis asperiores placeat est aperiam. Sint velit aliquam quia quaerat iure ut fugiat officiis. Qui quo officiis corrupti veritatis. Facilis quia quisquam quis ut et. Totam voluptas omnis doloribus qui vero autem repellendus nostrum.",
-        nb_applaus : 25,
-        nb_sad : 12,
-        reponse : [{auteur : "Jean",
-                    content : "Ducimus sit tempore porro quis."},
-                    {auteur : "Laure",
-                    content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."},
-                    {auteur : "Marie",
-                    content : "Fugiat atque et magnam ut dolor eum. "},
-                    {auteur : "Phillipe",
-                    content : "Qui quo officiis corrupti veritatis."},
-                    {auteur : "Nico",
-                    content : "Facilis quia quisquam quis ut et."}
-                ]
-    },
-    {   id:1,
-        auteur : "Jean-Charles",
-        date : "13/06/22 10:33",
-        content : " Ducimus sit tempore porro quis. Laudantium  voluptas recusandae dolor sint eum quibusbvbvbvbv vbv vb vbdam enim.",
-        nb_applaus : 2,
-        nb_sad : 185,
-        reponse : [{auteur : "Laurie",
-                    content : "Fugiat ut ratione dolores eum ut vel rerum quidem. Dolore deserunt voluptate sunt debitis reprehenderit. At voluptatem iusto tempore. Sapiente sapiente fuga sed natus. Sunt voluptatem et. \nNihil non esse culpa mollitia nesciunt fugiat necessitatibus id. Maxime praesentium quasi sapiente. Consequatur dolorum unde veritatis officia sed dolore quam ducimus. Omnis animi et voluptate perferendis ut et odio enim.\nEst aspernatur ex. Dolorem quo quos dolores aperiam. Voluptatem sapiente perspiciatis corporis magni. Voluptates et omnis sequi quo aut voluptate."},
-                    {auteur : "Oscar",
-                    content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."}
-                ]}
-
-]);
+// export const comments= writable([
+//     {   id:0,
+//         auteur : "Guillaume",
+//         date : "13/06/22 8:33",
+//         content : " Ducimus sit tempore porro quis. Laudantium voluptas recusandae dolor sint eum quibusdam enim. Saepe dolores deserunt sint alias recusandae reprehenderit ut et. Fugiat atque et magnam ut dolor eum. Doloremque et eos. \nEos optio corrupti iusto ea ea aspernatur nisi aut quia. Qui quia sint nobis rerum odio. Nisi nihil sint reprehenderit. Id doloribus soluta accusamus fugit numquam eos.\nDolor autem quo fugit corporis asperiores placeat est aperiam. Sint velit aliquam quia quaerat iure ut fugiat officiis. Qui quo officiis corrupti veritatis. Facilis quia quisquam quis ut et. Totam voluptas omnis doloribus qui vero autem repellendus nostrum.",
+//         nb_applaus : 25,
+//         nb_sad : 12,
+//         reponse : [{auteur : "Jean",
+//                     content : "Ducimus sit tempore porro quis."},
+//                     {auteur : "Laure",
+//                     content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."},
+//                     {auteur : "Marie",
+//                     content : "Fugiat atque et magnam ut dolor eum. "},
+//                     {auteur : "Phillipe",
+//                     content : "Qui quo officiis corrupti veritatis."},
+//                     {auteur : "Nico",
+//                     content : "Facilis quia quisquam quis ut et."}
+//                 ]
+//     },
+//     {   id:1,
+//         auteur : "Jean-Charles",
+//         date : "13/06/22 10:33",
+//         content : " Ducimus sit tempore porro quis. Laudantium  voluptas recusandae dolor sint eum quibusbvbvbvbv vbv vb vbdam enim.",
+//         nb_applaus : 2,
+//         nb_sad : 185,
+//         reponse : [{auteur : "Laurie",
+//                     content : "Fugiat ut ratione dolores eum ut vel rerum quidem. Dolore deserunt voluptate sunt debitis reprehenderit. At voluptatem iusto tempore. Sapiente sapiente fuga sed natus. Sunt voluptatem et. \nNihil non esse culpa mollitia nesciunt fugiat necessitatibus id. Maxime praesentium quasi sapiente. Consequatur dolorum unde veritatis officia sed dolore quam ducimus. Omnis animi et voluptate perferendis ut et odio enim.\nEst aspernatur ex. Dolorem quo quos dolores aperiam. Voluptatem sapiente perspiciatis corporis magni. Voluptates et omnis sequi quo aut voluptate."},
+//                     {auteur : "Oscar",
+//                     content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."}
+//                 ]}
+// ]);
