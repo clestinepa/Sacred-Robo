@@ -12,8 +12,8 @@
 
 <style>
     .container {
-        height: min(max(15px,3vw),44px);
-        width: min(max(15px,3vw),44px);
+        height: min(max(15px,3vw),25px);
+        width: min(max(15px,3vw),25px);
         cursor: pointer;
         display: flex;
         align-items: center;

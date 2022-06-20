@@ -43,7 +43,6 @@
         //Clear db
         //Intialize db
     }
-    let r;
     export function gotoSettings() {
         page.set("settings");
     }

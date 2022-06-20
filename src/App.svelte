@@ -11,7 +11,7 @@
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
 	 * confetti saut "naturel"
-	 * boutons dans score pour édit directment
+	 * carton rouge pour enlever un point !
 	 * store variable score pb reactive
 	 * hover joli dans toutes les pages
 	 * Erreur : bundle ne se construot pas jusqu'au bout : Uncaught SyntaxError: Unexpected end of input (at bundle.js:3595:24)
@@ -40,9 +40,9 @@
 	import Confetti from './Components/Confetti.svelte';
 	import Fleche_switch from './Components/Fleche_switch.svelte';
 	import Settings_Button from './Components/Settings_Button.svelte';
-	import Back from './Components/Back.svelte';
 	import Comments from './Components/Comments.svelte';
 	import See from './Components/See.svelte';
+	import Header_Game from './Components/Header_Game.svelte';
 
 	import { liveQuery } from "dexie";
 	import { db } from "./db.js";
@@ -59,95 +59,94 @@
 
 <Contraintes/>
 
-<header>
-	<h1 id=bigTitle>Sacred Robo</h1>
-	<Settings_Button/>
-</header>
+
 
 {#if $page == "settings"}
-<main class="settingss">
-	<div id=settings>
-		<div class=column>
-			<div class=section>
-				<h1  class=title_section>Preset</h1>
-				<Select_Preset type={$settings.preset_name}/>
+	<header>
+		<h1 id=bigTitle_settings>Sacred Robo</h1>
+		<Settings_Button type="settings"/>
+	</header>
+	<main class="settingss">
+		<div id=settings>
+			<div class=column>
+				<div class=section>
+					<h1  class=title_section>Preset</h1>
+					<Select_Preset type={$settings.preset_name}/>
+				</div>
+		
+				<div class=section>
+					<h1 class=title_section>Teams</h1>
+					<div>
+						<h2 class=title_subsection>First Team</h2>
+						<Text bind:type={$settings.team0_name}/>
+						<Select_Color bind:type={$settings.team0_color}/>
+					</div>
+					<div>
+						<h2 class=title_subsection>Second Team</h2>
+						<Text bind:type={$settings.team1_name}/> 
+						<Select_Color bind:type={$settings.team1_color}/>
+					</div> 
+				</div>
 			</div>
-	
+			
+			<div class=column>
+				<div class=section>
+					<h1 class=title_section>Points</h1>
+					<Select_Number bind:type={$settings.set}/>
+					<Select_Number bind:type={$settings.point}/>
+				</div>
+		
+				<div class=section>
+					<h1 class=title_section>Tie Break</h1>
+					<Check bind:type={$settings.check_tb}/>
+					<Select_Number bind:type={$settings.point_tb}/>
+				</div>
+			</div>
+			
 			<div class=section>
-				<h1 class=title_section>Teams</h1>
+				<h1 class=title_section>Automatic Side Switch</h1>
 				<div>
-					<h2 class=title_subsection>First Team</h2>
-					<Text bind:type={$settings.team0_name}/>
-					<Select_Color bind:type={$settings.team0_color}/>
+					<h2 class=title_subsection>Regular Set</h2>
+					<Check bind:type={$settings.check_switch} />
+					<Check bind:type={$settings.check_sum_regular}/>
+					<Select_Number bind:type={$settings.sum_regular}/>
 				</div>
 				<div>
-					<h2 class=title_subsection>Second Team</h2>
-					<Text bind:type={$settings.team1_name}/> 
-					<Select_Color bind:type={$settings.team1_color}/>
+					<h2 class=title_subsection>Tie Break</h2>
+					<Check bind:type={$settings.check_score_tb} />
+					<Select_Number bind:type={$settings.score_tb}/>
+					<Check bind:type={$settings.check_sum_tb} />
+					<Select_Number bind:type={$settings.sum_tb}/>
 				</div> 
 			</div>
-		</div>
-		
-		<div class=column>
+
 			<div class=section>
-				<h1 class=title_section>Points</h1>
-				<Select_Number bind:type={$settings.set}/>
-				<Select_Number bind:type={$settings.point}/>
+				<h1 class=title_section>Time Out</h1>
+				<div>
+					<h2 class=title_subsection>Technical</h2>
+					<Check bind:type={$settings.check_to_tech} />
+					<Select_Number bind:type={$settings.nb_to_tech}/>
+					<Select_Number bind:type={$settings.time_to_tech}/>
+				</div>
+				<div>
+					<h2 class=title_subsection>Coach</h2>
+					<Check bind:type={$settings.check_to_coach} />
+					<Select_Number bind:type={$settings.nb_to_coach}/>
+					<Select_Number bind:type={$settings.time_to_coach}/>
+				</div>
 			</div>
-	
-			<div class=section>
-				<h1 class=title_section>Tie Break</h1>
-				<Check bind:type={$settings.check_tb}/>
-				<Select_Number bind:type={$settings.point_tb}/>
-			</div>
-		</div>
-		
-		<div class=section>
-			<h1 class=title_section>Automatic Side Switch</h1>
-			<div>
-				<h2 class=title_subsection>Regular Set</h2>
-				<Check bind:type={$settings.check_switch} />
-				<Check bind:type={$settings.check_sum_regular}/>
-				<Select_Number bind:type={$settings.sum_regular}/>
-			</div>
-			<div>
-				<h2 class=title_subsection>Tie Break</h2>
-				<Check bind:type={$settings.check_score_tb} />
-				<Select_Number bind:type={$settings.score_tb}/>
-				<Check bind:type={$settings.check_sum_tb} />
-				<Select_Number bind:type={$settings.sum_tb}/>
-			</div> 
+
 		</div>
 
-		<div class=section>
-			<h1 class=title_section>Time Out</h1>
-			<div>
-				<h2 class=title_subsection>Technical</h2>
-				<Check bind:type={$settings.check_to_tech} />
-				<Select_Number bind:type={$settings.nb_to_tech}/>
-				<Select_Number bind:type={$settings.time_to_tech}/>
-			</div>
-			<div>
-				<h2 class=title_subsection>Coach</h2>
-				<Check bind:type={$settings.check_to_coach} />
-				<Select_Number bind:type={$settings.nb_to_coach}/>
-				<Select_Number bind:type={$settings.time_to_coach}/>
-			</div>
+		<div class=boutons>
+				<div id=button_start on:click={startGame}><p>Start the game !</p></div>
 		</div>
-
-	</div>
-
-	<div class=boutons>
-			<div id=button_start on:click={startGame}><p>Start the game !</p></div>
-	</div>
-</main>
+	</main>
 {:else if $page == "game"}
+	<Header_Game/>
 	{#if $read_score_db && $read_sets_score_db}
 	<main class="game">
 		<div id=result>
-			<div id=settings_game>
-				<div id=pos_back><Back/></div>
-			</div>
 			<div id=names_{$switchOn}>
 				<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
 				<div class=gap> <Fleche_switch/></div>
@@ -225,7 +224,7 @@ header {
 	border-bottom: 4px solid var(--details);
 	border-radius: 30px;
 
-	padding: 25px min(10%,50px);
+	padding: min(max(20px,4vw),30px) min(max(22.5px,4.5vw),50px);
 
 	display: flex;
 	justify-content: space-between;
@@ -234,7 +233,7 @@ header {
 	background: var(--bg);
 }
 
-#bigTitle {
+#bigTitle_settings {
 	margin: 0px;
 
 	font-family: var(--font-family-title);
@@ -335,10 +334,6 @@ main {
 	display: flex;
 	flex-direction: column;
 	gap: min(max(7.5px,1.5vw), 22px);
-}
-
-#pos_back {
-	max-width: calc(1000px + 30px + 250px); /* 2*width score + 2*gap + witdh score set*/
 }
 
 #names_false, #names_true, #points_false, #points_true, #temps_mort {
