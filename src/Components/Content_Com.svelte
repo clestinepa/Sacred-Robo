@@ -24,18 +24,15 @@
 <style>
 .content_com {
     font-size : min(max(12.5px,2.5vw),18px);
-
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
     position: relative;
 }
 
 #read {
     font-size : min(max(10px,2vw),15px);
-    /* font-family: var(--font-family-title); */
     color: var(--font-clair);
     position: absolute;
     bottom:  min(max(2px,0.4vw),3px);

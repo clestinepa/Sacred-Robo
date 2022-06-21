@@ -329,7 +329,7 @@ main {
 /* Global */
 
 .game{
-	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(5%, 20px);
+	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(7%, 20px);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

@@ -62,7 +62,7 @@
 
 <style>
     .com {
-        padding-bottom: 10px;
+        padding-bottom: min(max(10px,2vw),20px);
         border-bottom: 1px solid var(--clair);
     }
 
@@ -83,10 +83,10 @@
     }
 
     .zone_com {
-        margin: 20px 0 0 20px;
+        margin: min(max(10px,2vw),20px) 0 0 min(max(10px,2vw),20px);
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap:  min(max(10px,2vw),20px);
     }
 
     .footer_com {
@@ -101,7 +101,7 @@
     .reponse_details {
         display: none;
         flex-direction: column;
-        gap: 15px;
+        gap: min(max(15px,3vw),20px);
     }
 
 

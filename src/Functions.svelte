@@ -263,19 +263,35 @@
 
     export function dateToString(date) {
         let now = new Date();
-        let date_string = monthString(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+        let date_string = monthString(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + ", " + date.getHours() + ":" + minuteString(date.getMinutes());
         
         if ((now - date) < 604800000) {
             if (date.getDate() == now.getDate()) { //meme jour
-                date_string = date.getHours() + ":" + date.getMinutes();
+                date_string = date.getHours() + ":" + minuteString(date.getMinutes());
             } else if (date.getDate() + 1 == now.getDate()) { //veille
-                date_string = "Yesterday, " + date.getHours() + ":" + date.getMinutes();
+                date_string = "Yesterday, " + date.getHours() + ":" + minuteString(date.getMinutes());
             } else { //meme semaine
-                date_string = dayString(date.getDate()) + ", " + date.getHours() + ":" + date.getMinutes();
+                date_string = dayString(date.getDate()) + ", " + date.getHours() + ":" + minuteString(date.getMinutes());
             }
         }
 
         return date_string;
+    }
+
+    function minuteString(min) {
+        switch (min) {
+            case 0 : return "00";
+            case 1 : return "01";
+            case 2 : return "02";
+            case 3 : return "03";
+            case 4 : return "04";
+            case 5 : return "05";
+            case 6 : return "06";
+            case 7 : return "07";
+            case 8 : return "08";
+            case 9 : return "09";
+            default :  return min;
+        }
     }
 
     function monthString(month) {

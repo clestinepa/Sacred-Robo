@@ -49,14 +49,19 @@ db.on('populate', () => {
     nb_applaus : 25,
     nb_sad : 12,
     responses : [{auteur : "Jean",
+                date : new Date('June 20, 2022 09:32:00'),
                 content : "Ducimus sit tempore porro quis."},
                 {auteur : "Laure",
+                date : new Date('June 20, 2022 09:40:00'),
                 content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."},
                 {auteur : "Marie",
+                date : new Date('June 20, 2022 19:05:00'),
                 content : "Fugiat atque et magnam ut dolor eum. "},
                 {auteur : "Phillipe",
+                date : new Date('June 21, 2022 10:14:00'),
                 content : "Qui quo officiis corrupti veritatis."},
                 {auteur : "Nico",
+                date : new Date('June 21, 2022 13:19:00'),
                 content : "Facilis quia quisquam quis ut et."}]
   });
   db.comments_db.add({
@@ -66,8 +71,10 @@ db.on('populate', () => {
     nb_applaus : 2,
     nb_sad : 185,
     responses : [{auteur : "Laurie",
-                content : "Fugiat ut ratione dolores eum ut vel rerum quidem. Dolore deserunt voluptate sunt debitis reprehenderit. At voluptatem iusto tempore. Sapiente sapiente fuga sed natus. Sunt voluptatem et. \nNihil non esse culpa mollitia nesciunt fugiat necessitatibus id. Maxime praesentium quasi sapiente. Consequatur dolorum unde veritatis officia sed dolore quam ducimus. Omnis animi et voluptate perferendis ut et odio enim.\nEst aspernatur ex. Dolorem quo quos dolores aperiam. Voluptatem sapiente perspiciatis corporis magni. Voluptates et omnis sequi quo aut voluptate."},
+                date : new Date('April 02, 2022 11:39:00'),
+                content : "Fugiat ut ratione dolores eum ut vel rerum quidem. Dolore deserunt voluptate sunt debitis reprehenderit. At voluptatem iusto tempore. Sapiente sapiente fuga sed natus. Sunt voluptatem et."},
                 {auteur : "Oscar",
+                date : new Date('May 30, 2022 22:48:00'),
                 content : "Laudantium voluptas recusandae dolor sint eum quibusdam enim."}]
     });
 

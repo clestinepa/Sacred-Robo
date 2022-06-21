@@ -6,9 +6,9 @@
     let visible = true;
 
     function visibleHeader() {
-        console.log("clique");
         visible = !visible;
     }
+
 </script>
 
 <header class={visible}>
@@ -60,6 +60,7 @@ header {
     position: absolute;
     bottom: min(max(2px,0.4vw),5px);
     cursor: pointer;
+    color: var(--clair);
 }
 
 .false .pos_fleche{

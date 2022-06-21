@@ -45,7 +45,7 @@
 .see {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap:  min(max(5px,1vw), 10px);
 	color : var(--normal);
     cursor: pointer;
 }
@@ -53,5 +53,9 @@
 .see:hover {
 	color: var(--highlight);
     transform: translateY(var(--transition));	
+}
+
+.text {
+    font-size : min(max(12.5px,2.5vw),18px);
 }
 </style>

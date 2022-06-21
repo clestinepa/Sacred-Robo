@@ -54,19 +54,20 @@
 <style>
     .react {
         display: flex;
-        gap: 30px;
+        gap: min(max(15px,3vw), 44px);
     }
 
     .detail_true, .detail_false {
         display: flex;
-        gap: 5px;
+        gap: min(max(5px,1vw), 10px);
         align-items: center;
         cursor: pointer;
         font-family: var(--font-family-title);
+        font-size : min(max(15px,3vw),20px);
     }
 
     .icon {
-        font-size: 35px;
+        font-size: min(max(25px,5vw),40px);
     }
 
     .detail_true {
