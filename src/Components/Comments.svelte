@@ -1,43 +1,36 @@
 <script>
-    import { onMount } from "svelte";
 	import { liveQuery } from "dexie";
 	import { db } from "../db.js";
 
     import See from './See.svelte';
     import React from './React.svelte';
     import Reponses from './Reponses.svelte';
+    import Content_Com from './Content_Com.svelte';
     import {dateToString} from '../Functions.svelte'
 
     let read_comments_db = liveQuery(() => db.comments_db.toArray());
 
     let content;
     setInterval(() => {
-        content = document.getElementsByClassName('content');
+        content = document.getElementsByClassName('content_com');
         for (const c of content) {
             if (c.offsetHeight < c.scrollHeight) {
-                if (c.getElementsByTagName('div')[0]) {
-                    c.style.background = "-webkit-radial-gradient(calc(100% - 65px) 85%, ellipse farthest-side, transparent 10%, var(--font) 30%)";
-                    c.style.backgroundClip = "text";
-                    c.style.webkitBackgroundClip = "text";
-                    c.style.color = "transparent";
-                    c.getElementsByTagName('div')[0].style.display = "block";
-                }
+                c.style.background = "-webkit-radial-gradient(calc(100% - 50px) 85%, ellipse farthest-side, transparent 10%, var(--font) 30%)";
+                c.style.backgroundClip = "text";
+                c.style.webkitBackgroundClip = "text";
+                c.style.color = "transparent";
+                c.getElementsByTagName('div')[0].innerHTML = 'Read more';
             } else {
-                if (c.getElementsByTagName('div')[0]) {   
-                    c.style.background = " ";
-                    c.style.backgroundClip = " ";
-                    c.style.webkitBackgroundClip = " ";
-                    c.style.color = " ";
-                    c.getElementsByTagName('div')[0].style.display = "none";
+                c.style.background = "transparent";
+                c.style.backgroundClip = "border-box";
+                c.style.webkitBackgroundClip = "border-box";
+                c.style.color = "var(--font)";
+                if (c.className.slice(0,17) == "content_com false") {
+                    c.getElementsByTagName('div')[0].innerHTML = '';
                 }
             }  
         }
     }, 0);
-    
-    function readMore() {
-        
-    }
-
 </script>
 
 {#if $read_comments_db}
@@ -48,10 +41,7 @@
             <div class=date>{dateToString(com.date)}</div>
         </div>
         <div class=zone_com>
-            <div class=content>
-                <span>{com.content}</span>
-                <div id=read on:click={readMore}>Read more</div>
-            </div> 
+            <Content_Com com={com}/>
             <div class=footer_com>
                 {#if com.responses.length==0}
                     <div>{com.responses}</div>
@@ -89,7 +79,7 @@
 
     .date {
         color: var(--font-clair);
-        font-size : min(max(10px,2vw),15px)
+        font-size : min(max(10px,2vw),15px);
     }
 
     .zone_com {
@@ -97,25 +87,6 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-    }
-
-    .content {
-        font-size : min(max(12.5px,2.5vw),18px);
-
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-
-        position: relative;
-    }
-
-    #read {
-        color: var(--font-clair);
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        background: var(--bg);
     }
 
     .footer_com {
