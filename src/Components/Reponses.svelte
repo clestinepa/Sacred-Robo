@@ -7,7 +7,6 @@
         <h2 class=title_subsection>{reponse.auteur}</h2>
         <p class=content>
             <span>{reponse.content}</span>
-            <!-- <span>Read more</span> -->
         </p> 
     </div>
 {/each}

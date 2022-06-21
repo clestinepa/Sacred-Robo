@@ -260,5 +260,54 @@
         }
     }
 
+
+    export function dateToString(date) {
+        let now = new Date();
+        let date_string = monthString(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + ", " + date.getHours() + ":" + date.getMinutes();
+        
+        if ((now - date) < 604800000) {
+            if (date.getDate() == now.getDate()) { //meme jour
+                date_string = date.getHours() + ":" + date.getMinutes();
+            } else if (date.getDate() + 1 == now.getDate()) { //veille
+                date_string = "Yesterday, " + date.getHours() + ":" + date.getMinutes();
+            } else { //meme semaine
+                date_string = dayString(date.getDate()) + ", " + date.getHours() + ":" + date.getMinutes();
+            }
+        }
+
+        return date_string;
+    }
+
+    function monthString(month) {
+        switch (month) {
+            case 0 : return "Jan";
+            case 1 : return "Feb";
+            case 2 : return "Mar";
+            case 3 : return "Apr";
+            case 4 : return "May";
+            case 5 : return "Jun";
+            case 6 : return "Jul";
+            case 7 : return "Aug";
+            case 8 : return "Sep";
+            case 9 : return "Oct";
+            case 10 : return "Nov";
+            case 11 : return "Dec";
+            default :  return "???";
+        }
+    }
+
+    function dayString(day) {
+        switch (day) {
+            case 0 : return "Lun";
+            case 1 : return "Tue";
+            case 2 : return "Wed";
+            case 3 : return "Thu";
+            case 4 : return "Fri";
+            case 5 : return "Sat";
+            case 6 : return "Sun";
+            default : return "???";
+        }
+    }
+
 </script>
 
