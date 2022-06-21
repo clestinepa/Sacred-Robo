@@ -34,10 +34,21 @@
             transition = (visible ? "-0.25em" :  "0.25em") ;
         }
     }
+
+    let color_fleche = "var(--normal)";
+
+    onMount( () => {
+        let sees = document.getElementsByClassName('see');
+        for (const see of sees) {
+            see.addEventListener("mouseover", function() {color_fleche="var(--highlight)";});
+            see.addEventListener("mouseout", function() {color_fleche="var(--normal)";});
+        }
+    });
+    
 </script>
 
 <div class=see on:click={seeMore} style="--transition:{transition};">
-    <Fleche direction={visible & details == -1 ? "down2" : !visible & details == -1 ? "up2": visible ? "up2" : "down2"} />
+    <Fleche direction={visible & details == -1 ? "down2" : !visible & details == -1 ? "up2": visible ? "up2" : "down2"} color={color_fleche}/>
     <div class=text>{text}</div>
 </div>
 

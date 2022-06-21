@@ -22,7 +22,7 @@
     </div>
 
     <div class=pos_fleche on:click={visibleHeader}>
-        <!-- <Fleche direction={visible ? "up2" : "down2"} /> -->
+        <!-- <Fleche direction={visible ? "up2" : "down2"} color="var(--normal)"/> -->
     </div>
 </header>
 

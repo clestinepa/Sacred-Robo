@@ -11,7 +11,7 @@
 	<p class=title>{type.title}</p>
 	<div class=zone><div class=zone2>
 		<p>{type.value}</p> 
-		<div class="fleche" on:click={changePreset}><Fleche direction=down/></div> 
+		<div class="fleche" on:click={changePreset}><Fleche direction=down color={type.enable === true ? "var(--highlight)" : "var(--normal)"}/></div> 
 	</div></div>
 </div>
 

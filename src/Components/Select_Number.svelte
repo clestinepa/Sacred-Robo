@@ -33,8 +33,8 @@
 		{/if}
 	</div></div>
 	<div class=fleches>
-		<div class="zone_clique" on:click={up}><Fleche direction=up/></div>
-		<div class="zone_clique" on:click={down}><Fleche direction=down/></div>
+		<div class="zone_clique" on:click={up}><Fleche direction=up color={type.enable === true ? "var(--highlight)" : "var(--clair)"}/></div>
+		<div class="zone_clique" on:click={down}><Fleche direction=down color={type.enable === true ? "var(--highlight)" : "var(--clair)"}/></div>
 	</div> 
 </div>
 
