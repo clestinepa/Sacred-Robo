@@ -18,8 +18,11 @@
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
 	 * Violation :Forced reflow while executing JavaScript took 70ms
 	 *
-	 * Responsive : Check dans check_to
+	 * Responsive : Commentaires
+	 * 				Check dans check_to
 	 *				boite de dialogue
+	 *				see.svelte seeMore => minHeight
+
 	 *
 	 * Hover :	clear confetti
 	 * 			navigation
@@ -31,7 +34,7 @@
 	*/
 
 	import {settings, switchOn, page} from './stores.js';
-	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragComment} from './Functions.svelte';
+	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragoverComments, dropComments} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
 	import Select_Color from './Components/Select_Color.svelte';
@@ -147,72 +150,78 @@
 {:else if $page == "game"}
 	<Header_Game/>
 	{#if $read_score_db && $read_sets_score_db}
-	<main class="game">
-		<div id=result>
-			<div id=names_{$switchOn}>
-				<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
-				<div class=gap> <Fleche_switch/></div>
-				<p id=name2 style:color={$read_score_db[1].color[0]}>{$read_score_db[1].name}</p>
-			</div>
-			<div id=points_{$switchOn}>
-				<div class=score on:click={e => animScoreIncrement(e, 0)}>
-					<Score number_team=0/>
+	<main class="game" on:dragover={e => dragoverComments(e)} on:drop={e => dropComments(e)}>
+		<div id=com_zone1></div>
+		<div id=com_zone1_gap></div>
+		<div id=com_zone3>
+			<div id=result>
+				<div id=names_{$switchOn}>
+					<p id=name1 style:color={$read_score_db[0].color[0]}>{$read_score_db[0].name}</p>
+					<div class=gap> <Fleche_switch/></div>
+					<p id=name2 style:color={$read_score_db[1].color[0]}>{$read_score_db[1].name}</p>
 				</div>
-				<div class=set>
-					<div class=score_set>
-						<div class=point_set>
-							<Set number_team=0/>
+				<div id=points_{$switchOn}>
+					<div class=score on:click={e => animScoreIncrement(e, 0)}>
+						<Score number_team=0/>
+					</div>
+					<div class=set>
+						<div class=score_set>
+							<div class=point_set>
+								<Set number_team=0/>
+							</div>
+							<div class=point_set>
+								<Set number_team=1/>
+							</div>
 						</div>
-						<div class=point_set>
-							<Set number_team=1/>
+						<div class=detail_set>
+							{#each $read_sets_score_db as set}
+								<Detail_set set={set}/>
+							{/each}
 						</div>
 					</div>
-					<div class=detail_set>
-						{#each $read_sets_score_db as set}
-							<Detail_set set={set}/>
-						{/each}
+					<div class=score on:click={e => animScoreIncrement(e, 1)}>
+						<Score number_team=1/>
+					</div> 
+				</div>
+				<div id=temps_mort>
+					<div id=tm1>
+						<h2 class=title_subsection>Timeout:</h2>
+						{#if !$switchOn}
+							<Check_to number_team=0/>
+						{:else}
+							<Check_to number_team=1/>
+						{/if}
+					</div>
+					<div class=gap>
+						<Timer_to/>
+					</div>
+					<div id=tm2>
+						{#if !$switchOn}
+							<Check_to number_team=1/>
+						{:else}
+							<Check_to number_team=0/>
+						{/if}
+						<h2 class=title_subsection>:Timeout</h2>
 					</div>
 				</div>
-				<div class=score on:click={e => animScoreIncrement(e, 1)}>
-					<Score number_team=1/>
-				</div> 
 			</div>
-			<div id=temps_mort>
-				<div id=tm1>
-					<h2 class=title_subsection>Timeout:</h2>
-					{#if !$switchOn}
-						<Check_to number_team=0/>
-					{:else}
-						<Check_to number_team=1/>
-					{/if}
-				</div>
-				<div class=gap>
-					<Timer_to/>
-				</div>
-				<div id=tm2>
-					{#if !$switchOn}
-						<Check_to number_team=1/>
-					{:else}
-						<Check_to number_team=0/>
-					{/if}
-					<h2 class=title_subsection>:Timeout</h2>
+			{#if $read_comments_db}
+			<div id=comments>
+				<div id=comments_scroll>
+					<See text="Comments" details={-1}/>
+					<div id=comment_details>
+						{#if $read_comments_db.length == 0}
+							<div><span>There is no comments, for the moment</div>
+						{:else}
+							<Comments/>
+						{/if}
+					</div>	
 				</div>
 			</div>
+			{/if}
 		</div>
-		{#if $read_comments_db}
-		<div draggable=true id=comments on:dragstart={dragComment}>
-			<div id=comments_scroll>
-				<See text="Comments" details={-1}/>
-				<div id=comment_details>
-					{#if $read_comments_db.length == 0}
-						<div><span>There is no comments, for the moment</div>
-					{:else}
-						<Comments/>
-					{/if}
-				</div>	
-			</div>
-		</div>
-		{/if}
+		<div id=com_zone2_gap></div>
+		<div id=com_zone2></div>
 	</main>
 	{#if ($read_score_db[0].winner==1? true : false) || ($read_score_db[1].winner==1? true : false)}
 		<Confetti/>
@@ -329,8 +338,18 @@ main {
 .game{
 	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(7%, 20px);
 	display: flex;
+}
+
+#com_zone3 {
+	flex:1 0;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+#com_zone2, #com_zone1 {
+	display: flex;
+	flex-direction: column;
 }
 
 /**Max witdh atteinte pour html de taille 1474px (min à 500px)*/
@@ -486,9 +505,10 @@ main {
 	margin-top: min(max(25px,5vw),73px);
 	padding : 15px 0;
 
-
-	min-height : 67px;
 	display: flex;
+
+	top:0px;
+	left:0px;
 }
 
 #comments_scroll {

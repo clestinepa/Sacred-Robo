@@ -1,13 +1,14 @@
 <script>
     import { onMount } from 'svelte';
     import Fleche from './Fleche.svelte';
-
+    import {dragstartComments} from '../Functions.svelte';
     export let text;
     export let details;
 
     let visible = false;
     let transition = (details == -1 ? "-0.25em" : "0.25em") ;
     let details_element, autre_element ;
+    let color_fleche = "var(--normal)";    
 
     onMount( () => {
         if (details == -1) {
@@ -17,7 +18,12 @@
             details_element = document.getElementsByClassName('reponse_details');
             autre_element = document.getElementsByClassName('com');
         }
-    
+
+        let sees = document.getElementsByClassName('see');
+        for (const see of sees) {
+            see.addEventListener("mouseover", function() {color_fleche="var(--highlight)";});
+            see.addEventListener("mouseout", function() {color_fleche="var(--normal)";});
+        }
     });
 
 
@@ -25,7 +31,7 @@
         visible = !visible;
         if (details == -1) {
             details_element.style.display = (visible ? 'flex' :  'none');
-            autre_element.style.minHeight = (visible ? '200px' :  '67px');
+            autre_element.style.minHeight = (visible ? '200px' :  '0px');
             transition = (visible ? "0.25em" :  "-0.25em") ;
         } else {
             text = (visible ? text.replace("Show", "Hide") : text.replace("Hide", "Show"));
@@ -35,24 +41,18 @@
         }
     }
 
-    let color_fleche = "var(--normal)";
-
-    onMount( () => {
-        let sees = document.getElementsByClassName('see');
-        for (const see of sees) {
-            see.addEventListener("mouseover", function() {color_fleche="var(--highlight)";});
-            see.addEventListener("mouseout", function() {color_fleche="var(--normal)";});
-        }
-    });
-    
 </script>
 
-<div class=see on:click={seeMore} style="--transition:{transition};">
+<div class=container><div draggable="true" class=see on:click={seeMore} on:dragstart={e => dragstartComments(e)} style="--transition:{transition};">
     <Fleche direction={visible & details == -1 ? "down2" : !visible & details == -1 ? "up2": visible ? "up2" : "down2"} color={color_fleche}/>
     <div class=text>{text}</div>
-</div>
+</div></div>
 
 <style>
+
+.container {
+    display: flex;
+}
 .see {
 	display: flex;
 	align-items: center;

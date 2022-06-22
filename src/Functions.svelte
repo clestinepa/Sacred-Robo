@@ -82,9 +82,75 @@
         }
     }
 
-    
-    export function dragComment() {
-        console.log("dragComment")
+    let see, com, comment_details, com_zone;
+    let open = false;
+    export function dragstartComments(event) {
+        com = document.getElementById('comments');
+        comment_details = document.getElementById('comment_details');
+        see = event.currentTarget;
+
+        event.dataTransfer.setDragImage(new Image(), 0, 0);
+
+        see.style.opacity ='0.5';
+        
+        let x = event.clientX - 94;
+        let y = event.clientY - 33.5;
+        com.style.left = x + 'px';
+        com.style.top = y + 'px';
+        com.style.position = 'absolute';
+        com.style.margin='0';
+
+        document.getElementById("com_zone1_gap").style.width = '0';
+        document.getElementById("com_zone2_gap").style.width = '0';
+
+        if (comment_details.offsetHeight > 0) {
+            open = true;
+            comment_details.style.display = 'none';
+            com.style.minHeight = '0px';
+        }
+    }
+
+    export function dragoverComments(event) {
+        event.preventDefault(); 
+        if (event.clientX < event.currentTarget.offsetWidth*0.07) {
+            console.log("zone1");
+        } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
+            console.log("zone2");
+        }
+        let x = event.clientX - 94;
+        let y = event.clientY - 33.5;
+        com.style.left = x + 'px';
+        com.style.top = y + 'px';
+    }
+
+    export function dropComments(event) {
+        event.preventDefault();
+
+        if (event.clientX < event.currentTarget.offsetWidth*0.07) {
+            console.log("zone1");
+            com_zone = document.getElementById("com_zone1");
+            document.getElementById("com_zone1_gap").style.width = 'max(7%, 20px)';
+        } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
+            console.log("zone2");
+            com_zone = document.getElementById("com_zone2");
+            document.getElementById("com_zone2_gap").style.width = 'max(7%, 20px)';
+        } else {
+            com.style.marginTop = 'min(max(25px,5vw),73px)';
+        }
+        if (com_zone) {
+            com_zone.appendChild(com);
+            com.style.maxWidth = '250px';    
+        }
+
+        see.style.opacity ='1';
+        com.style.position = 'relative';
+        com.style.left = '0px';
+        com.style.top = '0px';
+        
+        if (open) {
+            comment_details.style.display = 'flex';
+            com.style.minHeight = '200px';
+        }
     }
     
 
@@ -276,7 +342,7 @@
             } else if (date.getDate() + 1 == now.getDate()) { //veille
                 date_string = "Yesterday, " + date.getHours() + ":" + minuteString(date.getMinutes());
             } else { //meme semaine
-                date_string = dayString(date.getDate()) + ", " + date.getHours() + ":" + minuteString(date.getMinutes());
+                date_string = dayString(date.getDay()) + ", " + date.getHours() + ":" + minuteString(date.getMinutes());
             }
         }
 

@@ -15,7 +15,7 @@ db.on('populate', () => {
     name : get(settings).team0_name.value,
     color : get(settings).team0_color.value,
     set_win : 2,
-    point : 23,
+    point : 13,
     nb_to : 0,
     winner : 0
   });
@@ -24,7 +24,7 @@ db.on('populate', () => {
     name : get(settings).team1_name.value,
     color : get(settings).team1_color.value,
     set_win : 1,
-    point : 23,
+    point : 10,
     nb_to : 1,
     winner : 0
   });
