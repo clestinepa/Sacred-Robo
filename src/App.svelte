@@ -18,9 +18,7 @@
 	 *				=> stack overflow a la sulotion : Network - Aucune Limitation et pas Hor ligne
 	 * Violation :Forced reflow while executing JavaScript took 70ms
 	 *
-	 * Responsive : COMMENTAIRE
-	 * 				Check dans check_to
-	 *				taille fleche see
+	 * Responsive : Check dans check_to
 	 *				boite de dialogue
 	 *
 	 * Hover :	clear confetti
@@ -33,7 +31,7 @@
 	*/
 
 	import {settings, switchOn, page} from './stores.js';
-	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown} from './Functions.svelte';
+	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragComment} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
 	import Text from './Components/Text.svelte';
 	import Select_Color from './Components/Select_Color.svelte';
@@ -202,7 +200,7 @@
 			</div>
 		</div>
 		{#if $read_comments_db}
-		<div id=comments>
+		<div draggable=true id=comments on:dragstart={dragComment}>
 			<div id=comments_scroll>
 				<See text="Comments" details={-1}/>
 				<div id=comment_details>

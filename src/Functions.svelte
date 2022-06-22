@@ -4,15 +4,11 @@
     import { liveQuery } from "dexie";
     import { db } from "./db.js";
 
-    let score_db = liveQuery(
-        () => db.score_db.toArray()
-    );
+    let score_db = liveQuery(() => db.score_db.toArray());
     let read_score_db;
     score_db.subscribe(val => {read_score_db=val});
 
-    let sets_score_db = liveQuery(
-        () => db.sets_score_db.toArray()
-    );
+    let sets_score_db = liveQuery(() => db.sets_score_db.toArray());
     let read_sets_score_db;
     sets_score_db.subscribe(val => {read_sets_score_db=val});
 
@@ -85,6 +81,11 @@
             setTimeout(() => {ripples.remove();},1000);
         }
     }
+
+    
+    export function dragComment() {
+        console.log("dragComment")
+    }
     
 
     export function startGame() {
@@ -102,6 +103,7 @@
             switchOn.set(!value);
         }
     }
+
 
     let bgMsg = document.createElement('div');
     bgMsg.setAttribute('id', 'bgMsg');
@@ -132,6 +134,7 @@
         } 
     }
 
+
     export function stopTime() {
         let confirmMsg = document.createElement('div');
         confirmMsg.className = 'confirmMsg';
@@ -146,6 +149,7 @@
         let value = get(start_timer);
         start_timer.set(!value);
     }
+
 
     export function addAction(type, target, value) {
         let list = get(last_actions);
@@ -222,6 +226,7 @@
         list[list.length - 1].type = "incScoreSwitch";
         last_actions.set(list); 
     }
+
 
     export function handleKeyboardUp(e) {
         if (e.code=='KeyW' && e.ctrlKey) {
