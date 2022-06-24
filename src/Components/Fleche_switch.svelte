@@ -11,7 +11,7 @@
             color2= $settings.team1_color.value[1];
         }
 </script>
-<div class=global style='--color1:{color1}; --color2:{color2};' on:click={switch_score}>
+<div class=Felche_Switch_container style='--color1:{color1}; --color2:{color2};' on:click={switch_score}>
     <svg width="100%" height="98.4" viewBox="0 0 250 246" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 83C0 69.1929 11.1929 58 25 58H225C238.807 58 250 69.1929 250 83C250 96.8071 238.807 108 225 108H25C11.1929 108 0 96.8071 0 83Z" fill="rgba(var(--color1),0.5)"/>
         <path d="M218.569 108L163.497 52.9289C140.066 29.4975 117.905 13.6683 114 17.5736C125.716 5.85786 141.071 0 156.426 0C171.782 0 187.137 5.85786 198.853 17.5736L241.279 60C246.629 65.3501 249.536 72.2182 250 79.2179V83C250 83.0744 250 83.1488 249.999 83.2231C249.632 88.7181 247.76 94.1315 244.382 98.7923C239.797 104.412 232.818 108 225 108H218.569Z" fill="rgba(var(--color1), 1)"/>
@@ -23,10 +23,8 @@
 
 
 <style>
-    .global {
+    .Felche_Switch_container {
 	    cursor: pointer;
-        width: min(max(15px,3vw),44px);
-        height: min(max(15px,3vw),44px);
         display: flex;
         align-items: center;
     }

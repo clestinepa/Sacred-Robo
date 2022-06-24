@@ -1,9 +1,9 @@
 <script>
-    import { onMount } from 'svelte';
     import {settings, last_action} from './stores';
     import {switch_score, afficheMsg, patchAction} from './Functions.svelte';
     import { db } from "./db.js";
     import { liveQuery } from "dexie";
+    import {onMount} from "svelte";
 
     let read_score_db = liveQuery(
        () => db.score_db.toArray()
@@ -59,25 +59,23 @@
         afficheMsg(confirmMsg, "alert");
     }
 
-    let result, main, body;
-    onMount( () => {
-        main = document.querySelector('main');
-        result = document.getElementById('result');
-        body = document.querySelector('body');
-    });
+
+    let result, com_zone1, com_zone2, com_zone3, body, padding_body, com_zone1_gap, com_zone2_gap;
 
     setInterval( () => {
-            // console.log(body.offsetHeight, body.scrollHeight)
-            // if (main.offsetHeight <= result.offsetHeight) {
-            //     console.log("trunk");
-            // } else {
-            //     console.log("full");
-            // }
-            
-            // console.log('1:', $settings.team0_name.value, $score[0].name);
-            // console.log('2:', $settings.team1_name.value, $score[1].name);
-            // console.log(' ');
+        result = document.getElementById('result');
+        body = document.querySelector('body');
+        com_zone1 = document.getElementById('com_zone1'); 
+        com_zone2 = document.getElementById('com_zone2');
+        com_zone3 = document.getElementById('com_zone3');
+        com_zone1_gap = document.getElementById('com_zone1_gap');
+        com_zone2_gap = document.getElementById('com_zone2_gap');
 
-    },3000);
+        padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
+        let valueCalc = (padding_body + result.offsetWidth) * 0.01
+        document.documentElement.style.setProperty('--vw', valueCalc + 'px');
+    }, 1000);
+
+    
 
 </script>

@@ -69,7 +69,7 @@
 </script>
 
 {#if $read_score_db}
-<div class=checks  style="--color: {score_team.color[1]};">
+<div class=checks_to  style="--color: {score_team.color[1]};">
     {#each states as state}
     <div class={state.name_class}>
         <div class={pointer}>
@@ -87,27 +87,17 @@
 {/if}
 
 <style>
-.checks {
-    --border-witdh : min(max(3px,0.6vw), 8px);
+.checks_to {
     display: flex;
-    gap: min(max(5px,1vw), 15px);
 }
 
 .zone1_to {
     border-top: var(--border-witdh) solid ;
 	border-bottom: var(--border-witdh) solid ;
-	border-radius:  min(max(5px,1vw), 15px);
-
-    width: min(max(20px,4vw),50px);
-    height: min(max(20px,4vw),50px);
 }
 .zone2_to {
     border-right: var(--border-witdh) solid ;
 	border-left: var(--border-witdh) solid ;
-	border-radius: min(max(2.5px,0.5vw),7.5px);
-
-    width: min(max(20px,4vw),50px);
-    height: calc(min(max(20px,4vw),50px) - 2*var(--border-witdh)) ;
 }
 
 .nocheck .zone1_to {

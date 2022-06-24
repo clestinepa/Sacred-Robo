@@ -35,8 +35,6 @@
 	} */
 
 	.unknown {
-		height: min(max(15px,3vw),25px);
-        width: min(max(15px,3vw),25px);
 		border-style: none;
 		background-color: red;
 	}

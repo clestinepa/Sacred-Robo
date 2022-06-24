@@ -4,7 +4,7 @@
     }
 </script>
 
-<div class=container on:click={openSyncParam}>
+<div class=Sync_container on:click={openSyncParam}>
 <svg width="100%" height="85.39%" viewBox="0 0 308 263" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M183 0C252.036 0 308 55.9644 308 125C308 83.5786 263.228 50 208 50C152.772 50 108 83.5786 108 125V150C108 163.807 96.8071 175 83 175C69.1929 175 58 163.807 58 150V125C58 55.9644 113.964 0 183 0Z" fill="var(--normal)" fill-opacity="0.5"/>
     <path d="M108 143.569L52.929 88.4975C29.4975 65.066 13.6684 42.9052 17.5736 39C5.85788 50.7157 1.998e-05 66.0711 1.93088e-05 81.4264C1.86376e-05 96.7817 5.85788 112.137 17.5736 123.853L60 166.279C65.3501 171.629 72.2182 174.536 79.2179 175H83C83.0745 175 83.1488 175 83.2231 174.999C88.7181 174.632 94.1315 172.76 98.7923 169.382C104.412 164.797 108 157.818 108 150V143.569Z" fill="var(--normal)"/>
@@ -14,9 +14,7 @@
 </div>
 
 <style>
-.container {
-    height: min(max(15px,3vw),25px);
-    width: min(max(15px,3vw),25px);
+.Sync_container {
     cursor: pointer;
     display: flex;
     align-items: center;

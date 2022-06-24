@@ -100,8 +100,8 @@
         com.style.position = 'absolute';
         com.style.margin='0';
 
-        document.getElementById("com_zone1_gap").style.width = '0';
-        document.getElementById("com_zone2_gap").style.width = '0';
+        
+        
 
         if (comment_details.offsetHeight > 0) {
             open = true;
@@ -130,10 +130,12 @@
             console.log("zone1");
             com_zone = document.getElementById("com_zone1");
             document.getElementById("com_zone1_gap").style.width = 'max(7%, 20px)';
+            document.getElementById("com_zone2_gap").style.width = '0';
         } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
             console.log("zone2");
             com_zone = document.getElementById("com_zone2");
             document.getElementById("com_zone2_gap").style.width = 'max(7%, 20px)';
+            document.getElementById("com_zone1_gap").style.width = '0';
         } else {
             com.style.marginTop = 'min(max(25px,5vw),73px)';
         }
@@ -146,7 +148,7 @@
         com.style.position = 'relative';
         com.style.left = '0px';
         com.style.top = '0px';
-        
+
         if (open) {
             comment_details.style.display = 'flex';
             com.style.minHeight = '200px';

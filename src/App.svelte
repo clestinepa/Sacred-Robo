@@ -2,12 +2,11 @@
 
 	/** TODO
 	 * Synchronisation !
-	 * commentaire => déplacable bas ou cotés
-	 * scroll commentaire : https://codepen.io/seahorsepip/pen/vYXzWgW?editors=1100
 	 *
 	 * boutons enregistré preset (?) + bouton réinisganilsé settings
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
+	 * 
 	 * carton rouge pour enlever un point !
 	 *
 	 * confetti saut "naturel"
@@ -19,6 +18,7 @@
 	 * Violation :Forced reflow while executing JavaScript took 70ms
 	 *
 	 * Responsive : Commentaires
+	 * 				taille result adaptable place commentaire
 	 * 				Check dans check_to
 	 *				boite de dialogue
 	 *				see.svelte seeMore => minHeight
@@ -29,7 +29,8 @@
 	 * 			timemout
 	 * 			timer
 	 * 			switch
-	 * 			
+	 *
+	 * scroll commentaire : https://codepen.io/seahorsepip/pen/vYXzWgW?editors=1100			
 	 * easteregg : https://svelte.dev/repl/9eb4551167b94acfa0fc033662db209e?version=3.48.0
 	*/
 
@@ -205,6 +206,8 @@
 					</div>
 				</div>
 			</div>
+			<div id=testVW style='background:red;'></div>
+			<div id=testCalc style='background:blue;'></div>
 			{#if $read_comments_db}
 			<div id=comments>
 				<div id=comments_scroll>
@@ -229,7 +232,7 @@
 	{/if}
 {/if}
 
-<svelte:window on:keydown={e => {handleKeyboardDown(e)} } on:keyup={e => {handleKeyboardUp(e)} } />
+<svelte:window on:keydown={e => {handleKeyboardDown(e)} } on:keyup={e => {handleKeyboardUp(e)}} />
 
 <style>
 /* Header */
@@ -334,9 +337,7 @@ main {
 /* GAME */
 
 /* Global */
-
 .game{
-	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(7%, 20px);
 	display: flex;
 }
 
@@ -352,17 +353,15 @@ main {
 	flex-direction: column;
 }
 
-/**Max witdh atteinte pour html de taille 1474px (min à 500px)*/
 #result {
 	display: flex;
 	flex-direction: column;
-	gap: min(max(7.5px,1.5vw), 22px);
+	min-width: 430px;
 }
 
 #names_false, #names_true, #points_false, #points_true, #temps_mort {
 	display: flex;
 	justify-content: center;
-	gap: min(max(5px,1vw), 15px);
 }
 
 #name1, #name2, .score, #tm1, #tm2 {
@@ -375,18 +374,6 @@ main {
 	width: 50%;
 	max-width: 250px;
 }
-
-.set, .detail_set {
-	gap: min(max(5px,1vw), 15px);
-}
-
-.score_set  {
-	gap: min(max(10px,2vw), 29px);
-}
-
-.detail_set {
-	padding: 0 min(max(15px,3vw), 44px) 0 min(max(15px,3vw), 44px);
-}
 /* ****** */
 
 /* RESULT */
@@ -394,7 +381,6 @@ main {
 /* Name */
 #name1, #name2 {
 	font-family: var(--font-family-title);
-	font-size: min(max(20px,4vw),50px);
 	margin: 0;
 }
 /* **** */
@@ -448,20 +434,14 @@ main {
 /* ****** */
 
 /* Time Out */
-/* #temps_mort {
-	height: 50px;
-} */
-
 #temps_mort .title_subsection {
 	margin: 0px;
 	padding: 0px;
-	font-size: min(max(10px, 2vw), 30px);
 }
 
 #tm1, #tm2 {
 	display: flex;
 	align-items: center;
-	gap: min(max(7.5px,1.5vw), 22px);
 }
 
 #tm2 {
@@ -523,13 +503,11 @@ main {
 }
 
 #comment_details {
-	/* display: none; */
-	display: flex;
+	display: none;
+	/* display: flex; */
 	flex-direction: column;
 	gap: 30px;
 }
-
-
 /* ******** */
 
 </style>

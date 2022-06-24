@@ -36,7 +36,7 @@
 
 </script>
 
-<div class={$start_timer}>
+<div class=timer_{$start_timer}>
     <div class=pause_{pause} on:click={pauseTime}><div class=time_detail></div><div class=time_detail></div></div>
     <div class=time>{time}</div>
     <div class=stop_{stop} on:click={stopTime}><div class=time_detail></div></div>
@@ -44,41 +44,31 @@
 
 <style>
 
-.true {
+.timer_true {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: min(max(20px,4vw),50px);
 }
-.false {
+.timer_false {
   display: none;
 }
 .time {
 	font-family: var(--font-family-body);
-    font-size: min(max(20px,4vw),50px);
 }
 
 .pause_false, .stop_false, .pause_true, .stop_true {
-    width: min(max(15px,3vw),44px);
-    height: min(max(15px,3vw),44px);
     display : flex;
     align-items: center;
     justify-content: center;
-    gap: min(max(1.5px,0.3vw),4.5px);
 
-    border: min(max(0.5px,0.1vw),1.5px) solid var(--clair);
     border-radius: 50%;
 
     cursor : pointer;
 }
 .pause_false .time_detail, .pause_true .time_detail {
-    width: min(max(2px,0.4vw),6px);
-    height: min(max(5.5px,1.1vw), 16px);
     border-radius: 20%;
 }
 .stop_false .time_detail, .stop_true .time_detail {
-    width: min(max(5.5px,1.1vw), 16px);
-    height: min(max(5.5px,1.1vw), 16px);
     border-radius: 20%;
 }
 

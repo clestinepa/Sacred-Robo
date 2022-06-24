@@ -10,8 +10,8 @@
 	--details : #E7FAFE;
 	--highlight : #F4ACB7;
 	--highlight-transparent : rgba(244, 174, 183, 0.50);
-	--font : #251723;
 
+	--font : #251723;
 	--font-clair : #8B848A;
 
 	--font-family-title : 'Amaranth';
@@ -41,14 +41,11 @@ html {
 	caret-color: transparent;
 	cursor: default;
 
-	-moz-user-select: none; /* Firefox */
-	-webkit-user-select: none; /* Chrome, Safari, Opéra depuis la version 15 */
-	-ms-user-select: none; /* Internet explorer depuis la version 10 et Edge */
-	user-select: none; /* Propriété standard */
+	user-select: none; /* On ne peut rien selectionner */
 }
 
 ::selection {
-	background-color: var(--clair);
+	background-color: var(--clair); /* highlight text selectionné */
 }
 
 body {
@@ -58,8 +55,6 @@ body {
 	flex-direction: column;
 	overflow-y: scroll;
 }
-
-
 
 /* Parametres */
 .enable, .disable {
@@ -95,7 +90,6 @@ body {
 .enable .zone2  {
 	border-color: var(--highlight-transparent);
 }
-
 
 .disable .zone, .disable .fleches, .disable input {
 	border-color: var(--clair);
@@ -133,12 +127,15 @@ input {
 }
 /* ********** */
 
+
 /* Switch */
-#temps_mort #tm2 .checks {
+#temps_mort #tm2 .checks_to {
 	flex-direction: row-reverse;
 }
 /* ****** */
 
+
+/* Boites de dialogue */
 .confirmMsg {
 	background: var(--bg);
 	background-image : url(./img/Subtract.png) ;
@@ -202,19 +199,10 @@ input {
 #buttonClose:hover {
     color: var(--highlight);
 }
-
-@keyframes hoverClose {
-	0% {
-	}
-	100%{
-		border-color: var(--highlight);
-		transform: translateY(-0.25em);
-		color: var(--highlight);
-	}
-}
+/* ****** ** ******** */
 
 
-
+/* Animation incrémentation score */
 .score {
 	position: relative;
 	display: inline-block;
@@ -241,10 +229,10 @@ input {
 		opacity: 0;
 	}
 }
+/* ********* ************** ***** */
 
 
 /* SCROLLBAR */
-
 main::-webkit-scrollbar {
 	width: 10px;
 }
@@ -270,6 +258,131 @@ main::-webkit-scrollbar-thumb:hover {
 #comments_scroll::-webkit-scrollbar-thumb:hover {
 	background: var(--clair);
 }
-
-
 /* ********* */
+
+/* Result responsive */
+/*Max witdh atteinte pour html de taille 1474px (min à 500px)*/
+:root {
+	--vw : 1vw;
+	--1vw : min(max(5px, var(--vw)), 15px);
+	--1-1vw : min(max(5.5px, calc(var(--vw)*1.1)), 16px);
+	--1-5vw : min(max(7.5px, calc(var(--vw)*1.5)), 22px);
+	--2vw : min(max(10px, calc(var(--vw)*2)), 30px);
+	--3vw : min(max(15px, calc(var(--vw)*3)), 44px);
+	--4vw-reduit : min(max(20px, calc(var(--vw)*4)),50px);
+}
+
+.game{
+	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(7%, 20px);
+}
+
+#result, #tm1, #tm2 {
+	gap: var(--1-5vw);
+}
+
+#names_false, #names_true, #points_false, #points_true, #temps_mort, .set, .detail_set, .checks_to {
+	gap: var(--1vw);
+}
+
+.score_set  {
+	gap: var(--2vw);
+}
+
+.detail_set {
+	padding: 0 var(--3vw);
+}
+
+#name1, #name2 {
+	font-size: var(--4vw-reduit);
+}
+
+#temps_mort .title_subsection {
+	font-size: var(--2vw);
+}
+
+.Felche_Switch_container {
+	width: var(--3vw);
+	height: var(--3vw);
+}
+
+.checks_to, .Set_container {
+    --border-witdh : min(max(3px, calc(var(--vw)*0.6)), 8px);
+}
+.zone1_to {
+	border-radius:  var(--1vw);
+    width: var(--4vw-reduit);
+    height: var(--4vw-reduit);
+}
+.zone2_to {
+	border-radius: min(max(2.5px, calc(var(--vw)*0.5)),7.5px);
+    width: var(--4vw-reduit);
+    height: calc(var(--4vw-reduit) - 2*var(--border-witdh)) ;
+}
+
+.Set_container {
+    --radius: var(--1-5vw);
+}
+
+.z21, .z22 {
+    border-radius: min(max(4px, calc(var(--vw)*0.8)),12px);
+    font-size: min(max(17.5px, calc(var(--vw)*3.5)),51px);
+    padding-bottom: min(max(1.5px, calc(var(--vw)*0.3)), 4.5px);
+}
+
+.carre_false, .carre_true {
+    --border-witdh: min(max(9px, calc(var(--vw)*1.8)),20px);
+}
+
+.z1_score {
+	border-radius: var(--3vw);
+}
+
+.z2_score {
+	border-radius: var(--1-5vw);
+    font-size: min(max(125px, calc(var(--vw)*25)),350px);
+    padding-bottom: var(--1-5vw);
+}
+
+.carre {
+    --border-witdh : min(max(4px, calc(var(--vw)*0.8)),10px);
+}
+
+.z1_set {
+	border-radius: var(--1-5vw);
+}
+
+.z2_set {
+	border-radius: min(max(4px, calc(var(--vw)*0.8)),12px);
+    font-size: min(max(30px, calc(var(--vw)*6)), 90px);
+    padding-bottom: min(max(2.5px, calc(var(--vw)*0.5)), 7px);
+}
+
+.timer_true {
+	height: var(--4vw-reduit);
+}
+.time {
+	font-size: var(--4vw-reduit);
+}
+  
+.pause_false, .stop_false, .pause_true, .stop_true {
+	width: var(--3vw);
+	height: var(--3vw);
+	gap: min(max(1.5px, calc(var(--vw)*0.3)),4.5px);
+	border: min(max(0.5px, calc(var(--vw)*0.1)),1.5px) solid var(--clair);
+}
+.pause_false .time_detail, .pause_true .time_detail {
+	width: min(max(2px, calc(var(--vw)*0.4)),6px);
+	height: var(--1-1vw);
+}
+.stop_false .time_detail, .stop_true .time_detail {
+	width: var(--1-1vw);
+	height: var(--1-1vw);
+}
+/* ****** ********** */
+
+/* Header responsive */
+.Back_container, .Sync_container {
+	height: min(max(15px, calc(var(--vw)*3)), 25px);
+	width: min(max(15px, calc(var(--vw)*3)),25px);
+}
+/* ****** ********** */

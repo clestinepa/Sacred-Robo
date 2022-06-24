@@ -48,16 +48,14 @@
 
 {#if $read_score_db}
 <div class=carre_{pointer} style="--color: {score_team.color[1]};" on:click={incrementScore(number_team)}>
-    <div class=z1><div class=z2>
+    <div class=z1_score><div class=z2_score>
         {score_team.point}
     </div></div>
 </div>
 {/if}
 
 <style>
-
 .carre_false, .carre_true {
-    --border-witdh: min(max(9px,1.8vw),20px);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -68,29 +66,25 @@
     cursor:pointer;
 }
 
-.z1{
+.z1_score {
     border-top: var(--border-witdh) solid ;
 	border-bottom: var(--border-witdh) solid ;
-	border-radius:  min(max(15px,3vw), 44px);
     display: flex;
     width: 100%;
 
 	border-color: rgb(var(--color), 1);
 }
 
-.z2 {
+.z2_score {
 	border-right: var(--border-witdh) solid ;
 	border-left: var(--border-witdh) solid ;
-	border-radius:  min(max(7.5px,1.5vw), 22px);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-family: var(--font-family-title);
-    font-size: min(max(125px,25vw),350px);
     color: rgb(var(--color), 1);
-    padding-bottom: min(max(1.5vw,7.5px),22px);
 
     border-color: rgb(var(--color), 0.5);
 

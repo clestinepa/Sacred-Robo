@@ -7,7 +7,7 @@
     }
 </script>
 
-<div class={type} on:click={(type=="settings" ? gotoSettings : openSettingsGame)}>
+<div class=button_{type} on:click={(type=="settings" ? gotoSettings : openSettingsGame)}>
     <div class=barre></div>
     <div class=barre></div>
     <div class=barre></div>
@@ -15,7 +15,7 @@
 
 
 <style>
-    .settings, .game {
+    .button_settings, .button_game {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -30,12 +30,12 @@
 
     }
 
-    .settings .barre {
+    .button_settings .barre {
         border-radius: 5px;
         width: min(max(15px,3vw), 28px);
     }
 
-    .game .barre {
+    .button_game .barre {
         width: min(max(3px,0.7vw), 6px);
         border-radius: 100%;
     }

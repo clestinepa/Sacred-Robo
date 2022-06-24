@@ -28,7 +28,7 @@
 
 </script>
 
-<div class="container" style="--color1: {color1}; --color2: {color2};">
+<div class=Set_container style="--color1: {color1}; --color2: {color2};">
     <div class={winner == "left" ? "left" : "right"}>
         <div class=z11><div class=z21>
             <p>
@@ -44,14 +44,12 @@
 </div>
 
 <style>
-.container {
-    --border-witdh : min(max(3px,0.6vw), 8px);
-    --radius: min(max(7.5px,1.5vw), 22px);
+.Set_container {
 	position: relative;
 	width: 100%;
 }
 
-.container::after {
+.Set_container::after {
 	content: '';
 	display: block;
 	padding-bottom: 50%;
@@ -81,15 +79,11 @@
 }
 
 .z21, .z22 {
-    border-radius: min(max(4px,0.8vw),12px);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-family: var(--font-family-title);
-    font-size: min(max(17.5px,3.5vw),51px);
-    padding-bottom: min(max(0.3vw,1.5px), 4.5px);
 }
 
 .z21 {
