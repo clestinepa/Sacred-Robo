@@ -1,6 +1,6 @@
 <script>
-    import {settings, start_timer} from '../stores.js';
-    import {stopTime} from '../Functions.svelte';
+    import {settings, start_timer} from '../../stores.js';
+    import {stopTime} from '../../Functions.svelte';
     let time = $settings.time_to_coach.value;
     let pause = false;
     let stop = false;

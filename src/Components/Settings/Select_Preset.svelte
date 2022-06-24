@@ -1,6 +1,6 @@
 <script>
 	export let type ;
-	import Fleche from './Fleche.svelte';
+	import Fleche from '../Fleche.svelte';
 
 	function changePreset() {
 		console.log('ChangePreset');

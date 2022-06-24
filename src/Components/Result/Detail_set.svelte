@@ -1,8 +1,8 @@
 <script>
 	export let set;
-    import {switchOn} from '../stores.js'
+    import {switchOn} from '../../stores.js'
     import { liveQuery } from "dexie";
-    import { db } from "../db.js";
+    import { db } from "../../db.js";
 
     let winner, color1,  color2;
     $:  if ((set.team0 > set.team1 & !$switchOn) || (set.team0 < set.team1 & $switchOn)) {

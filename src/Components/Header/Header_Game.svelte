@@ -1,8 +1,7 @@
 <script>
-    import Fleche from './Fleche.svelte';
-	import Back from './Header/Back.svelte';
-	import Sync from './Header/Sync.svelte';
-	import Settings_Button from './Header/Settings_Button.svelte';
+	import Back from './Back.svelte';
+	import Sync from './Sync.svelte';
+	import Settings_Button from './Settings_Button.svelte';
     let visible = true;
 
     function visibleHeader() {

@@ -387,43 +387,47 @@ main::-webkit-scrollbar-thumb:hover {
 	--2vw-reduit :  min(max(10px, calc(var(--vw-comments)*2)),20px);
 }
 
-.com {
-	padding-bottom: var(--2vw-reduit);
-}
 
-.title_subsection_com {
+.title_subsection_com, .detail_react_true, .detail_react_false {
 	font-size : min(max(15px, calc(var(--vw-comments)*3)),20px);
 }
-
-.date {
+.text_see, .content_com, .content_responses {
+    font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
+}
+.date, #read {
 	font-size : min(max(10px, calc(var(--vw-comments)*2)),15px);
+}
+.icon_react {
+	font-size: min(max(25px,5vw),40px);
 }
 
 .zone_com {
 	margin: var(--2vw-reduit) 0 0 var(--2vw-reduit);
 	gap: var(--2vw-reduit);
 }
-
+.com {
+	padding-bottom: var(--2vw-reduit);
+}
 .reponse_details {
 	gap: min(max(15px, calc(var(--vw-comments)*3)),20px);
 }
-
 .reponse {
 	padding : var(--1vw-reduit) 0 var(--1vw-reduit)  var(--2vw-reduit);
 }
-
 .content_responses {
 	margin: var(--1vw-reduit) 0 0 var(--2vw-reduit);
-	font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
 }
-
-.see {
+.see, .detail_react_true, .detail_react_false {
 	gap:  var(--1vw-reduit);
 }
-
-.text_see {
-    font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
+#read {
+    bottom: min(max(2px, calc(var(--vw-comments)*0.4)),3px);
 }
+.react {
+	gap: min(max(15px, calc(var(--vw-comments)*3)), 44px);
+}
+
+
 /* ******** ********** */
 
 /* Header responsive */

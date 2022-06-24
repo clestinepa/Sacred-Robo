@@ -38,28 +38,32 @@
 	 * easteregg : https://svelte.dev/repl/9eb4551167b94acfa0fc033662db209e?version=3.48.0
 	*/
 
+	import { liveQuery } 	from "dexie";
+	import { db } 			from "./db.js";
 	import {settings, switchOn, page} from './stores.js';
 	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragoverComments, dropComments} from './Functions.svelte';
-	import Select_Preset from './Components/Select_Preset.svelte';
-	import Text from './Components/Settings/Text.svelte';
-	import Select_Color from './Components/Settings/Select_Color.svelte';
-	import Select_Number from './Components/Select_Number.svelte';
-	import Check from './Components/Check.svelte';
-	import Contraintes from './Contraintes.svelte';
-	import Score from './Components/Score.svelte';
-	import Set from './Components/Set.svelte';
-	import Detail_set from './Components/Detail_set.svelte';
-	import Check_to from './Components/Result/Check_to.svelte';
-	import Timer_to from './Components/Timer_to.svelte';
-	import Confetti from './Components/Confetti.svelte';
-	import Fleche_switch from './Components/Fleche_switch.svelte';
-	import Settings_Button from './Components/Header/Settings_Button.svelte';
-	import Comments from './Components/Comments/Comments.svelte';
-	import See from './Components/Comments/See.svelte';
-	import Header_Game from './Components/Header/Header_Game.svelte';
-
-	import { liveQuery } from "dexie";
-	import { db } from "./db.js";
+	import Contraintes 		from './Contraintes.svelte';
+	
+	import Select_Preset 	from './Components/Settings/Select_Preset.svelte';
+	import Text 			from './Components/Settings/Text.svelte';
+	import Select_Color 	from './Components/Settings/Select_Color.svelte';
+	import Select_Number 	from './Components/Settings/Select_Number.svelte';
+	
+	import Check 			from './Components/Check.svelte';
+	import Confetti 		from './Components/Confetti.svelte';
+	
+	import Score 			from './Components/Result/Score.svelte';
+	import Set 				from './Components/Result/Set.svelte';
+	import Detail_set 		from './Components/Result/Detail_set.svelte';
+	import Check_to 		from './Components/Result/Check_to.svelte';
+	import Timer_to 		from './Components/Result/Timer_to.svelte';
+	import Fleche_switch 	from './Components/Result/Fleche_switch.svelte';
+	
+	import Comments 		from './Components/Comments/Comments.svelte';
+	import See 				from './Components/Comments/See.svelte';
+	
+	import Header_Game 		from './Components/Header/Header_Game.svelte';
+	import Settings_Button 	from './Components/Header/Settings_Button.svelte';
 
     let read_sets_score_db = liveQuery(() => db.sets_score_db.toArray());
     let read_score_db = liveQuery(() => db.score_db.toArray());

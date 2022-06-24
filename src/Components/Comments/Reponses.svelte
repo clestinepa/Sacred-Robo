@@ -1,6 +1,6 @@
 <script>
     export let com;
-    import {dateToString} from '../Functions.svelte'
+    import {dateToString} from '../../Functions.svelte'
 
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-    import { db } from "../db";
+    import { db } from "../../db";
 
 
     export let com;
@@ -45,8 +45,8 @@
         <div class=icon>👏</div>
         <div class=nb>{com.nb_applaus}</div>
     </div>
-    <div class=detail_{select_sad} on:click={sad}>
-        <div class=icon>😢</div>
+    <div class=detail_react_{select_sad} on:click={sad}>
+        <div class=icon_react>😢</div>
         <div class=nb>{com.nb_sad}</div>                   
     </div>
 </div>
@@ -54,23 +54,16 @@
 <style>
     .react {
         display: flex;
-        gap: min(max(15px,3vw), 44px);
     }
 
-    .detail_true, .detail_false {
+    .detail_react_true, .detail_react_false {
         display: flex;
-        gap: min(max(5px,1vw), 10px);
         align-items: center;
         cursor: pointer;
         font-family: var(--font-family-title);
-        font-size : min(max(15px,3vw),20px);
     }
 
-    .icon {
-        font-size: min(max(25px,5vw),40px);
-    }
-
-    .detail_true {
+    .detail_react_true {
         color: var(--highlight);
     }
 </style>

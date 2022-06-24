@@ -1,12 +1,12 @@
 <script>
 	import { liveQuery } from "dexie";
-	import { db } from "../../../db.js";
+	import { db } from "../../db.js";
 
-    import See from '.../See.svelte';
-    import React from '.../React.svelte';
-    import Reponses from '.../Reponses.svelte';
-    import Content_Com from '.../Content_Com.svelte';
-    import {dateToString} from '../../../Functions.svelte'
+    import See from './See.svelte';
+    import React from './React.svelte';
+    import Reponses from './Reponses.svelte';
+    import Content_Com from './Content_Com.svelte';
+    import {dateToString} from '../../Functions.svelte'
 
     let read_comments_db = liveQuery(() => db.comments_db.toArray());
 

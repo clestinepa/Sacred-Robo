@@ -1,8 +1,10 @@
 <script>
 	export let number_team;
     import { liveQuery } from "dexie";
-    import { db } from "../db.js";
-
+    import { db } from "../../db.js";
+    import {start_timer, set_has_been_won} from "../../stores.js";
+    import {afficheMsg, incrementScore} from '../../Functions.svelte';
+ 
     let read_score_db = liveQuery(
        () => db.score_db.toArray()
     );
@@ -10,12 +12,7 @@
     let score_team;
     $: if ($read_score_db) {
         score_team = $read_score_db[number_team];
-    }
-
-    import {start_timer, set_has_been_won} from "../stores.js";
-    import {afficheMsg, incrementScore} from '../Functions.svelte';
-    
-    
+    }   
 
     function alertWin(a) {
         let confirmMsg = document.createElement('div');

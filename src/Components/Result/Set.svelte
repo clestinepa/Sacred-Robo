@@ -1,7 +1,7 @@
 <script>
 	export let number_team;
     import { liveQuery } from "dexie";
-    import { db } from "../db.js";
+    import { db } from "../../db.js";
 
     let read_score_db = liveQuery(
        () => db.score_db.toArray()

@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import Fleche from './Fleche.svelte';
-    import {dragstartComments} from '../Functions.svelte';
+    import Fleche from '../Fleche.svelte';
+    import {dragstartComments} from '../../Functions.svelte';
     export let text;
     export let details;
 

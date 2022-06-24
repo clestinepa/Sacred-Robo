@@ -1,6 +1,6 @@
 <script>
-    import {settings, switchOn} from '../stores.js';
-    import {switch_score} from '../Functions.svelte';
+    import {settings, switchOn} from '../../stores.js';
+    import {switch_score} from '../../Functions.svelte';
 
     let  color1,  color2;
     $:  if ($switchOn) {
