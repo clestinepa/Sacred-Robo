@@ -1,5 +1,5 @@
 <script>
-	import { colors } from "../stores.js";
+	import { colors } from "../../../stores.js";
 	export let type;
 
 	function changeColor() {

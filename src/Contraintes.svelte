@@ -74,8 +74,11 @@
 
             setInterval( () => {
                 padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
-                let valueCalc = (padding_body + result.offsetWidth) * 0.01
-                document.documentElement.style.setProperty('--vw', valueCalc + 'px');
+                let val_result = (padding_body + result.offsetWidth) * 0.01;
+                document.documentElement.style.setProperty('--vw-result', val_result + 'px');
+                let val_comments = (padding_body + com_zone1.offsetWidth) * 0.01;
+                document.documentElement.style.setProperty('--vw-comments', val_comments + 'px');
+
             }, 0);
         }, 500);
     });

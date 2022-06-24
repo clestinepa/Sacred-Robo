@@ -45,7 +45,7 @@
 
 <div class=container><div draggable="true" class=see on:click={seeMore} on:dragstart={e => dragstartComments(e)} style="--transition:{transition};">
     <Fleche direction={visible & details == -1 ? "down2" : !visible & details == -1 ? "up2": visible ? "up2" : "down2"} color={color_fleche}/>
-    <div class=text>{text}</div>
+    <div class=text_see>{text}</div>
 </div></div>
 
 <style>
@@ -56,7 +56,6 @@
 .see {
 	display: flex;
 	align-items: center;
-	gap:  min(max(5px,1vw), 10px);
 	color : var(--normal);
     cursor: pointer;
 }
@@ -64,9 +63,5 @@
 .see:hover {
 	color: var(--highlight);
     transform: translateY(var(--transition));	
-}
-
-.text {
-    font-size : min(max(12.5px,2.5vw),18px);
 }
 </style>

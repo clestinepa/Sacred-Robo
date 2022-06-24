@@ -1,5 +1,5 @@
 <script>
-    import {gotoSettings} from '../Functions.svelte';
+    import {gotoSettings} from '../../Functions.svelte';
     export let type;
 
     function openSettingsGame() {

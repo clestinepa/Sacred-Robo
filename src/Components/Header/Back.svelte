@@ -1,5 +1,5 @@
 <script>
-        import {undoAction} from '../Functions.svelte';
+        import {undoAction} from '../../Functions.svelte';
 
 </script>
 

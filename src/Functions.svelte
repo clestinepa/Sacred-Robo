@@ -99,6 +99,8 @@
         com.style.top = y + 'px';
         com.style.position = 'absolute';
         com.style.margin='0';
+        com.style.maxWidth = '10000px';
+
         
         document.getElementById("com_zone1_gap").style.width = '0';
         document.getElementById("com_zone2_gap").style.width = '0';
@@ -124,20 +126,20 @@
         if (event.clientX < event.currentTarget.offsetWidth*0.07) {
             console.log("zone1");
             com_zone = document.getElementById("com_zone1");
-            document.getElementById("com_zone1_gap").style.width = 'max(7%, 20px)';
-            document.getElementById("com_zone2_gap").style.width = '0';
+            document.getElementById("com_zone1_gap").style.minWidth = 'max(7%, 20px)';
+            document.getElementById("com_zone2_gap").style.minWidth = '0';
             com.style.maxWidth = '200px'; 
         } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
             console.log("zone2");
             com_zone = document.getElementById("com_zone2");
-            document.getElementById("com_zone1_gap").style.width = '0';
-            document.getElementById("com_zone2_gap").style.width = 'max(7%, 20px)';
+            document.getElementById("com_zone1_gap").style.minWidth = '0';
+            document.getElementById("com_zone2_gap").style.minWidth = 'max(7%, 20px)';
             com.style.maxWidth = '200px'; 
         } else if (event.clientY > event.currentTarget.offsetHeight*0.93) {
             console.log("zone3");
             com_zone = document.getElementById("com_zone3");
-            document.getElementById("com_zone1_gap").style.width = '0';
-            document.getElementById("com_zone2_gap").style.width = '0';
+            document.getElementById("com_zone1_gap").style.minWidth = '0';
+            document.getElementById("com_zone2_gap").style.minWidth = '0';
             com.style.marginTop = 'min(max(25px,5vw),73px)';
         }
         

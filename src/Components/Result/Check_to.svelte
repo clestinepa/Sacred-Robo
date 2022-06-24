@@ -1,7 +1,7 @@
 <script>
 	export let number_team;
     import { liveQuery } from "dexie";
-    import { db } from "../db.js";
+    import { db } from "../../../db.js";
 
     let read_score_db = liveQuery(
        () => db.score_db.toArray()
@@ -12,8 +12,8 @@
         score_team = $read_score_db[number_team];
     }
 
-    import Check_ON from './Check_ON.svelte';
-    import {settings, start_timer} from '../stores.js';
+    import Check_ON from '.../Check_ON.svelte';
+    import {settings, start_timer} from '../../../stores.js';
 
     let states = [];
     for (let i = 0 ; i < $settings.nb_to_coach.value; i++) {

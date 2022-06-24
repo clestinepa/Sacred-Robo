@@ -263,13 +263,13 @@ main::-webkit-scrollbar-thumb:hover {
 /* Result responsive */
 /*Max witdh atteinte pour html de taille 1474px (min à 500px)*/
 :root {
-	--vw : 1vw;
-	--1vw : min(max(5px, var(--vw)), 15px);
-	--1-1vw : min(max(5.5px, calc(var(--vw)*1.1)), 16px);
-	--1-5vw : min(max(7.5px, calc(var(--vw)*1.5)), 22px);
-	--2vw : min(max(10px, calc(var(--vw)*2)), 30px);
-	--3vw : min(max(15px, calc(var(--vw)*3)), 44px);
-	--4vw-reduit : min(max(20px, calc(var(--vw)*4)),50px);
+	--vw-result : 1vw;
+	--1vw : min(max(5px, var(--vw-result)), 15px);
+	--1-1vw : min(max(5.5px, calc(var(--vw-result)*1.1)), 16px);
+	--1-5vw : min(max(7.5px, calc(var(--vw-result)*1.5)), 22px);
+	--2vw : min(max(10px, calc(var(--vw-result)*2)), 30px);
+	--3vw : min(max(15px, calc(var(--vw-result)*3)), 44px);
+	--4vw-reduit : min(max(20px, calc(var(--vw-result)*4)),50px);
 }
 
 .game{
@@ -306,7 +306,7 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .checks_to, .Set_container {
-    --border-witdh : min(max(3px, calc(var(--vw)*0.6)), 8px);
+    --border-witdh : min(max(3px, calc(var(--vw-result)*0.6)), 8px);
 }
 .zone1_to {
 	border-radius:  var(--1vw);
@@ -314,7 +314,7 @@ main::-webkit-scrollbar-thumb:hover {
     height: var(--4vw-reduit);
 }
 .zone2_to {
-	border-radius: min(max(2.5px, calc(var(--vw)*0.5)),7.5px);
+	border-radius: min(max(2.5px, calc(var(--vw-result)*0.5)),7.5px);
     width: var(--4vw-reduit);
     height: calc(var(--4vw-reduit) - 2*var(--border-witdh)) ;
 }
@@ -324,13 +324,13 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .z21, .z22 {
-    border-radius: min(max(4px, calc(var(--vw)*0.8)),12px);
-    font-size: min(max(17.5px, calc(var(--vw)*3.5)),51px);
-    padding-bottom: min(max(1.5px, calc(var(--vw)*0.3)), 4.5px);
+    border-radius: min(max(4px, calc(var(--vw-result)*0.8)),12px);
+    font-size: min(max(17.5px, calc(var(--vw-result)*3.5)),51px);
+    padding-bottom: min(max(1.5px, calc(var(--vw-result)*0.3)), 4.5px);
 }
 
 .carre_false, .carre_true {
-    --border-witdh: min(max(9px, calc(var(--vw)*1.8)),20px);
+    --border-witdh: min(max(9px, calc(var(--vw-result)*1.8)),20px);
 }
 
 .z1_score {
@@ -339,12 +339,12 @@ main::-webkit-scrollbar-thumb:hover {
 
 .z2_score {
 	border-radius: var(--1-5vw);
-    font-size: min(max(125px, calc(var(--vw)*25)),350px);
+    font-size: min(max(125px, calc(var(--vw-result)*25)),350px);
     padding-bottom: var(--1-5vw);
 }
 
 .carre {
-    --border-witdh : min(max(4px, calc(var(--vw)*0.8)),10px);
+    --border-witdh : min(max(4px, calc(var(--vw-result)*0.8)),10px);
 }
 
 .z1_set {
@@ -352,9 +352,9 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .z2_set {
-	border-radius: min(max(4px, calc(var(--vw)*0.8)),12px);
-    font-size: min(max(30px, calc(var(--vw)*6)), 90px);
-    padding-bottom: min(max(2.5px, calc(var(--vw)*0.5)), 7px);
+	border-radius: min(max(4px, calc(var(--vw-result)*0.8)),12px);
+    font-size: min(max(30px, calc(var(--vw-result)*6)), 90px);
+    padding-bottom: min(max(2.5px, calc(var(--vw-result)*0.5)), 7px);
 }
 
 .timer_true {
@@ -367,11 +367,11 @@ main::-webkit-scrollbar-thumb:hover {
 .pause_false, .stop_false, .pause_true, .stop_true {
 	width: var(--3vw);
 	height: var(--3vw);
-	gap: min(max(1.5px, calc(var(--vw)*0.3)),4.5px);
-	border: min(max(0.5px, calc(var(--vw)*0.1)),1.5px) solid var(--clair);
+	gap: min(max(1.5px, calc(var(--vw-result)*0.3)),4.5px);
+	border: min(max(0.5px, calc(var(--vw-result)*0.1)),1.5px) solid var(--clair);
 }
 .pause_false .time_detail, .pause_true .time_detail {
-	width: min(max(2px, calc(var(--vw)*0.4)),6px);
+	width: min(max(2px, calc(var(--vw-result)*0.4)),6px);
 	height: var(--1-1vw);
 }
 .stop_false .time_detail, .stop_true .time_detail {
@@ -380,9 +380,55 @@ main::-webkit-scrollbar-thumb:hover {
 }
 /* ****** ********** */
 
+/* Comments responsive */
+:root {
+	--vw-comments : 1vw;
+	--1vw-reduit : min(max(5px, var(--vw-comments)),10px);
+	--2vw-reduit :  min(max(10px, calc(var(--vw-comments)*2)),20px);
+}
+
+.com {
+	padding-bottom: var(--2vw-reduit);
+}
+
+.title_subsection_com {
+	font-size : min(max(15px, calc(var(--vw-comments)*3)),20px);
+}
+
+.date {
+	font-size : min(max(10px, calc(var(--vw-comments)*2)),15px);
+}
+
+.zone_com {
+	margin: var(--2vw-reduit) 0 0 var(--2vw-reduit);
+	gap: var(--2vw-reduit);
+}
+
+.reponse_details {
+	gap: min(max(15px, calc(var(--vw-comments)*3)),20px);
+}
+
+.reponse {
+	padding : var(--1vw-reduit) 0 var(--1vw-reduit)  var(--2vw-reduit);
+}
+
+.content_responses {
+	margin: var(--1vw-reduit) 0 0 var(--2vw-reduit);
+	font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
+}
+
+.see {
+	gap:  var(--1vw-reduit);
+}
+
+.text_see {
+    font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
+}
+/* ******** ********** */
+
 /* Header responsive */
 .Back_container, .Sync_container {
-	height: min(max(15px, calc(var(--vw)*3)), 25px);
-	width: min(max(15px, calc(var(--vw)*3)),25px);
+	height: min(max(15px, calc(var(--vw-result)*3)), 25px);
+	width: min(max(15px, calc(var(--vw-result)*3)),25px);
 }
 /* ****** ********** */

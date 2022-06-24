@@ -3,6 +3,10 @@
 	/** TODO
 	 * Synchronisation !
 	 *
+	 * Deplacmeent Comments : 	gerer quand result est deja en taille min
+	 * 							drag s'arrete parfois en zone1
+	 *							calcul x et y responsive
+	 *							 
 	 * boutons enregistré preset (?) + bouton réinisganilsé settings
 	 * rajouter settings choix score temps mort technique
 	 * Contrainte temps mort technique
@@ -37,22 +41,22 @@
 	import {settings, switchOn, page} from './stores.js';
 	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragoverComments, dropComments} from './Functions.svelte';
 	import Select_Preset from './Components/Select_Preset.svelte';
-	import Text from './Components/Text.svelte';
-	import Select_Color from './Components/Select_Color.svelte';
+	import Text from './Components/Settings/Text.svelte';
+	import Select_Color from './Components/Settings/Select_Color.svelte';
 	import Select_Number from './Components/Select_Number.svelte';
 	import Check from './Components/Check.svelte';
 	import Contraintes from './Contraintes.svelte';
 	import Score from './Components/Score.svelte';
 	import Set from './Components/Set.svelte';
 	import Detail_set from './Components/Detail_set.svelte';
-	import Check_to from './Components/Check_to.svelte';
+	import Check_to from './Components/Result/Check_to.svelte';
 	import Timer_to from './Components/Timer_to.svelte';
 	import Confetti from './Components/Confetti.svelte';
 	import Fleche_switch from './Components/Fleche_switch.svelte';
-	import Settings_Button from './Components/Settings_Button.svelte';
-	import Comments from './Components/Comments.svelte';
-	import See from './Components/See.svelte';
-	import Header_Game from './Components/Header_Game.svelte';
+	import Settings_Button from './Components/Header/Settings_Button.svelte';
+	import Comments from './Components/Comments/Comments.svelte';
+	import See from './Components/Comments/See.svelte';
+	import Header_Game from './Components/Header/Header_Game.svelte';
 
 	import { liveQuery } from "dexie";
 	import { db } from "./db.js";
