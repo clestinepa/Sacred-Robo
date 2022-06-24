@@ -99,9 +99,9 @@
         com.style.top = y + 'px';
         com.style.position = 'absolute';
         com.style.margin='0';
-
         
-        
+        document.getElementById("com_zone1_gap").style.width = '0';
+        document.getElementById("com_zone2_gap").style.width = '0';
 
         if (comment_details.offsetHeight > 0) {
             open = true;
@@ -112,11 +112,6 @@
 
     export function dragoverComments(event) {
         event.preventDefault(); 
-        if (event.clientX < event.currentTarget.offsetWidth*0.07) {
-            console.log("zone1");
-        } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
-            console.log("zone2");
-        }
         let x = event.clientX - 94;
         let y = event.clientY - 33.5;
         com.style.left = x + 'px';
@@ -131,19 +126,25 @@
             com_zone = document.getElementById("com_zone1");
             document.getElementById("com_zone1_gap").style.width = 'max(7%, 20px)';
             document.getElementById("com_zone2_gap").style.width = '0';
+            com.style.maxWidth = '200px'; 
         } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
             console.log("zone2");
             com_zone = document.getElementById("com_zone2");
-            document.getElementById("com_zone2_gap").style.width = 'max(7%, 20px)';
             document.getElementById("com_zone1_gap").style.width = '0';
-        } else {
+            document.getElementById("com_zone2_gap").style.width = 'max(7%, 20px)';
+            com.style.maxWidth = '200px'; 
+        } else if (event.clientY > event.currentTarget.offsetHeight*0.93) {
+            console.log("zone3");
+            com_zone = document.getElementById("com_zone3");
+            document.getElementById("com_zone1_gap").style.width = '0';
+            document.getElementById("com_zone2_gap").style.width = '0';
             com.style.marginTop = 'min(max(25px,5vw),73px)';
         }
+        
         if (com_zone) {
             com_zone.appendChild(com);
-            com.style.maxWidth = '250px';    
         }
-
+        
         see.style.opacity ='1';
         com.style.position = 'relative';
         com.style.left = '0px';

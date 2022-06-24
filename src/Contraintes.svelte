@@ -62,20 +62,22 @@
 
     let result, com_zone1, com_zone2, com_zone3, body, padding_body, com_zone1_gap, com_zone2_gap;
 
-    setInterval( () => {
-        result = document.getElementById('result');
+    onMount(() => {
         body = document.querySelector('body');
-        com_zone1 = document.getElementById('com_zone1'); 
-        com_zone2 = document.getElementById('com_zone2');
-        com_zone3 = document.getElementById('com_zone3');
-        com_zone1_gap = document.getElementById('com_zone1_gap');
-        com_zone2_gap = document.getElementById('com_zone2_gap');
+        setTimeout( () => {
+            result = document.getElementById('result');
+            com_zone1 = document.getElementById('com_zone1'); 
+            com_zone2 = document.getElementById('com_zone2');
+            com_zone3 = document.getElementById('com_zone3');
+            com_zone1_gap = document.getElementById('com_zone1_gap');
+            com_zone2_gap = document.getElementById('com_zone2_gap');
 
-        padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
-        let valueCalc = (padding_body + result.offsetWidth) * 0.01
-        document.documentElement.style.setProperty('--vw', valueCalc + 'px');
-    }, 1000);
-
-    
+            setInterval( () => {
+                padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
+                let valueCalc = (padding_body + result.offsetWidth) * 0.01
+                document.documentElement.style.setProperty('--vw', valueCalc + 'px');
+            }, 0);
+        }, 500);
+    });
 
 </script>
