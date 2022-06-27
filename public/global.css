@@ -260,6 +260,24 @@ main::-webkit-scrollbar-thumb:hover {
 }
 /* ********* */
 
+/* Commentaires */
+.header_com {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title_subsection_com {
+	font-weight: semibold;
+}
+
+.date {
+	color: var(--font-clair);
+}
+/* ************ */
+
+
+
 /* Result responsive */
 /*Max witdh atteinte pour html de taille 1474px (min à 500px)*/
 :root {
@@ -273,7 +291,7 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .game{
-	padding: max(3%, 10px) max(7%, 20px) max(7%, 20px) max(7%, 20px);
+	padding: max(3%, 10px) max(7%, 20px);
 }
 
 #result, #tm1, #tm2 {
@@ -387,6 +405,21 @@ main::-webkit-scrollbar-thumb:hover {
 	--2vw-reduit :  min(max(10px, calc(var(--vw-comments)*2)),20px);
 }
 
+#comments {
+	border-radius: 30px;
+	border : 5px solid var(--clair);
+	/* margin-top: min(max(25px,5vw),73px); */
+	padding : 15px 0;
+}
+
+#comments_scroll {
+	padding : 0 25px;
+	margin: 0 5px;
+	gap: 15px;
+}
+#comment_details {
+	gap: 30px;
+}
 
 .title_subsection_com, .detail_react_true, .detail_react_false {
 	font-size : min(max(15px, calc(var(--vw-comments)*3)),20px);
@@ -399,6 +432,10 @@ main::-webkit-scrollbar-thumb:hover {
 }
 .icon_react {
 	font-size: min(max(25px,5vw),40px);
+}
+
+.title_subsection_com {
+	margin-right: var(--2vw-reduit);
 }
 
 .zone_com {
@@ -420,14 +457,17 @@ main::-webkit-scrollbar-thumb:hover {
 .see, .detail_react_true, .detail_react_false {
 	gap:  var(--1vw-reduit);
 }
-#read {
+.date, #read {
     bottom: min(max(2px, calc(var(--vw-comments)*0.4)),3px);
 }
 .react {
 	gap: min(max(15px, calc(var(--vw-comments)*3)), 44px);
 }
 
-
+.down2, .up2 {
+	height:  var(--2vw-reduit);
+	width:  var(--2vw-reduit);
+}
 /* ******** ********** */
 
 /* Header responsive */

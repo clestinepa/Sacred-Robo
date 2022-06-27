@@ -32,6 +32,9 @@
         if (details == -1) {
             details_element.style.display = (visible ? 'flex' :  'none');
             autre_element.style.minHeight = (visible ? '200px' :  '0px');
+            autre_element.style.minWidth = (visible ? '250px' :  '0px');
+            autre_element.style.maxWidth = (visible ? '1000px' :  '0px');
+
             transition = (visible ? "0.25em" :  "-0.25em") ;
         } else {
             text = (visible ? text.replace("Show", "Hide") : text.replace("Hide", "Show"));

@@ -84,7 +84,10 @@
 
     let see, com, comment_details, com_zone;
     let open = false;
+    let target_action;
     export function dragstartComments(event) {
+        target_action = "com";
+
         com = document.getElementById('comments');
         comment_details = document.getElementById('comment_details');
         see = event.currentTarget;
@@ -112,50 +115,74 @@
         }
     }
 
+    export function dragstartResize() {
+        target_action = "resize";
+
+        com = document.getElementById('comments');
+
+        console.log("resive");
+    }
+
+
     export function dragoverComments(event) {
-        event.preventDefault(); 
-        let x = event.clientX - 94;
-        let y = event.clientY - 33.5;
-        com.style.left = x + 'px';
-        com.style.top = y + 'px';
+        event.preventDefault();
+        if (target_action == "com") {
+            let x = event.clientX - 94;
+            let y = event.clientY - 33.5;
+            com.style.left = x + 'px';
+            com.style.top = y + 'px';
+        } else if (target_action == "resize") {
+            let width = Math.min((event.clientX - com.offsetLeft), 1000);
+            console.log(width);
+            com.style.maxWidth = width + 'px'; 
+
+        console.log("resive");
+        }
+
     }
 
     export function dropComments(event) {
         event.preventDefault();
 
-        if (event.clientX < event.currentTarget.offsetWidth*0.07) {
-            console.log("zone1");
-            com_zone = document.getElementById("com_zone1");
-            document.getElementById("com_zone1_gap").style.minWidth = 'max(7%, 20px)';
-            document.getElementById("com_zone2_gap").style.minWidth = '0';
-            com.style.maxWidth = '200px'; 
-        } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
-            console.log("zone2");
-            com_zone = document.getElementById("com_zone2");
-            document.getElementById("com_zone1_gap").style.minWidth = '0';
-            document.getElementById("com_zone2_gap").style.minWidth = 'max(7%, 20px)';
-            com.style.maxWidth = '200px'; 
-        } else if (event.clientY > event.currentTarget.offsetHeight*0.93) {
-            console.log("zone3");
-            com_zone = document.getElementById("com_zone3");
-            document.getElementById("com_zone1_gap").style.minWidth = '0';
-            document.getElementById("com_zone2_gap").style.minWidth = '0';
-            com.style.marginTop = 'min(max(25px,5vw),73px)';
-        }
-        
-        if (com_zone) {
-            com_zone.appendChild(com);
-        }
-        
-        see.style.opacity ='1';
-        com.style.position = 'relative';
-        com.style.left = '0px';
-        com.style.top = '0px';
+        if (target_action == "com") {
+            if (event.clientX < event.currentTarget.offsetWidth*0.07) {
+                console.log("zone1");
+                com_zone = document.getElementById("com_zone1");
+                document.getElementById("com_zone1_gap").style.minWidth = 'max(7%, 20px)';
+                document.getElementById("com_zone2_gap").style.minWidth = '0';
+                com.style.maxWidth = '250px'; 
+            } else if (event.clientX > event.currentTarget.offsetWidth*0.93) {
+                console.log("zone2");
+                com_zone = document.getElementById("com_zone2");
+                document.getElementById("com_zone1_gap").style.minWidth = '0';
+                document.getElementById("com_zone2_gap").style.minWidth = 'max(7%, 20px)';
+                com.style.maxWidth = '250px'; 
+            } else if (event.clientY > event.currentTarget.offsetHeight*0.93) {
+                console.log("zone3");
+                com_zone = document.getElementById("com_zone3");
+                document.getElementById("com_zone1_gap").style.minWidth = '0';
+                document.getElementById("com_zone2_gap").style.minWidth = '0';
+                com.style.marginTop = 'min(max(25px,5vw),73px)';
+            }
+            
+            if (com_zone) {
+                com_zone.appendChild(com);
+            }
+            
+            see.style.opacity ='1';
+            com.style.position = 'relative';
+            com.style.left = '0px';
+            com.style.top = '0px';
 
-        if (open) {
-            comment_details.style.display = 'flex';
-            com.style.minHeight = '200px';
+            if (open) {
+                comment_details.style.display = 'flex';
+                com.style.minHeight = '200px';
+            }
+        } else if (target_action == "resize") {
+        console.log("resive");
+            
         }
+        
     }
     
 

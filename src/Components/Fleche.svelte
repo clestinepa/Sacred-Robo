@@ -18,8 +18,6 @@
 	}
 
 	.down2, .up2 {
-        height: min(max(10px,2vw),20px);
-        width: min(max(10px,2vw),20px);
         display: flex;
         align-items: center;
 	}

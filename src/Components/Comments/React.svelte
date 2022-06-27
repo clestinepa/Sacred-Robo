@@ -41,8 +41,8 @@
 </script>
 
 <div class=react>
-    <div class=detail_{select_applause} on:click={applause}>
-        <div class=icon>👏</div>
+    <div class=detail_react_{select_applause} on:click={applause}>
+        <div class=icon_react>👏</div>
         <div class=nb>{com.nb_applaus}</div>
     </div>
     <div class=detail_react_{select_sad} on:click={sad}>

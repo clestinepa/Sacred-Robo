@@ -41,7 +41,7 @@
 	import { liveQuery } 	from "dexie";
 	import { db } 			from "./db.js";
 	import {settings, switchOn, page} from './stores.js';
-	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragoverComments, dropComments} from './Functions.svelte';
+	import {animScoreIncrement, startGame, handleKeyboardUp, handleKeyboardDown, dragoverComments, dropComments, dragstartResize} from './Functions.svelte';
 	import Contraintes 		from './Contraintes.svelte';
 	
 	import Select_Preset 	from './Components/Settings/Select_Preset.svelte';
@@ -160,8 +160,26 @@
 	<Header_Game/>
 	{#if $read_score_db && $read_sets_score_db}
 	<main class="game" on:dragover={e => dragoverComments(e)} on:drop={e => dropComments(e)}>
-		<div id=com_zone1></div>
-		<div id=com_zone1_gap></div>
+		<div class=container_com_zone>
+			<div id=com_zone1>
+				{#if $read_comments_db}
+				<div id=comments>
+					<div id=comments_scroll>
+						<See text="Comments" details={-1}/>
+						<div id=comment_details>
+							{#if $read_comments_db.length == 0}
+								<div><span>There is no comments, for the moment</div>
+							{:else}
+								<Comments/>
+							{/if}
+						</div>	
+					</div>
+				</div>
+				{/if}
+			</div>
+			<span draggable="true" class=resize_com_zone style='min-width : var(--1vw);' on:dragstart={dragstartResize}></span>
+		</div>
+		<div id=com_zone1_gap style='min-width : max(7%, 20px);'></div>
 		<div id=com_zone3>
 			<div id=result>
 				<div id=names_{$switchOn}>
@@ -214,25 +232,13 @@
 					</div>
 				</div>
 			</div>
-			<div id=testVW style='background:red;'></div>
-			<div id=testCalc style='background:blue;'></div>
-			{#if $read_comments_db}
-			<div id=comments>
-				<div id=comments_scroll>
-					<See text="Comments" details={-1}/>
-					<div id=comment_details>
-						{#if $read_comments_db.length == 0}
-							<div><span>There is no comments, for the moment</div>
-						{:else}
-							<Comments/>
-						{/if}
-					</div>	
-				</div>
-			</div>
-			{/if}
+			<!-- ICIcom -->
 		</div>
 		<div id=com_zone2_gap></div>
-		<div id=com_zone2></div>
+		<div class=container_com_zone>
+			<span draggable="true" class=resize_com_zone></span>
+			<div id=com_zone2></div>
+		</div>
 	</main>
 	{#if ($read_score_db[0].winner==1? true : false) || ($read_score_db[1].winner==1? true : false)}
 		<Confetti/>
@@ -347,18 +353,6 @@ main {
 /* Global */
 .game{
 	display: flex;
-}
-
-#com_zone3 {
-	flex:1 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-#com_zone2, #com_zone1 {
-	display: flex;
-	flex-direction: column;
 }
 
 #result {
@@ -484,14 +478,30 @@ main {
 /* ****** */
 
 /* COMMENTS */
+.container_com_zone {
+	display: flex;
+}
+
+#com_zone3 {
+	flex:1 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#com_zone1, #com_zone2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.resize_com_zone {
+	cursor:col-resize;
+}
+
 #comments {
 	background: var(--bg-transparent);
-	border-radius: 30px;
-	border : 5px solid var(--clair);
 	border-left : none;
 	border-right : none;
-	margin-top: min(max(25px,5vw),73px);
-	padding : 15px 0;
 
 	display: flex;
 
@@ -500,21 +510,16 @@ main {
 }
 
 #comments_scroll {
-	padding : 0 25px;
-	margin: 0 5px;
-
 	overflow-y : overlay;
 
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
 }
 
 #comment_details {
 	display: none;
 	/* display: flex; */
 	flex-direction: column;
-	gap: 30px;
 }
 /* ******** */
 

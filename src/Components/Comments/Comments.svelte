@@ -43,6 +43,7 @@
         <div class=zone_com>
             <Content_Com com={com}/>
             <div class=footer_com>
+                <React com={com}/>
                 {#if com.responses.length==0}
                     <div>{com.responses}</div>
                 {:else if com.responses.length==1}
@@ -50,7 +51,6 @@
                 {:else}
                     <See text={"Show the " + com.responses.length + " responses"} details={com.id}/>
                 {/if}
-                <React com={com}/>
             </div>
             <div class=reponse_details>
                 <Reponses com={com}/>
@@ -65,20 +65,6 @@
         border-bottom: 1px solid var(--clair);
     }
 
-    .header_com {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-    }
-
-    .title_subsection_com {
-        font-weight: semibold;
-    }
-
-    .date {
-        color: var(--font-clair);
-    }
-
     .zone_com {
         display: flex;
         flex-direction: column;
@@ -88,7 +74,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+        flex-flow: row wrap;
+        flex-direction: row-reverse;
+
         color : var(--normal);
         border-color : var(--clair);
     }
@@ -97,8 +85,5 @@
         display: none;
         flex-direction: column;
     }
-
-
-
 
 </style>

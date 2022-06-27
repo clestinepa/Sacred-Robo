@@ -76,11 +76,10 @@
                 padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
                 let val_result = (padding_body + result.offsetWidth) * 0.01;
                 document.documentElement.style.setProperty('--vw-result', val_result + 'px');
-                let val_comments = (padding_body + com_zone1.offsetWidth) * 0.01;
+                let val_comments = (com_zone1.offsetWidth) * 0.01;
                 document.documentElement.style.setProperty('--vw-comments', val_comments + 'px');
-
-            }, 0);
-        }, 500);
+            }, 100);
+        }, 1000);
     });
 
 </script>

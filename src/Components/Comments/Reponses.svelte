@@ -20,18 +20,4 @@
     .reponse {
         border-left: 1px solid var(--clair);
     }
-
-    .header_com {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-    }
-
-    .title_subsection_com {
-        font-weight: semibold;
-    }
-
-    .date {
-        color: var(--font-clair);
-    }
 </style>
