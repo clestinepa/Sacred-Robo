@@ -60,25 +60,52 @@
     }
 
 
-    let result, com_zone1, com_zone2, com_zone3, body, padding_body, com_zone1_gap, com_zone2_gap;
+    let body;
+    let result, com_zone1, com_zone2, com_zone3, padding_body, com_zone1_gap, com_zone2_gap;
+    let main, info_comments, comments;
 
     onMount(() => {
         body = document.querySelector('body');
         setTimeout( () => {
+            main = document.getElementById('game');
             result = document.getElementById('result');
             com_zone1 = document.getElementById('com_zone1'); 
             com_zone2 = document.getElementById('com_zone2');
             com_zone3 = document.getElementById('com_zone3');
             com_zone1_gap = document.getElementById('com_zone1_gap');
             com_zone2_gap = document.getElementById('com_zone2_gap');
+            info_comments = document.getElementById('info_comments');
+            comments = document.getElementById('comments');
+
+            // setInterval( () => {
+            //     padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
+            //     let val_result = (padding_body + result.offsetWidth) * 0.01;
+            //     document.documentElement.style.setProperty('--vw-result', val_result + 'px');
+            //     let val_comments = val_result;
+            //     document.documentElement.style.setProperty('--vw-comments', val_comments + 'px');
+            // }, 0);
 
             setInterval( () => {
-                padding_body = body.offsetWidth - com_zone1.offsetWidth - com_zone1_gap.offsetWidth - com_zone2.offsetWidth - com_zone2_gap.offsetWidth - com_zone3.offsetWidth;
-                let val_result = (padding_body + result.offsetWidth) * 0.01;
-                document.documentElement.style.setProperty('--vw-result', val_result + 'px');
-                let val_comments = (com_zone1.offsetWidth) * 0.01;
-                document.documentElement.style.setProperty('--vw-comments', val_comments + 'px');
-            }, 100);
+                if (main.offsetHeight < main.scrollHeight) {
+                    if ((main.scrollHeight-main.offsetHeight) < (comments.offsetHeight/2)) {
+                        console.log("moitié visible");
+                        info_comments.style.color="transparent";
+                    } else {
+                        if (main.scrollTop >= (comments.offsetHeight/4)) {
+                            console.log("visible au scroll");
+                            info_comments.style.color="transparent";
+                        } else {
+                            console.log("pas visible");
+                            info_comments.style.color="var(--font-clair)";
+                        }
+                    }
+                } else {
+                    console.log("visible");
+                    info_comments.style.color="transparent";
+
+                }
+
+            }, 1000);
         }, 1000);
     });
 

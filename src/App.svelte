@@ -159,27 +159,14 @@
 {:else if $page == "game"}
 	<Header_Game/>
 	{#if $read_score_db && $read_sets_score_db}
-	<main class="game" on:dragover={e => dragoverComments(e)} on:drop={e => dropComments(e)}>
+	<main id=game on:dragover={e => dragoverComments(e)} on:drop={e => dropComments(e)}>
 		<div class=container_com_zone>
-			<div id=com_zone1>
-				{#if $read_comments_db}
-				<div id=comments>
-					<div id=comments_scroll>
-						<See text="Comments" details={-1}/>
-						<div id=comment_details>
-							{#if $read_comments_db.length == 0}
-								<div><span>There is no comments, for the moment</div>
-							{:else}
-								<Comments/>
-							{/if}
-						</div>	
-					</div>
-				</div>
-				{/if}
-			</div>
-			<span draggable="true" class=resize_com_zone style='min-width : var(--1vw);' on:dragstart={dragstartResize}></span>
+			<div id=com_zone1></div>
+			<!-- <span draggable="true" class=resize_com_zone style='min-width : var(--1vw);' on:dragstart={dragstartResize}></span> -->
+			<span draggable="true" class=resize_com_zone on:dragstart={dragstartResize}></span>
 		</div>
-		<div id=com_zone1_gap style='min-width : max(7%, 20px);'></div>
+		<!-- <div id=com_zone1_gap style='min-width : max(7%, 20px);'></div> -->
+		<div id=com_zone1_gap></div>
 		<div id=com_zone3>
 			<div id=result>
 				<div id=names_{$switchOn}>
@@ -231,8 +218,23 @@
 						<h2 class=title_subsection>:Timeout</h2>
 					</div>
 				</div>
+				<p id=info_comments>Comments ↓</p>
 			</div>
-			<!-- ICIcom -->
+			
+			{#if $read_comments_db}
+			<div id=comments>
+				<div id=comments_scroll>
+					<See text="Comments" details={-1}/>
+					<div id=comment_details>
+						{#if $read_comments_db.length == 0}
+							<div><span>There is no comments, for the moment</div>
+						{:else}
+							<Comments/>
+						{/if}
+					</div>	
+				</div>
+			</div>
+			{/if}
 		</div>
 		<div id=com_zone2_gap></div>
 		<div class=container_com_zone>
@@ -351,7 +353,7 @@ main {
 /* GAME */
 
 /* Global */
-.game{
+#game{
 	display: flex;
 }
 
@@ -478,6 +480,12 @@ main {
 /* ****** */
 
 /* COMMENTS */
+#info_comments {
+	color: transparent;
+	text-align: center;
+	transition: 1s;
+}
+
 .container_com_zone {
 	display: flex;
 }
@@ -503,8 +511,6 @@ main {
 	border-left : none;
 	border-right : none;
 
-	display: flex;
-
 	top:0px;
 	left:0px;
 }
@@ -518,7 +524,6 @@ main {
 
 #comment_details {
 	display: none;
-	/* display: flex; */
 	flex-direction: column;
 }
 /* ******** */

@@ -290,7 +290,7 @@ main::-webkit-scrollbar-thumb:hover {
 	--4vw-reduit : min(max(20px, calc(var(--vw-result)*4)),50px);
 }
 
-.game{
+#game{
 	padding: max(3%, 10px) max(7%, 20px);
 }
 
@@ -408,7 +408,7 @@ main::-webkit-scrollbar-thumb:hover {
 #comments {
 	border-radius: 30px;
 	border : 5px solid var(--clair);
-	/* margin-top: min(max(25px,5vw),73px); */
+	margin-top: min(max(20px,4vw),59px);
 	padding : 15px 0;
 }
 
@@ -422,13 +422,13 @@ main::-webkit-scrollbar-thumb:hover {
 }
 
 .title_subsection_com, .detail_react_true, .detail_react_false {
-	font-size : min(max(15px, calc(var(--vw-comments)*3)),20px);
+	font-size : min(max(15px, calc(var(--vw-comments)*2.3)),20px);
 }
 .text_see, .content_com, .content_responses {
-    font-size : min(max(12.5px, calc(var(--vw-comments)*2.5)),18px);
+    font-size : min(max(12.5px, calc(var(--vw-comments)*2)),18px);
 }
-.date, #read {
-	font-size : min(max(10px, calc(var(--vw-comments)*2)),15px);
+.date, #read, #info_comments {
+	font-size : min(max(10px, calc(var(--vw-comments)*1.5)),15px);
 }
 .icon_react {
 	font-size: min(max(25px,5vw),40px);

@@ -30,11 +30,9 @@
     function seeMore() {
         visible = !visible;
         if (details == -1) {
+            autre_element.style.display = (visible ? 'flex' :  'table');
             details_element.style.display = (visible ? 'flex' :  'none');
             autre_element.style.minHeight = (visible ? '200px' :  '0px');
-            autre_element.style.minWidth = (visible ? '250px' :  '0px');
-            autre_element.style.maxWidth = (visible ? '1000px' :  '0px');
-
             transition = (visible ? "0.25em" :  "-0.25em") ;
         } else {
             text = (visible ? text.replace("Show", "Hide") : text.replace("Hide", "Show"));
@@ -46,9 +44,10 @@
 
 </script>
 
-<div class=container><div draggable="true" class=see on:click={seeMore} on:dragstart={e => dragstartComments(e)} style="--transition:{transition};">
+<!-- <div class=container><div draggable={details == -1 ? true : false} class=see on:click={seeMore} on:dragstart={e => dragstartComments(e)} style="--transition:{transition};"> -->
+<div class=container><div class=see on:click={seeMore} on:dragstart={e => dragstartComments(e)} style="--transition:{transition};">
     <Fleche direction={visible & details == -1 ? "down2" : !visible & details == -1 ? "up2": visible ? "up2" : "down2"} color={color_fleche}/>
-    <div class=text_see>{text}</div>
+    <p class=text_see>{text}</p>
 </div></div>
 
 <style>
