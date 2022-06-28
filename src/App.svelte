@@ -26,7 +26,9 @@
 	 * 				Check dans check_to
 	 *				boite de dialogue
 	 *				see.svelte seeMore => minHeight
-
+	 *
+	 * Hover see colore toutes les fleches
+	 * Scroll main ne va pas jusqu'au padding du bas
 	 *
 	 * Hover :	clear confetti
 	 * 			navigation
@@ -163,7 +165,6 @@
 		<div class=container_com_zone>
 			<div id=com_zone1></div>
 			<!-- <span draggable="true" class=resize_com_zone style='min-width : var(--1vw);' on:dragstart={dragstartResize}></span> -->
-			<span draggable="true" class=resize_com_zone on:dragstart={dragstartResize}></span>
 		</div>
 		<!-- <div id=com_zone1_gap style='min-width : max(7%, 20px);'></div> -->
 		<div id=com_zone1_gap></div>
@@ -219,12 +220,12 @@
 					</div>
 				</div>
 				<p id=info_comments>Comments ↓</p>
-			</div>
-			
+			</div>	
 			{#if $read_comments_db}
-			<div id=comments>
+			<div id=comments on:dragstart={e => dragstartResize(e)}>
+				<span draggable=true id=resize_com_zone on:dragstart={dragstartResize}></span>
 				<div id=comments_scroll>
-					<See text="Comments" details={-1}/>
+					<See text="Comments" type_details={-1}/>
 					<div id=comment_details>
 						{#if $read_comments_db.length == 0}
 							<div><span>There is no comments, for the moment</div>
@@ -238,7 +239,7 @@
 		</div>
 		<div id=com_zone2_gap></div>
 		<div class=container_com_zone>
-			<span draggable="true" class=resize_com_zone></span>
+			<!-- <span draggable=true class=resize_com_zone></span> -->
 			<div id=com_zone2></div>
 		</div>
 	</main>
@@ -502,18 +503,22 @@ main {
 	flex-direction: column;
 }
 
-.resize_com_zone {
-	cursor:col-resize;
-}
 
 #comments {
 	background: var(--bg-transparent);
 	border-left : none;
 	border-right : none;
-
+	position : relative;
 	top:0px;
 	left:0px;
 }
+
+#resize_com_zone {
+	position : absolute;
+	width : 100%;
+	background: transparent;
+}
+
 
 #comments_scroll {
 	overflow-y : overlay;

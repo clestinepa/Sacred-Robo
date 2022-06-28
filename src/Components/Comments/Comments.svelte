@@ -47,9 +47,9 @@
                 {#if com.responses.length==0}
                     <div>{com.responses}</div>
                 {:else if com.responses.length==1}
-                    <See text={"Show the " + com.responses.length + " response"} details={com.id}/>
+                    <See text={"Show the " + com.responses.length + " response"} type_details={com.id}/>
                 {:else}
-                    <See text={"Show the " + com.responses.length + " responses"} details={com.id}/>
+                    <See text={"Show the " + com.responses.length + " responses"} type_details={com.id}/>
                 {/if}
             </div>
             <div class=reponse_details>

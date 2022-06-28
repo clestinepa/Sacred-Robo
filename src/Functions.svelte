@@ -82,7 +82,7 @@
         }
     }
 
-    let see, com, comment_details, com_zone;
+    let see, com, comments_scroll, comment_details, com_zone;
     let open = false;
     let target_action;
     export function dragstartComments(event) {
@@ -119,7 +119,7 @@
         target_action = "resize";
 
         com = document.getElementById('comments');
-
+        comments_scroll = document.getElementById('comments_scroll');
         console.log("resive");
     }
 
@@ -131,12 +131,11 @@
             let y = event.clientY - 33.5;
             com.style.left = x + 'px';
             com.style.top = y + 'px';
+            console.log(event.clientY - com.offsetTop);
         } else if (target_action == "resize") {
-            let width = Math.min((event.clientX - com.offsetLeft), 1000);
-            console.log(width);
-            com.style.maxWidth = width + 'px'; 
-
-        console.log("resive");
+            let height = Math.max(Math.min(((com.offsetTop - event.clientY) + com.offsetHeight), 1000), 200);
+            if (comments_scroll.offsetHeight == comments_scroll.scrollHeight && height>com.offsetHeight) {}
+            else {com.style.minHeight= height + 'px';}
         }
 
     }
@@ -179,8 +178,6 @@
                 com.style.minHeight = '200px';
             }
         } else if (target_action == "resize") {
-        console.log("resive");
-            
         }
         
     }

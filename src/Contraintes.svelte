@@ -88,24 +88,19 @@
             setInterval( () => {
                 if (main.offsetHeight < main.scrollHeight) {
                     if ((main.scrollHeight-main.offsetHeight) < (comments.offsetHeight/2)) {
-                        console.log("moitié visible");
                         info_comments.style.color="transparent";
                     } else {
                         if (main.scrollTop >= (comments.offsetHeight/4)) {
-                            console.log("visible au scroll");
                             info_comments.style.color="transparent";
                         } else {
-                            console.log("pas visible");
                             info_comments.style.color="var(--font-clair)";
                         }
                     }
                 } else {
-                    console.log("visible");
                     info_comments.style.color="transparent";
-
                 }
 
-            }, 1000);
+            }, 0);
         }, 1000);
     });
 

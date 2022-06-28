@@ -412,6 +412,11 @@ main::-webkit-scrollbar-thumb:hover {
 	padding : 15px 0;
 }
 
+#resize_com_zone {
+	height : 5px;
+	top: -5px;
+}
+
 #comments_scroll {
 	padding : 0 25px;
 	margin: 0 5px;
